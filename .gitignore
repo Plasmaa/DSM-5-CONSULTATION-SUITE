@@ -1,0 +1,21 @@
+# Virtual Environment
+.venv/
+venv/
+
+# Secrets & Configuration
+.env
+pinecone api.txt
+pinecone_api.txt
+
+# Copyrighted/Large Files & Databases
+DSM-5.pdf
+dsm5_cache.db
+*.db
+*.pdf
+*.npy
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/

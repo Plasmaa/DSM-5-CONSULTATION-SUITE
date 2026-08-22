@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSM-5 Chief Psychiatrist Consultation Suite</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styling -->
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="app-header">
+            <div class="header-logo">
+                <i class="fa-solid fa-brain-circuit logo-icon"></i>
+                <div class="logo-text">
+                    <h1>DSM-5 CONSULTATION SUITE</h1>
+                    <span class="subtitle">Clinical Decision Support System | Chief Psychiatrist AI</span>
+                </div>
+            </div>
+            <div class="header-status">
+                <div class="status-item" id="pinecone-status">
+                    <span class="status-dot red"></span>
+                    <span class="status-label">Pinecone: Connecting...</span>
+                </div>
+                <div class="status-item" id="ollama-status">
+                    <span class="status-dot red"></span>
+                    <span class="status-label">Ollama: Offline</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-workspace">
+            <!-- Sidebar: Navigation & Controls -->
+            <aside class="workspace-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fa-solid fa-circle-nodes"></i> Clinical Status</h3>
+                    <div class="stats-panel">
+                        <div class="stat-row">
+                            <span class="stat-name">Cached Chunks</span>
+                            <span class="stat-value" id="stat-chunks">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Active Model</span>
+                            <span class="stat-value" id="stat-model">qwen2.5:7b</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fa-solid fa-microscope"></i> Diagnostic Selectors</h3>
+                    <p class="section-help">Click to load standard clinical inquiry templates:</p>
+                    <div class="quick-inquiries">
+                        <button class="quick-btn" data-query="What are the specific diagnostic criteria for ADHD (Attention-Deficit/Hyperactivity Disorder)? Please lay them out in detail.">
+                            <i class="fa-solid fa-child-reaching"></i> ADHD Criteria
+                        </button>
+                        <button class="quick-btn" data-query="Help me differentiate between Bipolar I Disorder and Bipolar II Disorder based on manic vs. hypomanic episode requirements.">
+                            <i class="fa-solid fa-arrows-left-right"></i> Bipolar I vs II Differential
+                        </button>
+                        <button class="quick-btn" data-query="What are the key differential diagnoses we must rule out before diagnosing a patient with Schizophrenia?">
+                            <i class="fa-solid fa-shield-halved"></i> Schizophrenia Differentials
+                        </button>
+                        <button class="quick-btn" data-query="Explain the severity and course specifiers for Major Depressive Disorder (MDD).">
+                            <i class="fa-solid fa-list-check"></i> MDD Specifiers
+                        </button>
+                    </div>
+                </div>
+                
+                <footer class="sidebar-footer">
+                    <p><i class="fa-solid fa-lock"></i> Fully Offline & Local RAG</p>
+                </footer>
+            </aside>
+
+            <!-- Center Panel: Chat Consultation Room -->
+            <section class="workspace-chat">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Default Greeting -->
+                    <div class="message system-message">
+                        <div class="message-avatar">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div class="message-content">
+                            <h4>Chief of Psychiatry</h4>
+                            <p>Consultation room active. I am ready to review your case descriptions or questions on the DSM-5. Provide symptoms, suspected conditions, or direct criteria queries. I will perform a rigorous analysis based strictly on the manual's text.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Input Controls -->
+                <div class="chat-input-area">
+                    <form id="chat-form" class="chat-form">
+                        <textarea 
+                            id="user-input" 
+                            placeholder="Enter case summary, symptoms, or DSM-5 questions..." 
+                            rows="2" 
+                            required
+                        ></textarea>
+                        <button type="submit" class="send-btn" id="send-button">
+                            <span>Analyze</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Right Panel: Clinical Sources -->
+            <aside class="workspace-sources">
+                <div class="sources-header">
+                    <h3><i class="fa-solid fa-book-open"></i> Clinical References</h3>
+                    <span class="badge" id="source-count">0 Chunks</span>
+                </div>
+                <div class="sources-list" id="sources-list">
+                    <div class="sources-empty">
+                        <i class="fa-solid fa-receipt"></i>
+                        <p>No active analysis. Submit an inquiry to retrieve DSM-5 reference segments and page citations.</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+pymupdf
+sentence-transformers
+pinecone
+fastapi
+uvicorn
+numpy
+requests
