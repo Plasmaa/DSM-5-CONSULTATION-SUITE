@@ -6,6 +6,7 @@ venv/
 .env
 pinecone api.txt
 pinecone_api.txt
+how_it_works.md
 
 # Copyrighted/Large Files & Databases
 DSM-5.pdf
