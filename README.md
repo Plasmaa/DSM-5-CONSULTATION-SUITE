@@ -2,6 +2,8 @@
 
 A high-fidelity, hybrid Retrieval-Augmented Generation (RAG) system built over the **Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5)**. The application features a senior "Chief of Psychiatry / Boss Psychologist" clinical persona and a premium glassmorphic dashboard interface for clinical inquiry support.
 
+🔗 **Live Deployment**: **[dsm-5-consultation-suite.vercel.app](https://dsm-5-consultation-suite.vercel.app/)**
+
 ---
 
 ## 🌟 Key Features
@@ -118,8 +120,10 @@ Start the FastAPI backend:
 python -m uvicorn src.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open your browser and navigate to:
-👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+Open your browser and navigate to your live Vercel site:
+👉 **[https://dsm-5-consultation-suite.vercel.app](https://dsm-5-consultation-suite.vercel.app/)**
+
+*(Alternatively, if running everything locally, visit [http://127.0.0.1:8000](http://127.0.0.1:8000))*
 
 ---
 
