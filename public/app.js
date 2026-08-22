@@ -10,6 +10,11 @@ const ollamaStatus = document.getElementById('ollama-status');
 const statChunks = document.getElementById('stat-chunks');
 const statModel = document.getElementById('stat-model');
 
+// Dynamic API Base URL resolver (fallback to local backend if running on Vercel)
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? ''
+    : 'http://localhost:8000';
+
 // Chat State
 let chatHistory = [];
 let isGenerating = false;
@@ -51,7 +56,7 @@ function setupEventListeners() {
 // Fetch System Status
 async function checkSystemStatus() {
     try {
-        const response = await fetch('/api/status');
+        const response = await fetch(`${API_BASE}/api/status`);
         const data = await response.json();
         
         // Update Stats
@@ -181,7 +186,7 @@ async function submitMessage() {
 
     // Prepare API request
     try {
-        const response = await fetch('/api/chat', {
+        const response = await fetch(`${API_BASE}/api/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
