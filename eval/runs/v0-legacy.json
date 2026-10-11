@@ -1,0 +1,5189 @@
+{
+  "label": "v0-legacy",
+  "timestamp": "2026-10-12T00:51:25.281714",
+  "total_questions": 40,
+  "metrics": {
+    "recall_at_5": 0.9688,
+    "recall_at_10": 1.0,
+    "mrr": 0.8411,
+    "section_recall_at_5": 0.5625,
+    "section_recall_at_10": 0.7812,
+    "lookup_recall_at_5": 1.0,
+    "lookup_recall_at_10": 1.0,
+    "lookup_mrr": 0.85,
+    "diff_recall_at_5": 0.9167,
+    "diff_recall_at_10": 1.0,
+    "diff_mrr": 0.8264,
+    "oos_auroc": 1.0,
+    "optimal_oos_threshold": 0.71,
+    "oos_rejection_acc": 1.0,
+    "balanced_accuracy": 1.0
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.55,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 0.0,
+      "balanced_accuracy": 0.5
+    },
+    {
+      "threshold": 0.6,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 0.125,
+      "balanced_accuracy": 0.5625
+    },
+    {
+      "threshold": 0.65,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 0.625,
+      "balanced_accuracy": 0.8125
+    },
+    {
+      "threshold": 0.68,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 0.75,
+      "balanced_accuracy": 0.875
+    },
+    {
+      "threshold": 0.7,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 0.875,
+      "balanced_accuracy": 0.9375
+    },
+    {
+      "threshold": 0.71,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "threshold": 0.72,
+      "in_scope_retention": 1.0,
+      "oos_rejection": 1.0,
+      "balanced_accuracy": 1.0
+    },
+    {
+      "threshold": 0.75,
+      "in_scope_retention": 0.90625,
+      "oos_rejection": 1.0,
+      "balanced_accuracy": 0.953125
+    },
+    {
+      "threshold": 0.8,
+      "in_scope_retention": 0.5,
+      "oos_rejection": 1.0,
+      "balanced_accuracy": 0.75
+    }
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Generalized Anxiety Disorder?",
+      "gold_disorders": [
+        "Generalized Anxiety Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        260,
+        261
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 3,
+      "top_score": 0.763515592,
+      "details": "Disorder Hits: [3, 4, 5, 6, 7, 9] | Section Hits: [] | Top: #1: Social Anxiety Disorder (Social Phobia) (Differential Diagnosis, pdf_p.244, score=0.763) | #2: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.758) | #3: Generalized Anxiety Disorder (Differential Diagnosis, pdf_p.263, score=0.741)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.7635,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7585,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 263,
+          "printed_page": 225,
+          "score": 0.741,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 262,
+          "printed_page": 224,
+          "score": 0.7382,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 264,
+          "printed_page": 226,
+          "score": 0.7375,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 261,
+          "printed_page": 223,
+          "score": 0.7247,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 262,
+          "printed_page": 224,
+          "score": 0.719,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Comorbidity",
+          "pdf_page": 259,
+          "printed_page": 221,
+          "score": 0.7162,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 260,
+          "printed_page": 222,
+          "score": 0.7146,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 350,
+          "printed_page": 312,
+          "score": 0.7114,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "type": "lookup",
+      "question": "What is the minimum duration requirement of symptoms for diagnosing Posttraumatic Stress Disorder in adults?",
+      "gold_disorders": [
+        "Posttraumatic Stress Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        308,
+        309,
+        310,
+        311
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "section_hit_ranks": [
+        7
+      ],
+      "first_hit_rank": 3,
+      "top_score": 0.757646561,
+      "details": "Disorder Hits: [3, 4, 5, 6, 7] | Section Hits: [7] | Top: #1: Acute Stress Disorder (Diagnostic Features, pdf_p.318, score=0.758) | #2: Adjustment Disorders (Differential Diagnosis, pdf_p.325, score=0.751) | #3: Posttraumatic Stress Disorder (Development and Course, pdf_p.313, score=0.746)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 318,
+          "printed_page": 280,
+          "score": 0.7576,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 325,
+          "printed_page": 287,
+          "score": 0.7507,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 313,
+          "printed_page": 275,
+          "score": 0.746,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 316,
+          "printed_page": 278,
+          "score": 0.7436,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 311,
+          "printed_page": 273,
+          "score": 0.7423,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 313,
+          "printed_page": 275,
+          "score": 0.731,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 308,
+          "printed_page": 270,
+          "score": 0.7268,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.7154,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Female Orgasmic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 465,
+          "printed_page": 427,
+          "score": 0.71,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Sexual Masochism Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 726,
+          "printed_page": 688,
+          "score": 0.709,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "type": "lookup",
+      "question": "How many symptoms from Criterion A must be present to diagnose Major Depressive Disorder, and for how long?",
+      "gold_disorders": [
+        "Major Depressive Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        198,
+        199,
+        200
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        9
+      ],
+      "section_hit_ranks": [
+        9
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.799095392,
+      "details": "Disorder Hits: [1, 9] | Section Hits: [9] | Top: #1: Major Depressive Disorder (Diagnostic Features, pdf_p.200, score=0.799) | #2: Persistent Depressive Disorder (Dysthymia) (Differential Diagnosis, pdf_p.208, score=0.783) | #3: Persistent Depressive Disorder (Dysthymia) (Diagnostic Criteria, pdf_p.206, score=0.783)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 200,
+          "printed_page": 162,
+          "score": 0.7991,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 208,
+          "printed_page": 170,
+          "score": 0.7833,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 206,
+          "printed_page": 168,
+          "score": 0.7833,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 177,
+          "printed_page": 139,
+          "score": 0.7757,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 207,
+          "printed_page": 169,
+          "score": 0.7702,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.7424,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Substance/Medication-Induced Depressive Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 215,
+          "printed_page": 177,
+          "score": 0.7334,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 144,
+          "printed_page": 106,
+          "score": 0.7296,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 198,
+          "printed_page": 160,
+          "score": 0.7251,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Delusional Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 130,
+          "printed_page": 92,
+          "score": 0.7245,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "type": "lookup",
+      "question": "What are the age of onset and setting requirements for Attention-Deficit/Hyperactivity Disorder?",
+      "gold_disorders": [
+        "Attention-Deficit/Hyperactivity Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        97,
+        98
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9
+      ],
+      "section_hit_ranks": [
+        9
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.772191107,
+      "details": "Disorder Hits: [1, 2, 4, 5, 7, 8, 9] | Section Hits: [9] | Top: #1: Disorder Attention-Deficit/Hyperactivity Disorder (Diagnostic Features, pdf_p.99, score=0.772) | #2: Disorder Attention-Deficit/Hyperactivity Disorder (Development and Course, pdf_p.100, score=0.759) | #3: Unspecified Stimulant-Related Disorder Stimulant Use Disorder (Development and Course, pdf_p.598, score=0.725)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 99,
+          "printed_page": 61,
+          "score": 0.7722,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 100,
+          "printed_page": 62,
+          "score": 0.7591,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Unspecified Stimulant-Related Disorder Stimulant Use Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 598,
+          "printed_page": 560,
+          "score": 0.7245,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 103,
+          "printed_page": 65,
+          "score": 0.7101,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 100,
+          "printed_page": 62,
+          "score": 0.6998,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Disinhiblted Social Engagement Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 307,
+          "printed_page": 269,
+          "score": 0.6976,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 99,
+          "printed_page": 61,
+          "score": 0.6956,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 101,
+          "printed_page": 63,
+          "score": 0.6949,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 97,
+          "printed_page": 59,
+          "score": 0.6907,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 10,
+          "disorder_name": "ter \"Personality Disorders.\" Pyromania",
+          "section_type": "Development and Course",
+          "pdf_page": 511,
+          "printed_page": 473,
+          "score": 0.6878,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Panic Disorder according to DSM-5?",
+      "gold_disorders": [
+        "Panic Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        247,
+        248
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 1,
+      "top_score": 0.73306936,
+      "details": "Disorder Hits: [1, 2, 4, 5, 6, 7, 8, 9, 10] | Section Hits: [] | Top: #1: Panic Disorder (Differential Diagnosis, pdf_p.250, score=0.733) | #2: Panic Disorder (Differential Diagnosis, pdf_p.255, score=0.721) | #3: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.720)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 250,
+          "printed_page": 212,
+          "score": 0.7331,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.7209,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7196,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 254,
+          "printed_page": 216,
+          "score": 0.7138,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 250,
+          "printed_page": 212,
+          "score": 0.7119,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.7106,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 248,
+          "printed_page": 210,
+          "score": 0.7053,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.7016,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 249,
+          "printed_page": 211,
+          "score": 0.6967,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 247,
+          "printed_page": 209,
+          "score": 0.6959,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "type": "lookup",
+      "question": "What are the criteria for Anorexia Nervosa, including weight and body image distortions?",
+      "gold_disorders": [
+        "Anorexia Nervosa"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        386,
+        387,
+        388
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9
+      ],
+      "section_hit_ranks": [
+        2
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.742885947,
+      "details": "Disorder Hits: [1, 2, 3, 7, 8, 9] | Section Hits: [2] | Top: #1: Anorexia Nervosa (Diagnostic Features, pdf_p.374, score=0.743) | #2: Anorexia Nervosa (Diagnostic Criteria, pdf_p.373, score=0.726) | #3: Anorexia Nervosa (Differential Diagnosis, pdf_p.379, score=0.715)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 374,
+          "printed_page": 336,
+          "score": 0.7429,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 373,
+          "printed_page": 335,
+          "score": 0.7264,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 379,
+          "printed_page": 341,
+          "score": 0.7152,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Functional Consequences",
+          "pdf_page": 384,
+          "printed_page": 346,
+          "score": 0.7138,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 279,
+          "printed_page": 241,
+          "score": 0.6895,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 383,
+          "printed_page": 345,
+          "score": 0.688,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Development and Course",
+          "pdf_page": 376,
+          "printed_page": 338,
+          "score": 0.6838,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Comorbidity",
+          "pdf_page": 379,
+          "printed_page": 341,
+          "score": 0.6828,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 377,
+          "printed_page": 339,
+          "score": 0.675,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 382,
+          "printed_page": 344,
+          "score": 0.6745,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "type": "lookup",
+      "question": "What are the core diagnostic features and required duration for Schizophrenia Criterion A?",
+      "gold_disorders": [
+        "Schizophrenia"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        137,
+        138
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        3,
+        6,
+        7,
+        9
+      ],
+      "section_hit_ranks": [
+        6
+      ],
+      "first_hit_rank": 3,
+      "top_score": 0.795546651,
+      "details": "Disorder Hits: [3, 6, 7, 9] | Section Hits: [6] | Top: #1: Schizophreniform Disorder (Diagnostic Features, pdf_p.135, score=0.795) | #2: Delusional Disorder (Diagnostic Features, pdf_p.130, score=0.782) | #3: Schizophrenia (Diagnostic Features, pdf_p.138, score=0.779)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Schizophreniform Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 135,
+          "printed_page": 97,
+          "score": 0.7955,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Delusional Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 130,
+          "printed_page": 92,
+          "score": 0.7819,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Schizophrenia",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 138,
+          "printed_page": 100,
+          "score": 0.7786,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Brief Psychotic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 132,
+          "printed_page": 94,
+          "score": 0.7766,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 144,
+          "printed_page": 106,
+          "score": 0.7679,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Schizophrenia",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 137,
+          "printed_page": 99,
+          "score": 0.7363,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Schizophrenia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 142,
+          "printed_page": 104,
+          "score": 0.7252,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Schizophreniform Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 134,
+          "printed_page": 96,
+          "score": 0.7248,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Schizophrenia",
+          "section_type": "Development and Course",
+          "pdf_page": 140,
+          "printed_page": 102,
+          "score": 0.7074,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 147,
+          "printed_page": 109,
+          "score": 0.7036,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Social Anxiety Disorder (Social Phobia)?",
+      "gold_disorders": [
+        "Social Anxiety Disorder (Social Phobia)",
+        "Social Anxiety Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        240,
+        241
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        3,
+        4,
+        7,
+        9,
+        10
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 1,
+      "top_score": 0.82055366,
+      "details": "Disorder Hits: [1, 3, 4, 7, 9, 10] | Section Hits: [] | Top: #1: Social Anxiety Disorder (Social Phobia) (Differential Diagnosis, pdf_p.244, score=0.821) | #2: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.766) | #3: Social Anxiety Disorder (Social Phobia) (Gender-Related Diagnostic Issues, pdf_p.244, score=0.727)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.8206,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7659,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.7274,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 241,
+          "printed_page": 203,
+          "score": 0.7216,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Social (Pragmatic) Communication Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 87,
+          "printed_page": 49,
+          "score": 0.7175,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Cluster C Personality Disorders Avoidant Personality Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 705,
+          "printed_page": 667,
+          "score": 0.7113,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 242,
+          "printed_page": 204,
+          "score": 0.7093,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 239,
+          "printed_page": 201,
+          "score": 0.709,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Functional Consequences",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.7083,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 243,
+          "printed_page": 205,
+          "score": 0.7044,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "type": "lookup",
+      "question": "What is the duration requirement for symptoms in Bipolar I Disorder manic episode?",
+      "gold_disorders": [
+        "Bipolar I Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        161,
+        162
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        4,
+        6,
+        8
+      ],
+      "section_hit_ranks": [
+        1
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.848956943,
+      "details": "Disorder Hits: [1, 4, 6, 8] | Section Hits: [1] | Top: #1: Bipolar I Disorder (Diagnostic Criteria, pdf_p.161, score=0.849) | #2: Transvestic Disorder (Differential Diagnosis, pdf_p.814, score=0.802) | #3: Transvestic Disorder (Diagnostic Features, pdf_p.814, score=0.795)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 161,
+          "printed_page": 123,
+          "score": 0.849,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.8023,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.795,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 168,
+          "printed_page": 130,
+          "score": 0.7931,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 173,
+          "printed_page": 135,
+          "score": 0.7714,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 165,
+          "printed_page": 127,
+          "score": 0.754,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 178,
+          "printed_page": 140,
+          "score": 0.7503,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 169,
+          "printed_page": 131,
+          "score": 0.7391,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 177,
+          "printed_page": 139,
+          "score": 0.7353,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 143,
+          "printed_page": 105,
+          "score": 0.7349,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria and duration requirements for Persistent Depressive Disorder (Dysthymia)?",
+      "gold_disorders": [
+        "Persistent Depressive Disorder (Dysthymia)",
+        "Persistent Depressive Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        206,
+        207
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "section_hit_ranks": [
+        2
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.86342293,
+      "details": "Disorder Hits: [1, 2, 3, 4, 6] | Section Hits: [2] | Top: #1: Persistent Depressive Disorder (Dysthymia) (Diagnostic Features, pdf_p.207, score=0.863) | #2: Persistent Depressive Disorder (Dysthymia) (Diagnostic Criteria, pdf_p.206, score=0.826) | #3: Persistent Depressive Disorder (Dysthymia) (Differential Diagnosis, pdf_p.208, score=0.812)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 207,
+          "printed_page": 169,
+          "score": 0.8634,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 206,
+          "printed_page": 168,
+          "score": 0.8264,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 208,
+          "printed_page": 170,
+          "score": 0.8125,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Prevalence",
+          "pdf_page": 208,
+          "printed_page": 170,
+          "score": 0.7774,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 200,
+          "printed_page": 162,
+          "score": 0.741,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Persistent Depressive Disorder (Dysthymia)",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 208,
+          "printed_page": 170,
+          "score": 0.7409,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 178,
+          "printed_page": 140,
+          "score": 0.7403,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 173,
+          "printed_page": 135,
+          "score": 0.738,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Depressive Disorder Due to Another l\\/ledical Condition",
+          "section_type": "Comorbidity",
+          "pdf_page": 221,
+          "printed_page": 183,
+          "score": 0.7376,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 177,
+          "printed_page": 139,
+          "score": 0.7358,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "lookup",
+      "question": "What are the criteria for Agoraphobia regarding situations feared or avoided?",
+      "gold_disorders": [
+        "Agoraphobia"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        255,
+        256
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        8,
+        10
+      ],
+      "section_hit_ranks": [
+        1
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.813133061,
+      "details": "Disorder Hits: [1, 2, 3, 8, 10] | Section Hits: [1] | Top: #1: Agoraphobia (Diagnostic Criteria, pdf_p.255, score=0.813) | #2: Agoraphobia (Diagnostic Features, pdf_p.256, score=0.796) | #3: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.786)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.8131,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 256,
+          "printed_page": 218,
+          "score": 0.7961,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7862,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 239,
+          "printed_page": 201,
+          "score": 0.7734,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 236,
+          "printed_page": 198,
+          "score": 0.7549,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 235,
+          "printed_page": 197,
+          "score": 0.7284,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 240,
+          "printed_page": 202,
+          "score": 0.7245,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Functional Consequences",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7123,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.7063,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7015,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Obsessive-Compulsive Disorder regarding obsessions and compulsions?",
+      "gold_disorders": [
+        "Obsessive-Compulsive Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        283,
+        284,
+        285
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        2,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "section_hit_ranks": [
+        6,
+        7
+      ],
+      "first_hit_rank": 2,
+      "top_score": 0.801390469,
+      "details": "Disorder Hits: [2, 4, 6, 7, 9, 10] | Section Hits: [6, 7] | Top: #1: Anxiety Disorder Due to Another Medical Condition (Diagnostic Features, pdf_p.275, score=0.801) | #2: Obsessive-Compulsive Personality Disorder (Differential Diagnosis, pdf_p.713, score=0.775) | #3: Anxiety Disorder Due to Another Medical Condition (Diagnostic Criteria, pdf_p.274, score=0.755)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 275,
+          "printed_page": 237,
+          "score": 0.8014,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Obsessive-Compulsive Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 713,
+          "printed_page": 675,
+          "score": 0.7747,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 274,
+          "printed_page": 236,
+          "score": 0.7546,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Obsessive-Compulsive and Related Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 298,
+          "printed_page": 260,
+          "score": 0.7333,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 278,
+          "printed_page": 240,
+          "score": 0.7307,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Obsessive-Compulsive and Related Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 297,
+          "printed_page": 259,
+          "score": 0.7273,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Substance/Medication-Induced Obsessive-Compulsive and Related Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 294,
+          "printed_page": 256,
+          "score": 0.7196,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 275,
+          "printed_page": 237,
+          "score": 0.718,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Substance/Medication-Induced Obsessive-Compulsive and Related Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 296,
+          "printed_page": 258,
+          "score": 0.7126,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Obsessive-Compulsive and Related Disorder Due to Another Medical Condition",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 299,
+          "printed_page": 261,
+          "score": 0.7111,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "type": "lookup",
+      "question": "What are the criteria for Acute Stress Disorder and how is its duration defined?",
+      "gold_disorders": [
+        "Acute Stress Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        321,
+        322
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        5,
+        6,
+        9
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 1,
+      "top_score": 0.802511454,
+      "details": "Disorder Hits: [1, 2, 5, 6, 9] | Section Hits: [] | Top: #1: Acute Stress Disorder (Diagnostic Features, pdf_p.318, score=0.802) | #2: Acute Stress Disorder (Differential Diagnosis, pdf_p.322, score=0.777) | #3: Posttraumatic Stress Disorder (Differential Diagnosis, pdf_p.316, score=0.768)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 318,
+          "printed_page": 280,
+          "score": 0.8025,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.7766,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 316,
+          "printed_page": 278,
+          "score": 0.7683,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 325,
+          "printed_page": 287,
+          "score": 0.7548,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 321,
+          "printed_page": 283,
+          "score": 0.7326,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 321,
+          "printed_page": 283,
+          "score": 0.7311,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 313,
+          "printed_page": 275,
+          "score": 0.7294,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Development and Course",
+          "pdf_page": 324,
+          "printed_page": 286,
+          "score": 0.726,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.7239,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 311,
+          "printed_page": 273,
+          "score": 0.7209,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Bulimia Nervosa, including binge eating frequency?",
+      "gold_disorders": [
+        "Bulimia Nervosa"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        393,
+        394
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        7,
+        10
+      ],
+      "section_hit_ranks": [
+        3
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.799751,
+      "details": "Disorder Hits: [1, 2, 3, 7, 10] | Section Hits: [3] | Top: #1: Bulimia Nervosa (Functional Consequences, pdf_p.384, score=0.800) | #2: Bulimia Nervosa (Diagnostic Features, pdf_p.380, score=0.791) | #3: Bulimia Nervosa (Diagnostic Criteria, pdf_p.380, score=0.791)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Functional Consequences",
+          "pdf_page": 384,
+          "printed_page": 346,
+          "score": 0.7998,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 380,
+          "printed_page": 342,
+          "score": 0.7907,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 380,
+          "printed_page": 342,
+          "score": 0.7906,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 385,
+          "printed_page": 347,
+          "score": 0.7866,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 388,
+          "printed_page": 350,
+          "score": 0.7826,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 387,
+          "printed_page": 349,
+          "score": 0.7741,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Development and Course",
+          "pdf_page": 382,
+          "printed_page": 344,
+          "score": 0.7564,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 385,
+          "printed_page": 347,
+          "score": 0.7448,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 387,
+          "printed_page": 349,
+          "score": 0.7409,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 382,
+          "printed_page": 344,
+          "score": 0.7399,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Autism Spectrum Disorder across social communication and restricted interests?",
+      "gold_disorders": [
+        "Autism Spectrum Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        88,
+        89
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "section_hit_ranks": [
+        4
+      ],
+      "first_hit_rank": 2,
+      "top_score": 0.845927358,
+      "details": "Disorder Hits: [2, 3, 4, 6] | Section Hits: [4] | Top: #1: Social (Pragmatic) Communication Disorder (Differential Diagnosis, pdf_p.87, score=0.846) | #2: Autism Spectrum Disorder Autism Spectrum Disorder (Differential Diagnosis, pdf_p.95, score=0.801) | #3: Autism Spectrum Disorder Autism Spectrum Disorder (Diagnostic Features, pdf_p.91, score=0.790)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Social (Pragmatic) Communication Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 87,
+          "printed_page": 49,
+          "score": 0.8459,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Autism Spectrum Disorder Autism Spectrum Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 95,
+          "printed_page": 57,
+          "score": 0.8006,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Autism Spectrum Disorder Autism Spectrum Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 91,
+          "printed_page": 53,
+          "score": 0.79,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Autism Spectrum Disorder Autism Spectrum Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 88,
+          "printed_page": 50,
+          "score": 0.7608,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Reactive Attachment Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 304,
+          "printed_page": 266,
+          "score": 0.7602,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Autism Spectrum Disorder Autism Spectrum Disorder",
+          "section_type": "Specifiers",
+          "pdf_page": 89,
+          "printed_page": 51,
+          "score": 0.751,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Selective Mutism",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 235,
+          "printed_page": 197,
+          "score": 0.7399,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Intellectual Disability (Intellectual Developmental Disorder)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 77,
+          "printed_page": 39,
+          "score": 0.7332,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Social (Pragmatic) Communication Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 85,
+          "printed_page": 47,
+          "score": 0.7307,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Social (Pragmatic) Communication Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 86,
+          "printed_page": 48,
+          "score": 0.7261,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "lookup",
+      "question": "What are the criteria for Illness Anxiety Disorder and how does it differ in duration?",
+      "gold_disorders": [
+        "Illness Anxiety Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        358,
+        359
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8
+      ],
+      "section_hit_ranks": [
+        5
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.754566848,
+      "details": "Disorder Hits: [1, 2, 4, 5, 6, 8] | Section Hits: [5] | Top: #1: Illness Anxiety Disorder (Diagnostic Features, pdf_p.351, score=0.755) | #2: Illness Anxiety Disorder (Differential Diagnosis, pdf_p.353, score=0.747) | #3: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.743)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 351,
+          "printed_page": 313,
+          "score": 0.7546,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 353,
+          "printed_page": 315,
+          "score": 0.7465,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7434,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 352,
+          "printed_page": 314,
+          "score": 0.7419,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 351,
+          "printed_page": 313,
+          "score": 0.7367,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 353,
+          "printed_page": 315,
+          "score": 0.7332,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Development and Course",
+          "pdf_page": 269,
+          "printed_page": 231,
+          "score": 0.7314,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 354,
+          "printed_page": 316,
+          "score": 0.7227,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 263,
+          "printed_page": 225,
+          "score": 0.708,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 268,
+          "printed_page": 230,
+          "score": 0.7076,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Borderline Personality Disorder in Section II?",
+      "gold_disorders": [
+        "Borderline Personality Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        712,
+        713
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        7,
+        9
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 1,
+      "top_score": 0.727017462,
+      "details": "Disorder Hits: [1, 2, 7, 9] | Section Hits: [] | Top: #1: Borderline Personality Disorder (Differential Diagnosis, pdf_p.698, score=0.727) | #2: Borderline Personality Disorder (Diagnostic Features, pdf_p.695, score=0.687) | #3: Transvestic Disorder (Associated Features Supporting Diagnosis, pdf_p.960, score=0.686)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 698,
+          "printed_page": 660,
+          "score": 0.727,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 695,
+          "printed_page": 657,
+          "score": 0.6872,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 960,
+          "printed_page": 922,
+          "score": 0.686,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 176,
+          "printed_page": 138,
+          "score": 0.6852,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Functional Consequences",
+          "pdf_page": 384,
+          "printed_page": 346,
+          "score": 0.6828,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Major or Mild Neurocognitive Disorder Due to Multiple Etiologies",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 680,
+          "printed_page": 642,
+          "score": 0.6815,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 697,
+          "printed_page": 659,
+          "score": 0.6781,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 831,
+          "printed_page": 793,
+          "score": 0.6779,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Culture-Related Diagnostic Issues",
+          "pdf_page": 697,
+          "printed_page": 659,
+          "score": 0.6767,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Conduct Disorder",
+          "section_type": "Specifiers",
+          "pdf_page": 505,
+          "printed_page": 467,
+          "score": 0.6741,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "lookup",
+      "question": "What are the criteria and duration threshold for Cyclothymic Disorder in adults?",
+      "gold_disorders": [
+        "Cyclothymic Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        178,
+        179
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "section_hit_ranks": [
+        6
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.813462317,
+      "details": "Disorder Hits: [1, 4, 5, 6] | Section Hits: [6] | Top: #1: Cyclothymic Disorder (Diagnostic Features, pdf_p.178, score=0.814) | #2: Bipolar II Disorder (Differential Diagnosis, pdf_p.176, score=0.760) | #3: Transvestic Disorder (Differential Diagnosis, pdf_p.814, score=0.744)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 178,
+          "printed_page": 140,
+          "score": 0.8135,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 176,
+          "printed_page": 138,
+          "score": 0.7596,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.7437,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 179,
+          "printed_page": 141,
+          "score": 0.7349,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 179,
+          "printed_page": 141,
+          "score": 0.7341,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 177,
+          "printed_page": 139,
+          "score": 0.731,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 144,
+          "printed_page": 106,
+          "score": 0.728,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Disruptive Mood Dysregulation Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 194,
+          "printed_page": 156,
+          "score": 0.7254,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.7216,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Delusional Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 130,
+          "printed_page": 92,
+          "score": 0.7202,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q19",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Somatic Symptom Disorder?",
+      "gold_disorders": [
+        "Somatic Symptom Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        350,
+        351
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        9
+      ],
+      "section_hit_ranks": [
+        7
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.792615771,
+      "details": "Disorder Hits: [1, 2, 3, 5, 6, 7, 9] | Section Hits: [7] | Top: #1: Somatic Symptom Disorder (Diagnostic Features, pdf_p.347, score=0.793) | #2: Somatic Symptom Disorder (Differential Diagnosis, pdf_p.350, score=0.786) | #3: Somatic Symptom Disorder (Comorbidity, pdf_p.350, score=0.774)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 347,
+          "printed_page": 309,
+          "score": 0.7926,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 350,
+          "printed_page": 312,
+          "score": 0.786,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 350,
+          "printed_page": 312,
+          "score": 0.7743,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 351,
+          "printed_page": 313,
+          "score": 0.7457,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 348,
+          "printed_page": 310,
+          "score": 0.7441,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 349,
+          "printed_page": 311,
+          "score": 0.7427,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 347,
+          "printed_page": 309,
+          "score": 0.7347,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Conversion Disorder (Functional Neurological Symptom Disorder)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 357,
+          "printed_page": 319,
+          "score": 0.7268,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 348,
+          "printed_page": 310,
+          "score": 0.723,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Factitious Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 362,
+          "printed_page": 324,
+          "score": 0.7109,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q20",
+      "type": "lookup",
+      "question": "What are the diagnostic criteria for Insomnia Disorder regarding frequency and persistence?",
+      "gold_disorders": [
+        "Insomnia Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria"
+      ],
+      "gold_pages": [
+        411,
+        412
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        9
+      ],
+      "section_hit_ranks": [
+        2
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.76244545,
+      "details": "Disorder Hits: [1, 2, 3, 4, 6, 9] | Section Hits: [2] | Top: #1: Insomnia Disorder (Diagnostic Features, pdf_p.398, score=0.762) | #2: Insomnia Disorder (Diagnostic Criteria, pdf_p.397, score=0.735) | #3: Insomnia Disorder (Associated Features Supporting Diagnosis, pdf_p.399, score=0.731)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 398,
+          "printed_page": 360,
+          "score": 0.7624,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 397,
+          "printed_page": 359,
+          "score": 0.7354,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 399,
+          "printed_page": 361,
+          "score": 0.7306,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 400,
+          "printed_page": 362,
+          "score": 0.7217,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Circadian Rhythm Sleep-Wake Disorders",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 429,
+          "printed_page": 391,
+          "score": 0.7189,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 399,
+          "printed_page": 361,
+          "score": 0.715,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Substance/Medication-Induced Sleep Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 455,
+          "printed_page": 417,
+          "score": 0.7136,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Circadian Rhythm Sleep-Wake Disorders",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 430,
+          "printed_page": 392,
+          "score": 0.7115,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Insomnia Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 401,
+          "printed_page": 363,
+          "score": 0.7097,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Circadian Rhythm Sleep-Wake Disorders",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 431,
+          "printed_page": 393,
+          "score": 0.7068,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q21",
+      "type": "differential",
+      "question": "How do you differentiate Major Depressive Disorder with bereavement from normal grief?",
+      "gold_disorders": [
+        "Major Depressive Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria",
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        198,
+        199,
+        205,
+        206
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        4,
+        5
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 4,
+      "top_score": 0.781776965,
+      "details": "Disorder Hits: [4, 5] | Section Hits: [] | Top: #1: Transvestic Disorder (Differential Diagnosis, pdf_p.818, score=0.782) | #2: Transvestic Disorder (Diagnostic Features, pdf_p.816, score=0.757) | #3: Transvestic Disorder (Comorbidity, pdf_p.815, score=0.731)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 818,
+          "printed_page": 780,
+          "score": 0.7818,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 816,
+          "printed_page": 778,
+          "score": 0.7569,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 815,
+          "printed_page": 777,
+          "score": 0.7312,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 202,
+          "printed_page": 164,
+          "score": 0.7145,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 200,
+          "printed_page": 162,
+          "score": 0.713,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 817,
+          "printed_page": 779,
+          "score": 0.7123,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Dissociative Amnesia",
+          "section_type": "Comorbidity",
+          "pdf_page": 339,
+          "printed_page": 301,
+          "score": 0.7033,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 324,
+          "printed_page": 286,
+          "score": 0.6981,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 169,
+          "printed_page": 131,
+          "score": 0.6919,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "ild Neurocognitive Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 643,
+          "printed_page": 605,
+          "score": 0.6918,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q22",
+      "type": "differential",
+      "question": "What is the differential diagnosis between Social Anxiety Disorder and Agoraphobia?",
+      "gold_disorders": [
+        "Social Anxiety Disorder (Social Phobia)",
+        "Agoraphobia"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        243,
+        244,
+        258
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10
+      ],
+      "section_hit_ranks": [
+        1,
+        3
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.817899108,
+      "details": "Disorder Hits: [1, 3, 4, 5, 7, 8, 10] | Section Hits: [1, 3] | Top: #1: Agoraphobia (Differential Diagnosis, pdf_p.258, score=0.818) | #2: Specific Phobia (Differential Diagnosis, pdf_p.239, score=0.783) | #3: Social Anxiety Disorder (Social Phobia) (Differential Diagnosis, pdf_p.244, score=0.776)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.8179,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 239,
+          "printed_page": 201,
+          "score": 0.7829,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.776,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Comorbidity",
+          "pdf_page": 259,
+          "printed_page": 221,
+          "score": 0.7732,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 244,
+          "printed_page": 206,
+          "score": 0.7271,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Separation Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 232,
+          "printed_page": 194,
+          "score": 0.7258,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.7253,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Functional Consequences",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7194,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Cluster C Personality Disorders Avoidant Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 706,
+          "printed_page": 668,
+          "score": 0.7188,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Comorbidity",
+          "pdf_page": 246,
+          "printed_page": 208,
+          "score": 0.7061,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q23",
+      "type": "differential",
+      "question": "How to differentiate Generalized Anxiety Disorder from Obsessive-Compulsive Disorder and depression?",
+      "gold_disorders": [
+        "Generalized Anxiety Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        262,
+        263
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        4,
+        9,
+        10
+      ],
+      "section_hit_ranks": [
+        1
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.758874178,
+      "details": "Disorder Hits: [1, 4, 9, 10] | Section Hits: [1] | Top: #1: Generalized Anxiety Disorder (Differential Diagnosis, pdf_p.263, score=0.759) | #2: Anxiety Disorder Due to Another Medical Condition (Differential Diagnosis, pdf_p.278, score=0.734) | #3: Obsessive-Compulsive Personality Disorder (Differential Diagnosis, pdf_p.713, score=0.730)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 263,
+          "printed_page": 225,
+          "score": 0.7589,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 278,
+          "printed_page": 240,
+          "score": 0.7343,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Obsessive-Compulsive Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 713,
+          "printed_page": 675,
+          "score": 0.7303,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 260,
+          "printed_page": 222,
+          "score": 0.7269,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Separation Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 232,
+          "printed_page": 194,
+          "score": 0.7261,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Comorbidity",
+          "pdf_page": 279,
+          "printed_page": 241,
+          "score": 0.7256,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7196,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 169,
+          "printed_page": 131,
+          "score": 0.7122,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 262,
+          "printed_page": 224,
+          "score": 0.7107,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 264,
+          "printed_page": 226,
+          "score": 0.7055,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q24",
+      "type": "differential",
+      "question": "What distinguishes Posttraumatic Stress Disorder from Acute Stress Disorder and Adjustment Disorder?",
+      "gold_disorders": [
+        "Posttraumatic Stress Disorder",
+        "Acute Stress Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        316,
+        317,
+        324
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "section_hit_ranks": [
+        1,
+        3
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.820135,
+      "details": "Disorder Hits: [1, 3, 6, 7, 8, 9, 10] | Section Hits: [1, 3] | Top: #1: Posttraumatic Stress Disorder (Differential Diagnosis, pdf_p.316, score=0.820) | #2: Adjustment Disorders (Differential Diagnosis, pdf_p.325, score=0.817) | #3: Acute Stress Disorder (Differential Diagnosis, pdf_p.322, score=0.812)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 316,
+          "printed_page": 278,
+          "score": 0.8201,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 325,
+          "printed_page": 287,
+          "score": 0.817,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.8116,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7356,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Comorbidity",
+          "pdf_page": 326,
+          "printed_page": 288,
+          "score": 0.7352,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 318,
+          "printed_page": 280,
+          "score": 0.731,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 317,
+          "printed_page": 279,
+          "score": 0.7271,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 321,
+          "printed_page": 283,
+          "score": 0.7241,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.7217,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 311,
+          "printed_page": 273,
+          "score": 0.717,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q25",
+      "type": "differential",
+      "question": "How is Bipolar I Disorder distinguished from Bipolar II Disorder and Major Depressive Disorder?",
+      "gold_disorders": [
+        "Bipolar I Disorder",
+        "Bipolar II Disorder"
+      ],
+      "gold_sections": [
+        "Diagnostic Criteria",
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        161,
+        167,
+        176
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        3,
+        5,
+        6,
+        10
+      ],
+      "section_hit_ranks": [
+        1,
+        3,
+        10
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.811893523,
+      "details": "Disorder Hits: [1, 3, 5, 6, 10] | Section Hits: [1, 3, 10] | Top: #1: Bipolar I Disorder (Differential Diagnosis, pdf_p.169, score=0.812) | #2: Cyclothymic Disorder (Risk and Prognostic Factors, pdf_p.179, score=0.794) | #3: Bipolar II Disorder (Differential Diagnosis, pdf_p.176, score=0.791)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 169,
+          "printed_page": 131,
+          "score": 0.8119,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 179,
+          "printed_page": 141,
+          "score": 0.7939,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 176,
+          "printed_page": 138,
+          "score": 0.7909,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.7757,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 173,
+          "printed_page": 135,
+          "score": 0.757,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 175,
+          "printed_page": 137,
+          "score": 0.7494,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.7484,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 205,
+          "printed_page": 167,
+          "score": 0.7381,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Disruptive Mood Dysregulation Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 196,
+          "printed_page": 158,
+          "score": 0.7308,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 161,
+          "printed_page": 123,
+          "score": 0.7272,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        }
+      ]
+    },
+    {
+      "id": "q26",
+      "type": "differential",
+      "question": "What is the differential diagnosis between Schizoaffective Disorder, Schizophrenia, and Mood Disorders with psychotic features?",
+      "gold_disorders": [
+        "Schizoaffective Disorder",
+        "Schizophrenia"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        142,
+        143,
+        153
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "section_hit_ranks": [
+        1,
+        4
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.809226394,
+      "details": "Disorder Hits: [1, 2, 3, 4, 5, 6, 7, 8] | Section Hits: [1, 4] | Top: #1: Schizophrenia (Differential Diagnosis, pdf_p.142, score=0.809) | #2: Schizoaffective Disorder (Associated Features Supporting Diagnosis, pdf_p.145, score=0.793) | #3: Schizoaffective Disorder (Diagnostic Features, pdf_p.144, score=0.790)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Schizophrenia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 142,
+          "printed_page": 104,
+          "score": 0.8092,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 145,
+          "printed_page": 107,
+          "score": 0.7927,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 144,
+          "printed_page": 106,
+          "score": 0.7903,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 147,
+          "printed_page": 109,
+          "score": 0.7825,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 148,
+          "printed_page": 110,
+          "score": 0.7646,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 146,
+          "printed_page": 108,
+          "score": 0.7542,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 147,
+          "printed_page": 109,
+          "score": 0.753,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Schizoaffective Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 146,
+          "printed_page": 108,
+          "score": 0.737,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Schizophreniform Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 136,
+          "printed_page": 98,
+          "score": 0.7332,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 176,
+          "printed_page": 138,
+          "score": 0.7319,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q27",
+      "type": "differential",
+      "question": "How to distinguish Attention-Deficit/Hyperactivity Disorder from Oppositional Defiant Disorder and Specific Learning Disorder?",
+      "gold_disorders": [
+        "Attention-Deficit/Hyperactivity Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        101,
+        102
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        2,
+        6,
+        7,
+        9
+      ],
+      "section_hit_ranks": [
+        2
+      ],
+      "first_hit_rank": 2,
+      "top_score": 0.800371766,
+      "details": "Disorder Hits: [2, 6, 7, 9] | Section Hits: [2] | Top: #1: Disinhiblted Social Engagement Disorder (Differential Diagnosis, pdf_p.307, score=0.800) | #2: Disorder Attention-Deficit/Hyperactivity Disorder (Differential Diagnosis, pdf_p.101, score=0.789) | #3: Specific Learning Disorder Specific Learning Disorder (Differential Diagnosis, pdf_p.111, score=0.778)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Disinhiblted Social Engagement Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 307,
+          "printed_page": 269,
+          "score": 0.8004,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 101,
+          "printed_page": 63,
+          "score": 0.7892,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Specific Learning Disorder Specific Learning Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 111,
+          "printed_page": 73,
+          "score": 0.7778,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Oppositional Defiant Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 499,
+          "printed_page": 461,
+          "score": 0.7564,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Conduct Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 509,
+          "printed_page": 471,
+          "score": 0.7555,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 99,
+          "printed_page": 61,
+          "score": 0.7488,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 103,
+          "printed_page": 65,
+          "score": 0.7424,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Conduct Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 508,
+          "printed_page": 470,
+          "score": 0.7409,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Disorder Attention-Deficit/Hyperactivity Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 99,
+          "printed_page": 61,
+          "score": 0.7387,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Specific Learning Disorder Specific Learning Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 108,
+          "printed_page": 70,
+          "score": 0.7384,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q28",
+      "type": "differential",
+      "question": "What distinguishes Somatic Symptom Disorder from Illness Anxiety Disorder and Panic Disorder?",
+      "gold_disorders": [
+        "Somatic Symptom Disorder",
+        "Illness Anxiety Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        353,
+        354,
+        360
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        10
+      ],
+      "section_hit_ranks": [
+        1,
+        5
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.821517825,
+      "details": "Disorder Hits: [1, 2, 3, 4, 5, 7, 9, 10] | Section Hits: [1, 5] | Top: #1: Somatic Symptom Disorder (Differential Diagnosis, pdf_p.350, score=0.822) | #2: Somatic Symptom Disorder (Comorbidity, pdf_p.350, score=0.799) | #3: Illness Anxiety Disorder (Diagnostic Features, pdf_p.351, score=0.798)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 350,
+          "printed_page": 312,
+          "score": 0.8215,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 350,
+          "printed_page": 312,
+          "score": 0.7989,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 351,
+          "printed_page": 313,
+          "score": 0.7979,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 347,
+          "printed_page": 309,
+          "score": 0.782,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 353,
+          "printed_page": 315,
+          "score": 0.7508,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.7351,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Illness Anxiety Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 351,
+          "printed_page": 313,
+          "score": 0.7292,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Conversion Disorder (Functional Neurological Symptom Disorder)",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 357,
+          "printed_page": 319,
+          "score": 0.7278,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 348,
+          "printed_page": 310,
+          "score": 0.7254,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Somatic Symptom Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 348,
+          "printed_page": 310,
+          "score": 0.7254,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q29",
+      "type": "differential",
+      "question": "How to differentiate Anorexia Nervosa from Bulimia Nervosa and Avoidant/Restrictive Food Intake Disorder?",
+      "gold_disorders": [
+        "Anorexia Nervosa",
+        "Bulimia Nervosa"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        389,
+        390,
+        395
+      ],
+      "success": false,
+      "disorder_hit_ranks": [
+        6,
+        9,
+        10
+      ],
+      "section_hit_ranks": [],
+      "first_hit_rank": 6,
+      "top_score": 0.770597339,
+      "details": "Disorder Hits: [6, 9, 10] | Section Hits: [] | Top: #1: Avoidant/Restrictive Food Intake Disorder (Comorbidity, pdf_p.373, score=0.771) | #2: Avoidant/Restrictive Food Intake Disorder (Diagnostic Features, pdf_p.369, score=0.764) | #3: Avoidant/Restrictive Food Intake Disorder (Diagnostic Criteria, pdf_p.369, score=0.755)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Avoidant/Restrictive Food Intake Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 373,
+          "printed_page": 335,
+          "score": 0.7706,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Avoidant/Restrictive Food Intake Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 369,
+          "printed_page": 331,
+          "score": 0.7643,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Avoidant/Restrictive Food Intake Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 369,
+          "printed_page": 331,
+          "score": 0.7547,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Avoidant/Restrictive Food Intake Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 371,
+          "printed_page": 333,
+          "score": 0.7491,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Binge-Eating Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 387,
+          "printed_page": 349,
+          "score": 0.7428,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Functional Consequences",
+          "pdf_page": 384,
+          "printed_page": 346,
+          "score": 0.7369,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Avoidant/Restrictive Food Intake Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 370,
+          "printed_page": 332,
+          "score": 0.7339,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Pica",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 366,
+          "printed_page": 328,
+          "score": 0.7244,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 380,
+          "printed_page": 342,
+          "score": 0.7152,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 376,
+          "printed_page": 338,
+          "score": 0.7149,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q30",
+      "type": "differential",
+      "question": "What is the differential diagnosis between Obsessive-Compulsive Disorder, Body Dysmorphic Disorder, and Hoarding Disorder?",
+      "gold_disorders": [
+        "Obsessive-Compulsive Disorder",
+        "Body Dysmorphic Disorder",
+        "Hoarding Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        287,
+        288,
+        292,
+        297
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "section_hit_ranks": [
+        1,
+        3,
+        8
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.797929943,
+      "details": "Disorder Hits: [1, 2, 3, 4, 6, 7, 8, 9, 10] | Section Hits: [1, 3, 8] | Top: #1: Obsessive-Compulsive Personality Disorder (Differential Diagnosis, pdf_p.713, score=0.798) | #2: Obsessive-Compulsive and Related Disorder Due to Another Medical Condition (Diagnostic Criteria, pdf_p.297, score=0.774) | #3: Body Dysmorphic Disorder (Differential Diagnosis, pdf_p.282, score=0.772)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Obsessive-Compulsive Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 713,
+          "printed_page": 675,
+          "score": 0.7979,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Obsessive-Compulsive and Related Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 297,
+          "printed_page": 259,
+          "score": 0.7742,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 282,
+          "printed_page": 244,
+          "score": 0.772,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 284,
+          "printed_page": 246,
+          "score": 0.7695,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 278,
+          "printed_page": 240,
+          "score": 0.7675,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Hoarding Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 288,
+          "printed_page": 250,
+          "score": 0.7636,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 280,
+          "printed_page": 242,
+          "score": 0.744,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Hoarding Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 287,
+          "printed_page": 249,
+          "score": 0.7413,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 282,
+          "printed_page": 244,
+          "score": 0.7206,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Body Dysmorphic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 279,
+          "printed_page": 241,
+          "score": 0.7183,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q31",
+      "type": "differential",
+      "question": "How to differentiate Borderline Personality Disorder from Bipolar Disorder and other personality disorders?",
+      "gold_disorders": [
+        "Borderline Personality Disorder"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        714,
+        715
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "section_hit_ranks": [
+        1
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.817531466,
+      "details": "Disorder Hits: [1, 3, 5, 10] | Section Hits: [1] | Top: #1: Borderline Personality Disorder (Differential Diagnosis, pdf_p.698, score=0.818) | #2: Dependent Personality Disorder (Differential Diagnosis, pdf_p.709, score=0.785) | #3: Borderline Personality Disorder (Risk and Prognostic Factors, pdf_p.697, score=0.744)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 698,
+          "printed_page": 660,
+          "score": 0.8175,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Dependent Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 709,
+          "printed_page": 671,
+          "score": 0.7851,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 697,
+          "printed_page": 659,
+          "score": 0.7436,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Narcissistic Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 703,
+          "printed_page": 665,
+          "score": 0.7394,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Culture-Related Diagnostic Issues",
+          "pdf_page": 697,
+          "printed_page": 659,
+          "score": 0.7173,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Obsessive-Compulsive Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 713,
+          "printed_page": 675,
+          "score": 0.7119,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Major or Mild Neurocognitive Disorder Due to Multiple Etiologies",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 680,
+          "printed_page": 642,
+          "score": 0.7112,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Histrionic Personality Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 701,
+          "printed_page": 663,
+          "score": 0.7012,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Bipolar I Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 169,
+          "printed_page": 131,
+          "score": 0.7006,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Borderline Personality Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 697,
+          "printed_page": 659,
+          "score": 0.7001,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q32",
+      "type": "differential",
+      "question": "What distinguishes Panic Disorder from Anxiety Disorder Due to Another Medical Condition or substance-induced anxiety?",
+      "gold_disorders": [
+        "Panic Disorder",
+        "Anxiety Disorder Due to Another Medical Condition"
+      ],
+      "gold_sections": [
+        "Differential Diagnosis"
+      ],
+      "gold_pages": [
+        251,
+        252,
+        269
+      ],
+      "success": true,
+      "disorder_hit_ranks": [
+        1,
+        2,
+        4,
+        9
+      ],
+      "section_hit_ranks": [
+        1,
+        2,
+        4
+      ],
+      "first_hit_rank": 1,
+      "top_score": 0.837663651,
+      "details": "Disorder Hits: [1, 2, 4, 9] | Section Hits: [1, 2, 4] | Top: #1: Panic Disorder (Differential Diagnosis, pdf_p.250, score=0.838) | #2: Anxiety Disorder Due to Another Medical Condition (Differential Diagnosis, pdf_p.269, score=0.837) | #3: Generalized Anxiety Disorder (Differential Diagnosis, pdf_p.263, score=0.817)",
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 250,
+          "printed_page": 212,
+          "score": 0.8377,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 269,
+          "printed_page": 231,
+          "score": 0.8373,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Generalized Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 263,
+          "printed_page": 225,
+          "score": 0.817,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Panic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 255,
+          "printed_page": 217,
+          "score": 0.815,
+          "is_disorder_hit": true,
+          "is_section_hit": true
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Substance/Medication-Induced Anxiety Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 266,
+          "printed_page": 228,
+          "score": 0.8076,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Substance/Medication-Induced Anxiety Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 267,
+          "printed_page": 229,
+          "score": 0.8063,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Substance/Medication-Induced Anxiety Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 264,
+          "printed_page": 226,
+          "score": 0.7969,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Substance/Medication-Induced Anxiety Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 266,
+          "printed_page": 228,
+          "score": 0.782,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Anxiety Disorder Due to Another Medical Condition",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 268,
+          "printed_page": 230,
+          "score": 0.7701,
+          "is_disorder_hit": true,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Sedative, Hypnotic, or Anxiolytic Use Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 589,
+          "printed_page": 551,
+          "score": 0.7668,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ]
+    },
+    {
+      "id": "q33",
+      "type": "out_of_scope",
+      "question": "What is the recommended starting dose and titration schedule for Sertraline in treating depression?",
+      "top_score": 0.640691,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Substance/Medication-Induced Depressive Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 216,
+          "printed_page": 178,
+          "score": 0.6407,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Substance/Medication-Induced Depressive Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 216,
+          "printed_page": 178,
+          "score": 0.6232,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 744,
+          "printed_page": 706,
+          "score": 0.6174,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 744,
+          "printed_page": 706,
+          "score": 0.6007,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 203,
+          "printed_page": 165,
+          "score": 0.6004,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 745,
+          "printed_page": 707,
+          "score": 0.6,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Depressive Disorder Due to Another l\\/ledical Condition",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 219,
+          "printed_page": 181,
+          "score": 0.5951,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 204,
+          "printed_page": 166,
+          "score": 0.5942,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Sedative, Hypnotic, or Anxiolytic Use Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 587,
+          "printed_page": 549,
+          "score": 0.5927,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 202,
+          "printed_page": 164,
+          "score": 0.5899,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6407 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q34",
+      "type": "out_of_scope",
+      "question": "What are the common side effects and cardiac toxicity risks of second-generation antipsychotics like Olanzapine?",
+      "top_score": 0.653058827,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Phencyclidine Intoxication",
+          "section_type": "Functional Consequences",
+          "pdf_page": 562,
+          "printed_page": 524,
+          "score": 0.6531,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Unspecified Hallucinogen-Related Disorder Phencyclidine Use Disorder",
+          "section_type": "Functional Consequences",
+          "pdf_page": 556,
+          "printed_page": 518,
+          "score": 0.6336,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 742,
+          "printed_page": 704,
+          "score": 0.6201,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Substance/Medication-Induced Psychotic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 151,
+          "printed_page": 113,
+          "score": 0.6064,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Unspecified Hallucinogen-Related Disorder Phencyclidine Use Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 557,
+          "printed_page": 519,
+          "score": 0.6039,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Substance/Medication-Induced Bipolar and Related Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 183,
+          "printed_page": 145,
+          "score": 0.599,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 745,
+          "printed_page": 707,
+          "score": 0.5976,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Phencyclidine Intoxication",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 561,
+          "printed_page": 523,
+          "score": 0.5908,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 953,
+          "printed_page": 915,
+          "score": 0.5857,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Major or Mild Neurocognitive Disorder With Lewy Bodies",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 652,
+          "printed_page": 614,
+          "score": 0.585,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6531 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q35",
+      "type": "out_of_scope",
+      "question": "What are the first-line cognitive behavioral therapy exposure techniques for snake phobia?",
+      "top_score": 0.6375103,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 237,
+          "printed_page": 199,
+          "score": 0.6375,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 238,
+          "printed_page": 200,
+          "score": 0.6047,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 235,
+          "printed_page": 197,
+          "score": 0.6027,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 236,
+          "printed_page": 198,
+          "score": 0.6024,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Functional Consequences",
+          "pdf_page": 239,
+          "printed_page": 201,
+          "score": 0.5985,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Development and Course",
+          "pdf_page": 237,
+          "printed_page": 199,
+          "score": 0.5944,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.5847,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Social Anxiety Disorder (Social Phobia)",
+          "section_type": "Specifiers",
+          "pdf_page": 241,
+          "printed_page": 203,
+          "score": 0.5824,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Specifiers",
+          "pdf_page": 236,
+          "printed_page": 198,
+          "score": 0.5799,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Specific Phobia",
+          "section_type": "Comorbidity",
+          "pdf_page": 240,
+          "printed_page": 202,
+          "score": 0.5797,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6375 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q36",
+      "type": "out_of_scope",
+      "question": "How to calculate initial lithium dosing based on renal creatinine clearance and patient body mass?",
+      "top_score": 0.57465142,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Unspecified Alcohol-Related Disorder Alcohol Use Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 529,
+          "printed_page": 491,
+          "score": 0.5747,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 741,
+          "printed_page": 703,
+          "score": 0.5665,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 374,
+          "printed_page": 336,
+          "score": 0.5644,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 383,
+          "printed_page": 345,
+          "score": 0.5508,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Substance/Medication-Induced Bipolar and Related Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 182,
+          "printed_page": 144,
+          "score": 0.5482,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 969,
+          "printed_page": 931,
+          "score": 0.5456,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Psychotic Disorder Due to Another Medical Condition",
+          "section_type": "Prevalence",
+          "pdf_page": 154,
+          "printed_page": 116,
+          "score": 0.5452,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Phencyclidine Intoxication",
+          "section_type": "Prevalence",
+          "pdf_page": 562,
+          "printed_page": 524,
+          "score": 0.5433,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Bulimia Nervosa",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 382,
+          "printed_page": 344,
+          "score": 0.541,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Restless Legs Syndrome",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 447,
+          "printed_page": 409,
+          "score": 0.5396,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.5747 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q37",
+      "type": "out_of_scope",
+      "question": "What is the ICD-11 classification definition and ICD-11 diagnostic guidelines for Complex PTSD?",
+      "top_score": 0.681990802,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Depersonalization/Dereallzation Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 343,
+          "printed_page": 305,
+          "score": 0.682,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 316,
+          "printed_page": 278,
+          "score": 0.681,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 818,
+          "printed_page": 780,
+          "score": 0.6741,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Intellectual Disability (Intellectual Developmental Disorder)",
+          "section_type": "Comorbidity",
+          "pdf_page": 78,
+          "printed_page": 40,
+          "score": 0.6724,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 311,
+          "printed_page": 273,
+          "score": 0.6654,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Culture-Related Diagnostic Issues",
+          "pdf_page": 315,
+          "printed_page": 277,
+          "score": 0.6617,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Posttraumatic Stress Disorder",
+          "section_type": "Comorbidity",
+          "pdf_page": 317,
+          "printed_page": 279,
+          "score": 0.6593,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Adjustment Disorders",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 325,
+          "printed_page": 287,
+          "score": 0.6577,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Agoraphobia",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 258,
+          "printed_page": 220,
+          "score": 0.6577,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Acute Stress Disorder",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 322,
+          "printed_page": 284,
+          "score": 0.6552,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6820 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q38",
+      "type": "out_of_scope",
+      "question": "What is the clinical protocol for conducting Electroconvulsive Therapy (ECT) in treatment-resistant bipolar depression?",
+      "top_score": 0.621873856,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 173,
+          "printed_page": 135,
+          "score": 0.6219,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Suicide Risk",
+          "pdf_page": 176,
+          "printed_page": 138,
+          "score": 0.6204,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Cyclothymic Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 179,
+          "printed_page": 141,
+          "score": 0.6159,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Bipolar and Related Disorder Due to Another Medical Condition",
+          "section_type": "Functional Consequences",
+          "pdf_page": 185,
+          "printed_page": 147,
+          "score": 0.6124,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Prevalence",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.6114,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 175,
+          "printed_page": 137,
+          "score": 0.611,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 814,
+          "printed_page": 776,
+          "score": 0.6053,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Substance/Medication-Induced Bipolar and Related Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 182,
+          "printed_page": 144,
+          "score": 0.605,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Bipolar II Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 174,
+          "printed_page": 136,
+          "score": 0.6033,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Substance/Medication-Induced Bipolar and Related Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 182,
+          "printed_page": 144,
+          "score": 0.6024,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6219 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q39",
+      "type": "out_of_scope",
+      "question": "What are the FDA black box warnings regarding suicide risk for SSRIs in adolescents?",
+      "top_score": 0.70887661,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Substance/Medication-Induced Depressive Disorder",
+          "section_type": "Risk and Prognostic Factors",
+          "pdf_page": 216,
+          "printed_page": 178,
+          "score": 0.7089,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 827,
+          "printed_page": 789,
+          "score": 0.6455,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Depressive Disorder Due to Another l\\/ledical Condition",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 220,
+          "printed_page": 182,
+          "score": 0.643,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Opioid Use Disorder _________________________________ \\",
+          "section_type": "Suicide Risk",
+          "pdf_page": 578,
+          "printed_page": 540,
+          "score": 0.6423,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 205,
+          "printed_page": 167,
+          "score": 0.6388,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Sedative, Hypnotic, or Anxiolytic Use Disorder",
+          "section_type": "Gender-Related Diagnostic Issues",
+          "pdf_page": 588,
+          "printed_page": 550,
+          "score": 0.6314,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Major Depressive Disorder",
+          "section_type": "Associated Features Supporting Diagnosis",
+          "pdf_page": 202,
+          "printed_page": 164,
+          "score": 0.626,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Anorexia Nervosa",
+          "section_type": "Suicide Risk",
+          "pdf_page": 378,
+          "printed_page": 340,
+          "score": 0.6238,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Development and Course",
+          "pdf_page": 828,
+          "printed_page": 790,
+          "score": 0.6235,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Specifiers",
+          "pdf_page": 827,
+          "printed_page": 789,
+          "score": 0.6207,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.7089 (Optimal Threshold: 0.71)"
+    },
+    {
+      "id": "q40",
+      "type": "out_of_scope",
+      "question": "How to perform an emergency involuntary psychiatric commitment evaluation under state legal codes?",
+      "top_score": 0.608847857,
+      "retrieved": [
+        {
+          "rank": 1,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Specifiers",
+          "pdf_page": 827,
+          "printed_page": 789,
+          "score": 0.6088,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 2,
+          "disorder_name": "Brief Psychotic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 132,
+          "printed_page": 94,
+          "score": 0.5703,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 3,
+          "disorder_name": "Transvestic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 827,
+          "printed_page": 789,
+          "score": 0.5693,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 4,
+          "disorder_name": "Intermittent Explosive Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 500,
+          "printed_page": 462,
+          "score": 0.5673,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 5,
+          "disorder_name": "Kleptomania",
+          "section_type": "Functional Consequences",
+          "pdf_page": 524,
+          "printed_page": 486,
+          "score": 0.5655,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 6,
+          "disorder_name": "Alcohol Intoxication",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 531,
+          "printed_page": 493,
+          "score": 0.5588,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 7,
+          "disorder_name": "Substance/Medication-Induced Psychotic Disorder",
+          "section_type": "Diagnostic Criteria",
+          "pdf_page": 148,
+          "printed_page": 110,
+          "score": 0.5576,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 8,
+          "disorder_name": "Phencyclidine Intoxication",
+          "section_type": "Differential Diagnosis",
+          "pdf_page": 562,
+          "printed_page": 524,
+          "score": 0.5526,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 9,
+          "disorder_name": "Brief Psychotic Disorder",
+          "section_type": "Diagnostic Features",
+          "pdf_page": 132,
+          "printed_page": 94,
+          "score": 0.5525,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        },
+        {
+          "rank": 10,
+          "disorder_name": "General DSM-5",
+          "section_type": "Introduction",
+          "pdf_page": 1,
+          "printed_page": null,
+          "score": 0.5524,
+          "is_disorder_hit": false,
+          "is_section_hit": false
+        }
+      ],
+      "success": true,
+      "details": "Top score: 0.6088 (Optimal Threshold: 0.71)"
+    }
+  ]
+}
