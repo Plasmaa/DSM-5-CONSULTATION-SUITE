@@ -28,10 +28,22 @@ app.add_middleware(
 db = None
 
 def get_ollama_embedding(text: str) -> List[float]:
-    """Call Ollama embeddings API locally."""
+    """Call Ollama embeddings API locally using modern /api/embed endpoint with legacy fallback."""
     import requests
-    url = "http://localhost:11434/api/embeddings"
-    response = requests.post(url, json={
+    url = "http://localhost:11434/api/embed"
+    try:
+        response = requests.post(url, json={
+            "model": "bge-large",
+            "input": text
+        }, timeout=10.0)
+        if response.status_code == 200:
+            return response.json()["embeddings"][0]
+    except Exception:
+        pass
+
+    # Fallback to legacy endpoint if /api/embed is unavailable
+    legacy_url = "http://localhost:11434/api/embeddings"
+    response = requests.post(legacy_url, json={
         "model": "bge-large",
         "prompt": text
     }, timeout=10.0)
