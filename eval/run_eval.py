@@ -5,6 +5,7 @@ import csv
 import re
 import argparse
 from datetime import datetime
+from collections import defaultdict
 from rapidfuzz import fuzz
 
 # Add root and src to path
@@ -16,7 +17,7 @@ from main import get_ollama_embedding
 from db import DSM5Database
 
 def normalize_text(text: str) -> str:
-    """Normalize text by lowercasing and stripping punctuation to spaces."""
+    """Normalize text by lowercasing and replacing punctuation with spaces."""
     if not text:
         return ""
     text = re.sub(r"[^\w\s]", " ", text.lower())
@@ -25,8 +26,8 @@ def normalize_text(text: str) -> str:
 def enrich_chunk(chunk: dict) -> dict:
     """
     Standardize chunk page metadata:
-    - pdf_page: 1-based PDF document page
-    - printed_page: estimated DSM-5 printed book page (offset 38 in Section II)
+    - pdf_page: 1-based PDF page index from PyMuPDF
+    - printed_page: estimated DSM-5 book page (calibrated offset of 38 pages in Section II)
     """
     pdf_p = chunk.get("pdf_page") or chunk.get("page_number")
     chunk["pdf_page"] = pdf_p
@@ -36,9 +37,9 @@ def enrich_chunk(chunk: dict) -> dict:
 
 def is_disorder_hit(chunk: dict, gold_disorders: list) -> bool:
     """
-    Hit criterion: retrieved chunk's disorder matches gold_disorders
-    (normalize case/punctuation, fuzzy score >= 90 via rapidfuzz).
-    Page is diagnostic only; chunk ID is never used.
+    Check if retrieved chunk's disorder matches gold_disorders.
+    Normalized case/punctuation, RapidFuzz score >= 90.0.
+    Guards Roman numerals (e.g. Bipolar I vs Bipolar II) and residual categories.
     """
     c_dis = chunk.get("disorder_name", "")
     n_cd = normalize_text(c_dis)
@@ -50,7 +51,7 @@ def is_disorder_hit(chunk: dict, gold_disorders: list) -> bool:
         if not n_gd:
             continue
 
-        # Guard Roman numerals (e.g., Bipolar I vs Bipolar II)
+        # Guard Roman numerals (e.g. Bipolar I vs Bipolar II)
         r_gd = re.findall(r"\b(i|ii|iii|iv|v)\b", n_gd)
         r_cd = re.findall(r"\b(i|ii|iii|iv|v)\b", n_cd)
         if r_gd and r_cd and set(r_gd) != set(r_cd):
@@ -73,32 +74,20 @@ def is_disorder_hit(chunk: dict, gold_disorders: list) -> bool:
 
     return False
 
-def is_section_hit(chunk: dict, gold_sections: list) -> bool:
+def is_section_match(chunk: dict, gold_sections: list) -> bool:
     """
-    Optional section match check (reported separately).
+    Exact case-insensitive match on section_type.
+    If gold_sections is empty, defaults to True.
     """
     if not gold_sections:
         return True
-    c_sec = chunk.get("section_type", "")
-    n_cs = normalize_text(c_sec)
-    if not n_cs:
-        return False
-
-    for gs in gold_sections:
-        n_gs = normalize_text(gs)
-        if not n_gs:
-            continue
-        if n_gs in n_cs or n_cs in n_gs:
-            return True
-        score = fuzz.token_set_ratio(n_gs, n_cs)
-        if score >= 90.0:
-            return True
-    return False
+    c_sec = (chunk.get("section_type") or "").strip().lower()
+    return any(c_sec == gs.strip().lower() for gs in gold_sections)
 
 def compute_auroc(in_scope_scores: list, oos_scores: list) -> float:
     """
     Compute AUROC of top-score separating in-scope vs out-of-scope
-    using the exact Wilcoxon-Mann-Whitney U-statistic.
+    using the Wilcoxon-Mann-Whitney U-statistic.
     """
     if not in_scope_scores or not oos_scores:
         return 0.0
@@ -133,7 +122,6 @@ def sweep_thresholds(in_scope_scores: list, oos_scores: list) -> dict:
     best_tnr = 0.0
     sweep_table = []
 
-    # Check candidates from 0.50 to 0.90 in increments of 0.01
     candidates = [round(0.50 + i * 0.01, 2) for i in range(41)]
 
     for th in candidates:
@@ -170,6 +158,76 @@ def default_retrieve_fn(query: str, k: int = 10, db: DSM5Database = None):
     matches = db.search(query_vector, k=k)
     return matches
 
+def calculate_split_metrics(q_results: list, oos_threshold: float):
+    """Calculate primary, secondary, and per-type metrics for a given subset of questions."""
+    in_scope = [q for q in q_results if q["type"] != "out_of_scope"]
+    oos = [q for q in q_results if q["type"] == "out_of_scope"]
+
+    in_top_scores = [q["top_score"] for q in in_scope]
+    oos_top_scores = [q["top_score"] for q in oos]
+
+    auroc = compute_auroc(in_top_scores, oos_top_scores)
+
+    # Primary metric: disorder match AND exact section_type
+    primary_h5 = [q["primary_hit_5"] for q in in_scope]
+    primary_h10 = [q["primary_hit_10"] for q in in_scope]
+    primary_rr = [q["primary_rr"] for q in in_scope]
+
+    # Secondary metric: disorder match only
+    disorder_h5 = [q["disorder_hit_5"] for q in in_scope]
+    disorder_h10 = [q["disorder_hit_10"] for q in in_scope]
+    disorder_rr = [q["disorder_rr"] for q in in_scope]
+
+    mean_primary_h5 = sum(primary_h5) / len(primary_h5) if primary_h5 else 0.0
+    mean_primary_h10 = sum(primary_h10) / len(primary_h10) if primary_h10 else 0.0
+    mean_primary_mrr = sum(primary_rr) / len(primary_rr) if primary_rr else 0.0
+
+    mean_disorder_h5 = sum(disorder_h5) / len(disorder_h5) if disorder_h5 else 0.0
+    mean_disorder_h10 = sum(disorder_h10) / len(disorder_h10) if disorder_h10 else 0.0
+    mean_disorder_mrr = sum(disorder_rr) / len(disorder_rr) if disorder_rr else 0.0
+
+    # Per question type breakdown
+    type_breakdown = {}
+    grouped_by_type = defaultdict(list)
+    for q in in_scope:
+        grouped_by_type[q["type"]].append(q)
+
+    for qtype, items in grouped_by_type.items():
+        type_breakdown[qtype] = {
+            "count": len(items),
+            "primary_hit_5": sum(x["primary_hit_5"] for x in items) / len(items),
+            "primary_hit_10": sum(x["primary_hit_10"] for x in items) / len(items),
+            "primary_mrr": sum(x["primary_rr"] for x in items) / len(items),
+            "disorder_hit_5": sum(x["disorder_hit_5"] for x in items) / len(items),
+            "disorder_hit_10": sum(x["disorder_hit_10"] for x in items) / len(items),
+            "disorder_mrr": sum(x["disorder_rr"] for x in items) / len(items),
+        }
+
+    # OOS performance
+    oos_rejected = sum(1 for s in oos_top_scores if s < oos_threshold)
+    oos_acc = oos_rejected / len(oos_top_scores) if oos_top_scores else 0.0
+
+    in_retained = sum(1 for s in in_top_scores if s >= oos_threshold)
+    in_retention = in_retained / len(in_top_scores) if in_top_scores else 0.0
+    bal_acc = (in_retention + oos_acc) / 2.0
+
+    return {
+        "count_in_scope": len(in_scope),
+        "count_oos": len(oos),
+        "primary_hit_5": round(mean_primary_h5, 4),
+        "primary_hit_10": round(mean_primary_h10, 4),
+        "primary_mrr": round(mean_primary_mrr, 4),
+        "disorder_hit_5": round(mean_disorder_h5, 4),
+        "disorder_hit_10": round(mean_disorder_h10, 4),
+        "disorder_mrr": round(mean_disorder_mrr, 4),
+        "by_type": type_breakdown,
+        "auroc": round(auroc, 4),
+        "oos_threshold": round(oos_threshold, 2),
+        "oos_rejection_acc": round(oos_acc, 4),
+        "in_scope_retention": round(in_retention, 4),
+        "balanced_accuracy": round(bal_acc, 4)
+    }
+
 def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=None, results_csv="results.csv"):
     if questions_path is None:
         questions_path = os.path.join(PROJECT_ROOT, "eval", "questions.jsonl")
@@ -184,36 +242,21 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
     # Initialize DB connection
     db = DSM5Database()
 
-    recalls_at_5 = []
-    recalls_at_10 = []
-    rr_list = []
-
-    sec_recalls_at_5 = []
-    sec_recalls_at_10 = []
-
-    type_metrics = {
-        "lookup": {"hits_at_5": 0, "hits_at_10": 0, "rr": [], "total": 0},
-        "differential": {"hits_at_5": 0, "hits_at_10": 0, "rr": [], "total": 0},
-        "out_of_scope": {"total": 0, "top_scores": []}
-    }
-
-    per_question_results = []
-    raw_rankings = []
-    in_scope_top_scores = []
-    oos_top_scores = []
-
     print(f"\n=======================================================")
     print(f"RUNNING EVALUATION: {config_label}")
-    print(f"Total Questions: {len(questions)}")
+    print(f"Total Questions: {len(questions)} (Dev/Test Stratified)")
     print(f"=======================================================\n")
 
-    for idx, q in enumerate(questions):
+    per_question_results = []
+
+    for idx, q in enumerate(questions, 1):
         qid = q["id"]
         qtype = q["type"]
+        qsplit = q.get("split", "test")
         qtext = q["question"]
         g_disorders = q.get("gold_disorders", [])
-        g_pages = q.get("gold_pages", [])
         g_sections = q.get("gold_sections", [])
+        g_pages = q.get("gold_pages", [])
 
         # Retrieve top 10
         if retrieve_fn is None:
@@ -221,25 +264,25 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
         else:
             retrieved = retrieve_fn(qtext, k=10)
 
-        # Enrich chunk metadata with pdf_page and printed_page
+        # Standardize page metadata
         for chunk in retrieved:
             enrich_chunk(chunk)
 
         top_score = retrieved[0]["score"] if retrieved else 0.0
 
-        # Build raw ranking record for this question
         raw_chunks_info = []
         disorder_hit_ranks = []
-        section_hit_ranks = []
+        primary_hit_ranks = []
 
         for rank, chunk in enumerate(retrieved, start=1):
             d_hit = is_disorder_hit(chunk, g_disorders) if qtype != "out_of_scope" else False
-            s_hit = (d_hit and is_section_hit(chunk, g_sections)) if qtype != "out_of_scope" else False
+            sec_match = is_section_match(chunk, g_sections) if qtype != "out_of_scope" else False
+            prim_hit = (d_hit and sec_match) if qtype != "out_of_scope" else False
 
             if d_hit:
                 disorder_hit_ranks.append(rank)
-            if s_hit:
-                section_hit_ranks.append(rank)
+            if prim_hit:
+                primary_hit_ranks.append(rank)
 
             raw_chunks_info.append({
                 "rank": rank,
@@ -248,124 +291,115 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
                 "pdf_page": chunk.get("pdf_page"),
                 "printed_page": chunk.get("printed_page"),
                 "score": round(float(chunk.get("score", 0.0)), 4),
-                "is_disorder_hit": d_hit,
-                "is_section_hit": s_hit
+                "disorder_hit": d_hit,
+                "section_match": sec_match,
+                "primary_hit": prim_hit
             })
 
-        if qtype == "out_of_scope":
-            oos_top_scores.append(top_score)
-            type_metrics["out_of_scope"]["total"] += 1
-            type_metrics["out_of_scope"]["top_scores"].append(top_score)
+        prim_h5 = 1.0 if any(r <= 5 for r in primary_hit_ranks) else 0.0
+        prim_h10 = 1.0 if any(r <= 10 for r in primary_hit_ranks) else 0.0
+        prim_rr = (1.0 / primary_hit_ranks[0]) if primary_hit_ranks else 0.0
 
-            per_question_results.append({
-                "id": qid,
-                "type": qtype,
-                "question": qtext,
-                "top_score": top_score,
-                "retrieved": raw_chunks_info
-            })
+        dis_h5 = 1.0 if any(r <= 5 for r in disorder_hit_ranks) else 0.0
+        dis_h10 = 1.0 if any(r <= 10 for r in disorder_hit_ranks) else 0.0
+        dis_rr = (1.0 / disorder_hit_ranks[0]) if disorder_hit_ranks else 0.0
+
+        top_matches_desc = [
+            f"#{r['rank']}: {r['disorder_name']} ({r['section_type']}, pdf_p.{r['pdf_page']}, s={r['score']:.3f})"
+            for r in raw_chunks_info[:3]
+        ]
+
+        per_question_results.append({
+            "id": qid,
+            "type": qtype,
+            "split": qsplit,
+            "question": qtext,
+            "gold_disorders": g_disorders,
+            "gold_sections": g_sections,
+            "gold_pages": g_pages,
+            "top_score": top_score,
+            "primary_hit_5": prim_h5,
+            "primary_hit_10": prim_h10,
+            "primary_rr": prim_rr,
+            "disorder_hit_5": dis_h5,
+            "disorder_hit_10": dis_h10,
+            "disorder_rr": dis_rr,
+            "primary_hit_ranks": primary_hit_ranks,
+            "disorder_hit_ranks": disorder_hit_ranks,
+            "details": f"Primary Hits: {primary_hit_ranks} | Disorder Hits: {disorder_hit_ranks} | Top: {' | '.join(top_matches_desc)}",
+            "retrieved": raw_chunks_info
+        })
+
+    # Separate Dev and Test splits
+    dev_results = [q for q in per_question_results if q["split"] == "dev"]
+    test_results = [q for q in per_question_results if q["split"] == "test"]
+
+    # 1. TUNE OOS THRESHOLD ON DEV ONLY
+    dev_in_scope_scores = [q["top_score"] for q in dev_results if q["type"] != "out_of_scope"]
+    dev_oos_scores = [q["top_score"] for q in dev_results if q["type"] == "out_of_scope"]
+
+    dev_sweep = sweep_thresholds(dev_in_scope_scores, dev_oos_scores)
+    optimal_dev_threshold = dev_sweep["optimal_threshold"]
+
+    # 2. EVALUATE ON TEST (AND DEV) USING OPTIMAL DEV THRESHOLD
+    dev_metrics = calculate_split_metrics(dev_results, optimal_dev_threshold)
+    test_metrics = calculate_split_metrics(test_results, optimal_dev_threshold)
+
+    # Mark success booleans based on optimal dev threshold
+    for q in per_question_results:
+        if q["type"] == "out_of_scope":
+            q["success"] = q["top_score"] < optimal_dev_threshold
+            q["details"] = f"Top Score: {q['top_score']:.4f} (Cutoff: {optimal_dev_threshold:.2f})"
         else:
-            in_scope_top_scores.append(top_score)
+            q["success"] = q["primary_hit_5"] > 0
 
-            hit_5 = 1.0 if any(r <= 5 for r in disorder_hit_ranks) else 0.0
-            hit_10 = 1.0 if any(r <= 10 for r in disorder_hit_ranks) else 0.0
-            first_rr = (1.0 / disorder_hit_ranks[0]) if disorder_hit_ranks else 0.0
+    print("=========================================================================================")
+    print(f"HEADLINE EVALUATION RESULTS: {config_label} (TEST SET, N={len(test_results)})")
+    print(f"Threshold tuned on DEV: {optimal_dev_threshold:.2f} (Dev Balanced Acc: {dev_metrics['balanced_accuracy']:.2%})")
+    print("=========================================================================================")
+    print(f"PRIMARY METRIC (Disorder AND Exact Section Type):")
+    print(f"  Hit@5  : {test_metrics['primary_hit_5']:.4f}")
+    print(f"  Hit@10 : {test_metrics['primary_hit_10']:.4f}")
+    print(f"  MRR    : {test_metrics['primary_mrr']:.4f}")
+    print("-----------------------------------------------------------------------------------------")
+    print(f"SECONDARY METRIC (Disorder-Only Fuzzy >= 90):")
+    print(f"  Hit@5  : {test_metrics['disorder_hit_5']:.4f}")
+    print(f"  Hit@10 : {test_metrics['disorder_hit_10']:.4f}")
+    print(f"  MRR    : {test_metrics['disorder_mrr']:.4f}")
+    print("-----------------------------------------------------------------------------------------")
+    print(f"OUT-OF-SCOPE REJECTION (Test Cutoff @ {optimal_dev_threshold:.2f}):")
+    print(f"  AUROC (In-Scope vs OOS) : {test_metrics['auroc']:.4f}")
+    print(f"  OOS Rejection Accuracy  : {test_metrics['oos_rejection_acc']:.4f} ({int(test_metrics['oos_rejection_acc'] * test_metrics['count_oos'])}/{test_metrics['count_oos']})")
+    print(f"  In-Scope Retained       : {test_metrics['in_scope_retention']:.4f} ({int(test_metrics['in_scope_retention'] * test_metrics['count_in_scope'])}/{test_metrics['count_in_scope']})")
+    print(f"  Balanced Accuracy       : {test_metrics['balanced_accuracy']:.4f}")
+    print("-----------------------------------------------------------------------------------------")
+    print("TEST BREAKDOWN BY QUESTION TYPE:")
+    print(f"{'Type':16s} | {'Count':5s} | {'Primary Hit@5':14s} | {'Primary MRR':11s} | {'Disorder Hit@5':15s} | {'Disorder MRR':12s}")
+    print("-" * 88)
+    for qtype in ["lookup", "differential", "vignette", "detail_lookup"]:
+        if qtype in test_metrics["by_type"]:
+            tm = test_metrics["by_type"][qtype]
+            print(f"{qtype:16s} | {tm['count']:5d} | {tm['primary_hit_5']:14.4f} | {tm['primary_mrr']:11.4f} | {tm['disorder_hit_5']:15.4f} | {tm['disorder_mrr']:12.4f}")
+    print("=========================================================================================\n")
 
-            sec_hit_5 = 1.0 if any(r <= 5 for r in section_hit_ranks) else 0.0
-            sec_hit_10 = 1.0 if any(r <= 10 for r in section_hit_ranks) else 0.0
+    print("------------------- DEV SET COMPARISON -------------------")
+    print(f"Primary Hit@5 : {dev_metrics['primary_hit_5']:.4f} | Primary MRR : {dev_metrics['primary_mrr']:.4f}")
+    print(f"Disorder Hit@5: {dev_metrics['disorder_hit_5']:.4f} | Disorder MRR: {dev_metrics['disorder_mrr']:.4f}")
+    print(f"OOS Rejection : {dev_metrics['oos_rejection_acc']:.4f} | Dev AUROC   : {dev_metrics['auroc']:.4f}")
+    print("----------------------------------------------------------\n")
 
-            recalls_at_5.append(hit_5)
-            recalls_at_10.append(hit_10)
-            rr_list.append(first_rr)
-
-            sec_recalls_at_5.append(sec_hit_5)
-            sec_recalls_at_10.append(sec_hit_10)
-
-            type_metrics[qtype]["total"] += 1
-            type_metrics[qtype]["hits_at_5"] += hit_5
-            type_metrics[qtype]["hits_at_10"] += hit_10
-            type_metrics[qtype]["rr"].append(first_rr)
-
-            top_matches_desc = [
-                f"#{r['rank']}: {r['disorder_name']} ({r['section_type']}, pdf_p.{r['pdf_page']}, score={r['score']:.3f})"
-                for r in raw_chunks_info[:3]
-            ]
-
-            per_question_results.append({
-                "id": qid,
-                "type": qtype,
-                "question": qtext,
-                "gold_disorders": g_disorders,
-                "gold_sections": g_sections,
-                "gold_pages": g_pages,
-                "success": hit_5 > 0,
-                "disorder_hit_ranks": disorder_hit_ranks,
-                "section_hit_ranks": section_hit_ranks,
-                "first_hit_rank": disorder_hit_ranks[0] if disorder_hit_ranks else None,
-                "top_score": top_score,
-                "details": f"Disorder Hits: {disorder_hit_ranks} | Section Hits: {section_hit_ranks} | Top: {' | '.join(top_matches_desc)}",
-                "retrieved": raw_chunks_info
-            })
-
-    # Summary calculations for in-scope
-    mean_recall_5 = sum(recalls_at_5) / len(recalls_at_5) if recalls_at_5 else 0.0
-    mean_recall_10 = sum(recalls_at_10) / len(recalls_at_10) if recalls_at_10 else 0.0
-    mean_mrr = sum(rr_list) / len(rr_list) if rr_list else 0.0
-
-    mean_sec_r5 = sum(sec_recalls_at_5) / len(sec_recalls_at_5) if sec_recalls_at_5 else 0.0
-    mean_sec_r10 = sum(sec_recalls_at_10) / len(sec_recalls_at_10) if sec_recalls_at_10 else 0.0
-
-    lookup_r5 = type_metrics["lookup"]["hits_at_5"] / type_metrics["lookup"]["total"] if type_metrics["lookup"]["total"] else 0.0
-    lookup_r10 = type_metrics["lookup"]["hits_at_10"] / type_metrics["lookup"]["total"] if type_metrics["lookup"]["total"] else 0.0
-    lookup_mrr = sum(type_metrics["lookup"]["rr"]) / type_metrics["lookup"]["total"] if type_metrics["lookup"]["total"] else 0.0
-
-    diff_r5 = type_metrics["differential"]["hits_at_5"] / type_metrics["differential"]["total"] if type_metrics["differential"]["total"] else 0.0
-    diff_r10 = type_metrics["differential"]["hits_at_10"] / type_metrics["differential"]["total"] if type_metrics["differential"]["total"] else 0.0
-    diff_mrr = sum(type_metrics["differential"]["rr"]) / type_metrics["differential"]["total"] if type_metrics["differential"]["total"] else 0.0
-
-    # AUROC & Threshold Sweep for Out-of-Scope
-    oos_auroc = compute_auroc(in_scope_top_scores, oos_top_scores)
-    sweep_results = sweep_thresholds(in_scope_top_scores, oos_top_scores)
-    optimal_th = sweep_results["optimal_threshold"]
-    oos_rejection_acc = sweep_results["oos_rejection_acc"]
-    in_scope_retention = sweep_results["in_scope_retention"]
-    balanced_acc = sweep_results["balanced_accuracy"]
-
-    # Mark out_of_scope success based on optimal threshold
-    for res in per_question_results:
-        if res["type"] == "out_of_scope":
-            res["success"] = res["top_score"] < optimal_th
-            res["details"] = f"Top score: {res['top_score']:.4f} (Optimal Threshold: {optimal_th:.2f})"
-
-    print("-------------------- RESULTS SUMMARY --------------------")
-    print(f"Overall In-Scope Recall@5 : {mean_recall_5:.4f}")
-    print(f"Overall In-Scope Recall@10: {mean_recall_10:.4f}")
-    print(f"Overall In-Scope MRR      : {mean_mrr:.4f}")
-    print(f"Section Match Recall@5    : {mean_sec_r5:.4f}")
-    print(f"Section Match Recall@10   : {mean_sec_r10:.4f}")
-    print("---------------------------------------------------------")
-    print(f"Lookup       -> Recall@5: {lookup_r5:.4f} | Recall@10: {lookup_r10:.4f} | MRR: {lookup_mrr:.4f}")
-    print(f"Differential -> Recall@5: {diff_r5:.4f} | Recall@10: {diff_r10:.4f} | MRR: {diff_mrr:.4f}")
-    print("----------------- OUT-OF-SCOPE METRICS ------------------")
-    print(f"AUROC (In-Scope vs OOS)   : {oos_auroc:.4f}")
-    print(f"Optimal OOS Cutoff        : {optimal_th:.2f}")
-    print(f"OOS Rejection Acc @ {optimal_th:.2f} : {oos_rejection_acc:.4f} ({int(oos_rejection_acc * len(oos_top_scores))}/{len(oos_top_scores)})")
-    print(f"In-Scope Retained @ {optimal_th:.2f} : {in_scope_retention:.4f} ({int(in_scope_retention * len(in_scope_top_scores))}/{len(in_scope_top_scores)})")
-    print(f"Balanced Accuracy         : {balanced_acc:.4f}")
-    print("---------------------------------------------------------\n")
-
-    # Show failures
-    print("----------------- PER-QUESTION FAILURES -----------------")
-    failures = [r for r in per_question_results if not r["success"]]
-    if not failures:
-        print("None! All questions passed Recall@5 / OOS Rejection.")
+    # Show failures on test set
+    test_failures = [q for q in test_results if not q["success"]]
+    print(f"---------------- TEST FAILURES (Primary Hit@5 / OOS Rejection: {len(test_failures)}) ----------------")
+    if not test_failures:
+        print("None! All test questions succeeded.")
     else:
-        for f in failures:
+        for f in test_failures:
             print(f"[{f['id']}] ({f['type'].upper()}) {f['question']}")
             print(f"   Reason: {f['details']}")
-    print("---------------------------------------------------------\n")
+    print("--------------------------------------------------------------------------------------\n")
 
-    # Save per-run raw rankings to eval/runs/<label>.json
+    # Save raw rankings to eval/runs/<label>.json
     runs_dir = os.path.join(PROJECT_ROOT, "eval", "runs")
     os.makedirs(runs_dir, exist_ok=True)
     run_file_path = os.path.join(runs_dir, f"{config_label}.json")
@@ -374,27 +408,13 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
         "label": config_label,
         "timestamp": datetime.now().isoformat(),
         "total_questions": len(questions),
-        "metrics": {
-            "recall_at_5": round(mean_recall_5, 4),
-            "recall_at_10": round(mean_recall_10, 4),
-            "mrr": round(mean_mrr, 4),
-            "section_recall_at_5": round(mean_sec_r5, 4),
-            "section_recall_at_10": round(mean_sec_r10, 4),
-            "lookup_recall_at_5": round(lookup_r5, 4),
-            "lookup_recall_at_10": round(lookup_r10, 4),
-            "lookup_mrr": round(lookup_mrr, 4),
-            "diff_recall_at_5": round(diff_r5, 4),
-            "diff_recall_at_10": round(diff_r10, 4),
-            "diff_mrr": round(diff_mrr, 4),
-            "oos_auroc": round(oos_auroc, 4),
-            "optimal_oos_threshold": round(optimal_th, 2),
-            "oos_rejection_acc": round(oos_rejection_acc, 4),
-            "balanced_accuracy": round(balanced_acc, 4)
+        "dev_tuning": {
+            "optimal_threshold": optimal_dev_threshold,
+            "dev_balanced_accuracy": dev_sweep["balanced_accuracy"],
+            "dev_sweep": [s for s in dev_sweep["sweep_table"] if s["threshold"] in [0.55, 0.60, 0.65, 0.68, 0.70, 0.71, 0.72, 0.75, 0.80]]
         },
-        "threshold_sweep": [
-            s for s in sweep_results["sweep_table"]
-            if s["threshold"] in [0.55, 0.60, 0.65, 0.68, 0.70, 0.71, 0.72, 0.75, 0.80]
-        ],
+        "test_metrics": test_metrics,
+        "dev_metrics": dev_metrics,
         "questions": per_question_results
     }
 
@@ -402,41 +422,56 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
         json.dump(run_payload, rf, indent=2)
     print(f"Raw rankings and run artifact saved to: {run_file_path}")
 
-    # Append to results.csv
+    # Append headline test numbers to results.csv
     csv_file_path = os.path.join(PROJECT_ROOT, results_csv)
     file_exists = os.path.exists(csv_file_path)
 
+    fieldnames = [
+        "timestamp", "config_label", "split", "total_questions",
+        "primary_hit@5", "primary_hit@10", "primary_mrr",
+        "disorder_hit@5", "disorder_hit@10", "disorder_mrr",
+        "lookup_hit@5", "lookup_mrr",
+        "diff_hit@5", "diff_mrr",
+        "vignette_hit@5", "vignette_mrr",
+        "detail_hit@5", "detail_mrr",
+        "oos_rejection_acc", "dev_optimal_threshold", "test_auroc"
+    ]
+
     with open(csv_file_path, "a", newline="", encoding="utf-8") as csvfile:
-        fieldnames = [
-            "timestamp", "config_label", "total_questions",
-            "recall@5", "recall@10", "mrr",
-            "section_recall@5", "section_recall@10",
-            "lookup_recall@5", "lookup_mrr",
-            "diff_recall@5", "diff_mrr",
-            "oos_auroc", "optimal_oos_threshold", "oos_rejection_acc"
-        ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if not file_exists:
             writer.writeheader()
+
+        lookup_stats = test_metrics["by_type"].get("lookup", {})
+        diff_stats = test_metrics["by_type"].get("differential", {})
+        vig_stats = test_metrics["by_type"].get("vignette", {})
+        det_stats = test_metrics["by_type"].get("detail_lookup", {})
+
         writer.writerow({
             "timestamp": datetime.now().isoformat(),
             "config_label": config_label,
-            "total_questions": len(questions),
-            "recall@5": round(mean_recall_5, 4),
-            "recall@10": round(mean_recall_10, 4),
-            "mrr": round(mean_mrr, 4),
-            "section_recall@5": round(mean_sec_r5, 4),
-            "section_recall@10": round(mean_sec_r10, 4),
-            "lookup_recall@5": round(lookup_r5, 4),
-            "lookup_mrr": round(lookup_mrr, 4),
-            "diff_recall@5": round(diff_r5, 4),
-            "diff_mrr": round(diff_mrr, 4),
-            "oos_auroc": round(oos_auroc, 4),
-            "optimal_oos_threshold": round(optimal_th, 2),
-            "oos_rejection_acc": round(oos_rejection_acc, 4)
+            "split": "test",
+            "total_questions": len(test_results),
+            "primary_hit@5": test_metrics["primary_hit_5"],
+            "primary_hit@10": test_metrics["primary_hit_10"],
+            "primary_mrr": test_metrics["primary_mrr"],
+            "disorder_hit@5": test_metrics["disorder_hit_5"],
+            "disorder_hit@10": test_metrics["disorder_hit_10"],
+            "disorder_mrr": test_metrics["disorder_mrr"],
+            "lookup_hit@5": lookup_stats.get("primary_hit_5", 0.0),
+            "lookup_mrr": lookup_stats.get("primary_mrr", 0.0),
+            "diff_hit@5": diff_stats.get("primary_hit_5", 0.0),
+            "diff_mrr": diff_stats.get("primary_mrr", 0.0),
+            "vignette_hit@5": vig_stats.get("primary_hit_5", 0.0),
+            "vignette_mrr": vig_stats.get("primary_mrr", 0.0),
+            "detail_hit@5": det_stats.get("primary_hit_5", 0.0),
+            "detail_mrr": det_stats.get("primary_mrr", 0.0),
+            "oos_rejection_acc": test_metrics["oos_rejection_acc"],
+            "dev_optimal_threshold": optimal_dev_threshold,
+            "test_auroc": test_metrics["auroc"]
         })
 
-    print(f"Results appended to {results_csv}")
+    print(f"Headline test results appended to {results_csv}")
     db.close()
     return per_question_results, run_payload
 

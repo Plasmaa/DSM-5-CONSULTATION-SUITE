@@ -1,3 +1,2 @@
-timestamp,config_label,total_questions,recall@5,recall@10,mrr,section_recall@5,section_recall@10,lookup_recall@5,lookup_mrr,diff_recall@5,diff_mrr,oos_auroc,optimal_oos_threshold,oos_rejection_acc
-2026-10-12T00:27:18.373132,baseline_v0_pinecone_bge_large,40,0.6875,0.7500,0.4857,N/A,N/A,0.6500,0.4213,0.7500,0.5931,N/A,0.65,0.6250
-2026-10-12T00:51:25.287609,v0-legacy,40,0.9688,1.0000,0.8411,0.5625,0.7812,1.0000,0.8500,0.9167,0.8264,1.0000,0.71,1.0000
+timestamp,config_label,split,total_questions,primary_hit@5,primary_hit@10,primary_mrr,disorder_hit@5,disorder_hit@10,disorder_mrr,lookup_hit@5,lookup_mrr,diff_hit@5,diff_mrr,vignette_hit@5,vignette_mrr,detail_hit@5,detail_mrr,oos_rejection_acc,dev_optimal_threshold,test_auroc
+2026-10-12T01:05:25.029811,v0-legacy,test,52,0.5833,0.75,0.4593,0.9167,0.9444,0.7819,0.4666666666666667,0.27507936507936503,0.8333333333333334,0.75,0.8,0.7333333333333333,0.2,0.11523809523809522,1.0,0.72,0.974
