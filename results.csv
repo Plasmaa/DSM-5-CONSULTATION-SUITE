@@ -1,0 +1,2 @@
+timestamp,config_label,total_questions,recall@5,recall@10,mrr,lookup_recall@5,lookup_mrr,diff_recall@5,diff_mrr,oos_rejection_acc
+2026-10-12T00:27:18.373132,baseline_v0_pinecone_bge_large,40,0.6875,0.75,0.4857,0.65,0.4213,0.75,0.5931,0.625
