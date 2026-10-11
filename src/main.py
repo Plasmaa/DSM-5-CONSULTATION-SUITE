@@ -132,7 +132,74 @@ class RetrieveRequest(BaseModel):
     filter_disorder: Optional[str] = None
 
 # Reference Assistant System Prompt
-SYSTEM_PROMPT = """You are a reference assistant for clinicians. Answer ONLY from the provided DSM-5 sources.Do not answer anything except medical / psychiatric questions or questions related to the DSM-5. Quote criteria faithfully. Cite as [Disorder, Section, p.X]. If the sources don't contain the answer, say 'Not found in the retrieved DSM-5 sections.' Do not diagnose individual patients."""
+SYSTEM_PROMPT = """You are a reference assistant for clinicians. Answer ONLY from the provided DSM-5 sources. Do not answer anything except medical / psychiatric questions or questions related to the DSM-5.
+
+CITATION RULES:
+- The provided DSM-5 sources are numbered [S1], [S2], ..., [Sn].
+- Cite ONLY as [Sn] (e.g. [S1], [S2]). Do not invent sources. Cite only the specific source supporting each statement.
+
+DIAGNOSTIC CRITERIA RULES:
+- Quote criteria verbatim with their original lettering (e.g. Criterion A, Criterion B, Criterion A.1, etc.).
+- If the criteria for the asked disorder are NOT in the provided sources, explicitly say: "The diagnostic criteria for this disorder are not found in the retrieved DSM-5 sections." Do NOT use outside knowledge or extrapolate.
+
+PATIENT DESCRIPTION & CLINICAL VIGNETTE RULES:
+- For patient descriptions or vignettes, NEVER state that the patient has, meets, or is diagnosed with the disorder.
+- Instead, give a per-criterion described/not described checklist with exact counts vs. required threshold (e.g., "Criterion A: 3 of 5 required symptoms described").
+- Explicitly list the rule-outs and exclusionary conditions that the sources list (e.g., substance/medication physiological effects, another medical condition, or another mental disorder)."""
+
+def expand_siblings(database, sources: List[dict]) -> List[dict]:
+    """
+    Sibling expansion: For retrieved chunks with section 'Diagnostic Criteria' or 'Specifiers',
+    fetch all criteria and specifier chunks of the same disorder from SQLite to provide complete context.
+    """
+    if not database or not sources:
+        return sources
+
+    expanded = list(sources)
+    existing_ids = {s.get("id") for s in sources}
+    disorders_to_expand = set()
+
+    for s in sources:
+        sec = s.get("section_type", "")
+        if sec in ["Diagnostic Criteria", "Specifiers"]:
+            d_name = s.get("disorder_name")
+            if d_name:
+                disorders_to_expand.add(d_name)
+
+    if not disorders_to_expand:
+        return expanded
+
+    try:
+        cursor = database.conn.cursor()
+        placeholders = ",".join("?" for _ in disorders_to_expand)
+        cursor.execute(f"""
+            SELECT id, disorder_name, code, section_type, content, page_number
+            FROM chunks
+            WHERE disorder_name IN ({placeholders})
+              AND section_type IN ('Diagnostic Criteria', 'Specifiers')
+            ORDER BY page_number ASC, id ASC
+        """, list(disorders_to_expand))
+        records = cursor.fetchall()
+
+        for r in records:
+            chunk_id = r[0]
+            if chunk_id not in existing_ids:
+                existing_ids.add(chunk_id)
+                expanded.append({
+                    "id": r[0],
+                    "disorder_name": r[1],
+                    "code": r[2],
+                    "section_type": r[3],
+                    "content": r[4],
+                    "page_number": r[5],
+                    "pdf_page": r[5],
+                    "score": 0.0,
+                    "is_sibling": True
+                })
+    except Exception as e:
+        print(f"Warning: Sibling expansion query failed: {e}")
+
+    return expanded
 
 @app.get("/api/status")
 async def get_status():
@@ -170,10 +237,9 @@ async def retrieve_chunks(req: RetrieveRequest):
         raise HTTPException(status_code=500, detail="Services not initialized")
     
     try:
-        # Generate query vector
         query_vector = get_ollama_embedding(req.query)
-        # Search Pinecone + SQLite
         matches = db.search(query_vector, k=req.k, filter_disorder=req.filter_disorder)
+        matches = expand_siblings(db, matches)
         return {"matches": matches}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -191,18 +257,20 @@ async def chat_endpoint(req: ChatRequest):
     
     last_query = user_messages[-1].content
 
-    # 2. Retrieve relevant DSM-5 chunks (no score cutoff)
+    # 2. Retrieve relevant DSM-5 chunks and expand criteria/specifier siblings
     try:
         query_vector = get_ollama_embedding(last_query)
-        sources = db.search(query_vector, k=5)
+        raw_sources = db.search(query_vector, k=5)
+        sources = expand_siblings(db, raw_sources)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve sources: {str(e)}")
 
-    # 3. Build context for the LLM
+    # 3. Build context for the LLM with numbered sources [S1]..[Sn]
     context_str = ""
-    for idx, src in enumerate(sources):
+    for idx, src in enumerate(sources, 1):
         pdf_page = src.get("pdf_page") or src.get("page_number")
-        context_str += f"\n--- SOURCE {idx+1}: {src['disorder_name']} ({src.get('code') or 'No Code'}), p.{pdf_page}, Section: {src['section_type']} (Relevance Score: {src['score']:.4f}) ---\n"
+        src["source_id"] = f"S{idx}"
+        context_str += f"\n[{src['source_id']}] {src['disorder_name']} ({src.get('code') or 'No Code'}), Section: {src['section_type']}, p.{pdf_page}\n"
         context_str += f"{src['content']}\n"
         context_str += "--------------------------------------------------------\n"
 
@@ -210,8 +278,6 @@ async def chat_endpoint(req: ChatRequest):
     full_system_prompt = f"{SYSTEM_PROMPT}\n\nRELEVANT DSM-5 REFERENCES:\n{context_str}"
     
     ollama_messages = [{"role": "system", "content": full_system_prompt}]
-    
-    # Add conversation history
     for msg in req.messages:
         ollama_messages.append({"role": msg.role, "content": msg.content})
 
@@ -219,16 +285,18 @@ async def chat_endpoint(req: ChatRequest):
     async def sse_generator():
         # Send retrieved sources metadata to client
         light_sources = []
-        for src in sources:
+        for idx, src in enumerate(sources, 1):
             pdf_page = src.get("pdf_page") or src.get("page_number")
             light_sources.append({
+                "source_id": f"S{idx}",
                 "disorder_name": src["disorder_name"],
                 "code": src["code"],
                 "section_type": src["section_type"],
                 "page_number": pdf_page,
                 "pdf_page": pdf_page,
                 "score": src["score"],
-                "content": src["content"]
+                "content": src["content"],
+                "is_sibling": src.get("is_sibling", False)
             })
         yield f"data: {json.dumps({'type': 'sources', 'sources': light_sources})}\n\n"
 
@@ -245,6 +313,9 @@ async def chat_endpoint(req: ChatRequest):
         }
         
         think_filter = ThinkTagFilter()
+        accumulated_text = ""
+        max_source_idx = len(sources)
+
         async with httpx.AsyncClient(timeout=60.0) as client:
             try:
                 async with client.stream(
@@ -265,15 +336,26 @@ async def chat_endpoint(req: ChatRequest):
                             if raw_delta:
                                 filtered_delta = think_filter.process(raw_delta)
                                 if filtered_delta:
+                                    accumulated_text += filtered_delta
                                     yield f"data: {json.dumps({'type': 'content', 'delta': filtered_delta})}\n\n"
                         except json.JSONDecodeError:
                             continue
 
                     final_delta = think_filter.flush()
                     if final_delta:
+                        accumulated_text += final_delta
                         yield f"data: {json.dumps({'type': 'content', 'delta': final_delta})}\n\n"
             except Exception as e:
                 yield f"data: {json.dumps({'type': 'error', 'error': f'Connection to Ollama failed: {str(e)}'})}\n\n"
+
+        # Citation validation: Check that all cited [Sn] actually exist in 1..max_source_idx
+        import re
+        cited_indices = [int(m) for m in re.findall(r'\[S(\d+)\]', accumulated_text)]
+        invalid_citations = [idx for idx in cited_indices if idx < 1 or idx > max_source_idx]
+        if invalid_citations:
+            warning_msg = f"\n\n[Warning: Cited source(s) {', '.join(f'[S{i}]' for i in sorted(set(invalid_citations)))} do not exist in the retrieved sources (valid sources: [S1]–[S{max_source_idx}]).]"
+            print(f"CITATION WARNING: {warning_msg.strip()}")
+            yield f"data: {json.dumps({'type': 'content', 'delta': warning_msg})}\n\n"
 
         yield "data: {\"type\": \"done\"}\n\n"
 

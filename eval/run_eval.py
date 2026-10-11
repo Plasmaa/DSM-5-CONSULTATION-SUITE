@@ -341,9 +341,10 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
     dev_sweep = sweep_thresholds(dev_in_scope_scores, dev_oos_scores)
     optimal_dev_threshold = dev_sweep["optimal_threshold"]
 
-    # 2. EVALUATE ON TEST (AND DEV) USING OPTIMAL DEV THRESHOLD
+    # 2. EVALUATE ON TEST, DEV, AND ALL (DEV+TEST) USING OPTIMAL DEV THRESHOLD
     dev_metrics = calculate_split_metrics(dev_results, optimal_dev_threshold)
     test_metrics = calculate_split_metrics(test_results, optimal_dev_threshold)
+    all_metrics = calculate_split_metrics(per_question_results, optimal_dev_threshold)
 
     # Mark success booleans based on optimal dev threshold
     for q in per_question_results:
@@ -381,6 +382,19 @@ def run_evaluation(retrieve_fn=None, config_label="v0-legacy", questions_path=No
             tm = test_metrics["by_type"][qtype]
             print(f"{qtype:16s} | {tm['count']:5d} | {tm['primary_hit_5']:14.4f} | {tm['primary_mrr']:11.4f} | {tm['disorder_hit_5']:15.4f} | {tm['disorder_mrr']:12.4f}")
     print("=========================================================================================\n")
+
+    print("------------------- ALL IN-SCOPE (DEV + TEST, N={}) METRICS -------------------".format(all_metrics['count_in_scope']))
+    print(f"Primary Hit@5 : {all_metrics['primary_hit_5']:.4f} | Primary Hit@10 : {all_metrics['primary_hit_10']:.4f} | Primary MRR : {all_metrics['primary_mrr']:.4f}")
+    print(f"Disorder Hit@5: {all_metrics['disorder_hit_5']:.4f} | Disorder Hit@10: {all_metrics['disorder_hit_10']:.4f} | Disorder MRR: {all_metrics['disorder_mrr']:.4f}")
+    print(f"OOS Rejection : {all_metrics['oos_rejection_acc']:.4f} | Overall AUROC  : {all_metrics['auroc']:.4f}")
+    print("ALL IN-SCOPE BREAKDOWN BY QUESTION TYPE:")
+    print(f"{'Type':16s} | {'Count':5s} | {'Primary Hit@5':14s} | {'Primary MRR':11s} | {'Disorder Hit@5':15s} | {'Disorder MRR':12s}")
+    print("-" * 88)
+    for qtype in ["lookup", "differential", "vignette", "detail_lookup"]:
+        if qtype in all_metrics["by_type"]:
+            am = all_metrics["by_type"][qtype]
+            print(f"{qtype:16s} | {am['count']:5d} | {am['primary_hit_5']:14.4f} | {am['primary_mrr']:11.4f} | {am['disorder_hit_5']:15.4f} | {am['disorder_mrr']:12.4f}")
+    print("-----------------------------------------------------------------------------------------\n")
 
     print("------------------- DEV SET COMPARISON -------------------")
     print(f"Primary Hit@5 : {dev_metrics['primary_hit_5']:.4f} | Primary MRR : {dev_metrics['primary_mrr']:.4f}")

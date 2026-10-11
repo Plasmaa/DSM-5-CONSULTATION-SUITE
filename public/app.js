@@ -131,24 +131,28 @@ function formatContent(text) {
         return `<br><span class="bullet-item">• ${p1}</span>`;
     });
 
-    // Format bracketed citations e.g. [Attention-Deficit/Hyperactivity Disorder, 315.02, Page 60]
-    // Matches [Disorder, Code, Page X]
+    // Format bracketed citations e.g. [S1], [S2] or legacy [Disorder, Code, Page X]
     html = html.replace(/\[([^\]]+)\]/g, (match, p1) => {
-        // Find if citation matches any of our active sources
         let idAttr = "";
-        const parts = p1.toLowerCase();
-
-        // Try to locate source index in currentSources to link it
-        const matchedIndex = currentSources.findIndex(src => {
-            const disorderClean = src.disorder_name.toLowerCase();
-            return parts.includes(disorderClean) || disorderClean.includes(parts.split(',')[0].trim());
-        });
-
-        if (matchedIndex !== -1) {
-            idAttr = `data-source-index="${matchedIndex}"`;
+        const sMatch = p1.trim().match(/^S(\d+)$/i);
+        
+        if (sMatch) {
+            const sIdx = parseInt(sMatch[1], 10) - 1;
+            if (sIdx >= 0 && sIdx < currentSources.length) {
+                idAttr = `data-source-index="${sIdx}"`;
+            }
+        } else {
+            const parts = p1.toLowerCase();
+            const matchedIndex = currentSources.findIndex(src => {
+                const disorderClean = src.disorder_name.toLowerCase();
+                return parts.includes(disorderClean) || disorderClean.includes(parts.split(',')[0].trim());
+            });
+            if (matchedIndex !== -1) {
+                idAttr = `data-source-index="${matchedIndex}"`;
+            }
         }
 
-        return `<span class="citation" ${idAttr} onclick="scrollToSourceCard(this)"><i class="fa-solid fa-file-waveform"></i> ${p1}</span>`;
+        return `<span class="citation" ${idAttr} onclick="scrollToSourceCard(this)"><i class="fa-solid fa-file-waveform"></i> [${p1.trim()}]</span>`;
     });
 
     return html;
@@ -366,7 +370,7 @@ function renderSources(sources) {
 
         card.innerHTML = `
             <div class="source-card-header">
-                <div class="source-title">${src.disorder_name}</div>
+                <div class="source-title"><span style="color:var(--accent-blue);font-weight:700;margin-right:6px;">[S${index + 1}]</span>${src.disorder_name}${src.is_sibling ? ' <small style="font-size:0.7rem;color:var(--text-muted);font-weight:normal;">(Sibling)</small>' : ''}</div>
                 <div class="source-score">${similarityPct}% Match</div>
             </div>
             <div class="source-meta">
