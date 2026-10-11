@@ -1,0 +1,347 @@
+Total Unique Disorder/Category Names: 343
+Total Chunks: 2202
+======================================================================
+
+[179 chunks] (class_intro    ) General DSM-5
+[ 78 chunks] (section_iii    ) Section III / Emerging Measures
+[ 36 chunks] (disorder       ) Unspecified
+[ 20 chunks] (disorder       ) Gender Dysphoria
+[ 20 chunks] (disorder       ) Unspecified (p. 643)
+[ 19 chunks] (disorder       ) Alcohol Use Disorder
+[ 18 chunks] (disorder       ) Specific Learning Disorder
+[ 18 chunks] (disorder       ) Obsessive-Compulsive Disorder
+[ 18 chunks] (disorder       ) Substance/Medication-Induced Sleep Disorder
+[ 18 chunks] (disorder       ) Opioid Use Disorder
+[ 18 chunks] (disorder       ) Sedative, Hypnotic, or Anxiolytic Use Disorder
+[ 17 chunks] (disorder       ) Bipolar II Disorder
+[ 17 chunks] (disorder       ) Posttraumatic Stress Disorder
+[ 17 chunks] (disorder       ) Dissociative Identity Disorder
+[ 17 chunks] (disorder       ) Unspecified onset: Criteria for a diagnosis of conduct disorder are
+[ 17 chunks] (disorder       ) Cannabis Use Disorder
+[ 16 chunks] (disorder       ) Tic Disorders
+[ 16 chunks] (disorder       ) Specific Phobia
+[ 16 chunks] (disorder       ) Acute Stress Disorder
+[ 16 chunks] (disorder       ) Narcolepsy
+[ 16 chunks] (class_intro    ) Substance-Related Disorders Substance Use Disorders
+[ 16 chunks] (disorder       ) Gambling Disorder
+[ 15 chunks] (disorder       ) Social Anxiety Disorder (Social Phobia)
+[ 15 chunks] (disorder       ) Other Hallucinogen Use Disorder
+[ 14 chunks] (class_intro    ) I ifs
+[ 14 chunks] (disorder       ) Predominantly hyperactive/impulsive presentation: If Criterion A2 (hy­
+[ 14 chunks] (disorder       ) Premenstrual Dysphoric Disorder
+[ 14 chunks] (disorder       ) Substance/Medication-Induced Depressive Disorder
+[ 14 chunks] (disorder       ) Hoarding Disorder
+[ 14 chunks] (disorder       ) Conversion Disorder
+[ 14 chunks] (disorder       ) Insomnia Disorder
+[ 14 chunks] (disorder       ) Sleep terror type
+[ 14 chunks] (disorder       ) Substance/Medication-Induced Major or Mild Neurocognitive Disorder
+[ 13 chunks] (disorder       ) Specifiers for Bipolar and Related Disorders
+[ 13 chunks] (disorder       ) Disruptive Mood Dysregulation Disorder
+[ 13 chunks] (disorder       ) Generalized Anxiety Disorder
+[ 13 chunks] (disorder       ) Dissociative Amnesia
+[ 13 chunks] (disorder       ) Nightmare Disorder
+[ 13 chunks] (disorder       ) Substance/Medication-Induced Sexual Dysfunction
+[ 13 chunks] (disorder       ) Antisocial Personality Disorder
+[ 13 chunks] (disorder       ) Other or unspecified stimulant
+[ 13 chunks] (disorder       ) Delirium due to multiple etiologies: There is evidence from the history,
+[ 12 chunks] (disorder       ) X S2 υ '
+[ 12 chunks] (disorder       ) Stereotypic Movement Disorder
+[ 12 chunks] (disorder       ) Agoraphobia
+[ 12 chunks] (disorder       ) Body Dysmorphic Disorder
+[ 12 chunks] (disorder       ) Depersonalization/Dereallzation Disorder
+[ 12 chunks] (disorder       ) Female Sexual Interest/Arousal Disorder
+[ 12 chunks] (disorder       ) Genlto-Pelvic Pain/Penetration Disorder
+[ 12 chunks] (disorder       ) Tobacco Use Disorder
+[ 12 chunks] (disorder       ) Major or Mild Frontotemporal Neurocognitive Disorder
+[ 12 chunks] (disorder       ) Borderline Personality Disorder
+[ 11 chunks] (disorder       ) Specifiers for Depressive Disorders
+[ 11 chunks] (disorder       ) Separation Anxiety Disorder
+[ 11 chunks] (disorder       ) Somatic Symptom Disorder
+[ 11 chunks] (disorder       ) Avoidant/Restrictive Food Intake Disorder
+[ 11 chunks] (disorder       ) Hypersomnolence Disorder
+[ 11 chunks] (disorder       ) Delayed Ejaculation
+[ 11 chunks] (disorder       ) Oppositional Defiant Disorder
+[ 11 chunks] (disorder       ) Intermittent Explosive Disorder
+[ 11 chunks] (disorder       ) Alcohol Intoxication
+[ 11 chunks] (disorder       ) Alcohol Withdrawal
+[ 11 chunks] (disorder       ) Inhalant Use Disorder
+[ 11 chunks] (disorder       ) Other (or Unknown) Substance Use Disorder
+[ 11 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease
+[ 11 chunks] (disorder       ) Paranoid Personality Disorder
+[ 11 chunks] (disorder       ) Schizoid Personality Disorder
+[ 11 chunks] (disorder       ) Obsessive-Compulsive Personality Disorder
+[ 11 chunks] (disorder       ) Neurobehavioral Disorder Associated With Prenatal Alcohol Exposure
+[ 10 chunks] (disorder       ) Bipolar and Related Disorder Due to Another Medical Condition
+[ 10 chunks] (disorder       ) Selective Mutism
+[ 10 chunks] (disorder       ) Panic Disorder
+[ 10 chunks] (disorder       ) Substance/Medication-Induced Anxiety Disorder
+[ 10 chunks] (disorder       ) Anxiety Disorder Due to Another Medical Condition
+[ 10 chunks] (disorder       ) Illness Anxiety Disorder
+[ 10 chunks] (disorder       ) Psychological Factors Affecting Other Medical Conditions
+[ 10 chunks] (disorder       ) Enuresis
+[ 10 chunks] (disorder       ) Female Orgasmic Disorder
+[ 10 chunks] (disorder       ) Male Hypoactive Sexual Desire Disorder
+[ 10 chunks] (disorder       ) Phencyclidine Use Disorder
+[ 10 chunks] (disorder       ) Tobacco Withdrawal
+[ 10 chunks] (disorder       ) Major or Mild Neurocognitive Disorder With Lewy Bodies
+[ 10 chunks] (disorder       ) Major or Mild Vascular Neurocognitive Disorder
+[ 10 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Traumatic Brain Injury
+[ 10 chunks] (disorder       ) Schizotypal Personality Disorder
+[ 10 chunks] (disorder       ) Narcissistic Personality Disorder
+[ 10 chunks] (disorder       ) Avoidant Personality Disorder
+[ 10 chunks] (disorder       ) Voyeuristic Disorder
+[ 10 chunks] (disorder       ) Exhibitionistic Disorder
+[ 10 chunks] (disorder       ) Pedophilic Disorder
+[ 10 chunks] (disorder       ) Attenuated Psychosis Syndrome
+[  9 chunks] (class_intro    ) Introduction
+[  9 chunks] (disorder       ) Developmental Coordination Disorder
+[  9 chunks] (disorder       ) Substance/Medication-Induced Bipolar and Related Disorder
+[  9 chunks] (disorder       ) Persistent Depressive Disorder (Dysthymia)
+[  9 chunks] (disorder       ) Trichotillomania (Hair-Pulling Disorder)
+[  9 chunks] (disorder       ) Substance/Medication-Induced Obsessive-Compulsive and Related Disorder
+[  9 chunks] (disorder       ) Unspecified: For maladaptive reactions that are not classifiable as one
+[  9 chunks] (disorder       ) Pica
+[  9 chunks] (disorder       ) Rumination Disorder
+[  9 chunks] (disorder       ) Encopresis
+[  9 chunks] (disorder       ) Caffeine Intoxication
+[  9 chunks] (disorder       ) Caffeine Withdrawal
+[  9 chunks] (disorder       ) Hallucinogen Persisting Perception Disorder
+[  9 chunks] (disorder       ) Histrionic Personality Disorder
+[  9 chunks] (disorder       ) Frotteuristic Disorder
+[  9 chunks] (other_conditions) Uncomplicated Bereavement
+[  9 chunks] (disorder       ) Depressive Episodes With Short-Duration Hypomania
+[  9 chunks] (disorder       ) Caffeine Use Disorder
+[  8 chunks] (disorder       ) Depressive Disorder Due to Another l\/ledical Condition
+[  8 chunks] (disorder       ) Panic Attack Specifier
+[  8 chunks] (disorder       ) Obsessive-Compulsive and Related Disorder Due to Another Medical Condition
+[  8 chunks] (disorder       ) Reactive Attachment Disorder
+[  8 chunks] (disorder       ) Delayed Sleep Phase Type
+[  8 chunks] (disorder       ) Erectile Disorder
+[  8 chunks] (disorder       ) Premature (Early) Ejaculation
+[  8 chunks] (disorder       ) Pyromania
+[  8 chunks] (disorder       ) Dependent Personality Disorder
+[  8 chunks] (disorder       ) Sexual Sadism Disorder
+[  8 chunks] (disorder       ) Other Medication-Induced Movement Disorder
+[  8 chunks] (disorder       ) Persistent Confiplex Bereavement Disorder
+[  8 chunks] (disorder       ) Suicidal Behavior Disorder
+[  8 chunks] (disorder       ) Nonsuicidal Self-lnjuiy
+[  7 chunks] (disorder       ) Bipolar I Disorder
+[  7 chunks] (disorder       ) Excoriation (Skin-Picking) Disorder
+[  7 chunks] (disorder       ) Disinhiblted Social Engagement Disorder
+[  7 chunks] (disorder       ) Factitious Disorder
+[  7 chunks] (disorder       ) Binge-Eating Disorder
+[  7 chunks] (disorder       ) Shift Work Type
+[  7 chunks] (disorder       ) Rapid Eye Movement Sleep Behavior Disorder
+[  7 chunks] (disorder       ) Restless Legs Syndrome
+[  7 chunks] (disorder       ) Kleptomania
+[  7 chunks] (disorder       ) Sedative, Hypnotic, or Anxiolytic Withdrawal
+[  7 chunks] (disorder       ) Other (or Unknown) Substance Intoxication
+[  7 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to HIV Infection
+[  7 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Parkinson’s Disease
+[  7 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Huntington’s Disease
+[  7 chunks] (disorder       ) General Personality Disorder
+[  7 chunks] (disorder       ) Sexual Masochism Disorder
+[  7 chunks] (disorder       ) Transvestic Disorder
+[  6 chunks] (disorder       ) Language Disorder
+[  6 chunks] (disorder       ) Unspecified Neurodevelopmental Disorder
+[  6 chunks] (disorder       ) Cyclothymic Disorder
+[  6 chunks] (disorder       ) Cannabis Intoxication
+[  6 chunks] (disorder       ) Cannabis Withdrawal
+[  6 chunks] (disorder       ) Inhalant Intoxication
+[  6 chunks] (disorder       ) Personality Change Due to Another Medical Condition
+[  6 chunks] (disorder       ) Fetishistic Disorder
+[  5 chunks] (disorder       ) Speech Sound Disorder
+[  5 chunks] (disorder       ) Childhood-Onset Fluency Disorder (Stuttering)
+[  5 chunks] (disorder       ) Social (Pragmatic) Communication Disorder
+[  5 chunks] (disorder       ) Autism Spectrum Disorder
+[  5 chunks] (disorder       ) Catatonic Disorder Due to Another IVIedical Condition
+[  5 chunks] (disorder       ) Unspecified Anxiety Disorder
+[  5 chunks] (disorder       ) Unspecified Dissociative Disorder
+[  5 chunks] (disorder       ) Bulimia Nervosa
+[  5 chunks] (disorder       ) Advanced Sleep Phase Type
+[  5 chunks] (disorder       ) Irregular Sleep-Wake Type
+[  5 chunks] (disorder       ) Non-24-Hour Sleep-Wake Type
+[  5 chunks] (disorder       ) Phencyclidine Intoxication
+[  5 chunks] (disorder       ) Other Hallucinogen Intoxication
+[  5 chunks] (disorder       ) Opioid Withdrawal
+[  5 chunks] (disorder       ) Sedative, Hypnotic, or Anxiolytic Intoxication
+[  5 chunks] (disorder       ) Stimulant Intoxication
+[  5 chunks] (disorder       ) Other (or Unknown) Substance Withdrawal
+[  5 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Prion Disease
+[  5 chunks] (disorder       ) Neuroleptic Malignant Syndrome
+[  5 chunks] (disorder       ) Ci 13 S. O
+[  4 chunks] (disorder       ) Major Depressive Disorder
+[  4 chunks] (disorder       ) Unspecified Trauma- and Stressor-Related Disorder
+[  4 chunks] (disorder       ) Opioid Intoxication
+[  4 chunks] (disorder       ) Stimulant Withdrawal
+[  4 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Another Medical Condition
+[  4 chunks] (disorder       ) Unspecified Personality Disorder
+[  4 chunks] (disorder       ) Analvzinfi and finding solutions to oroblems in day-
+[  3 chunks] (disorder       ) Intellectual Disability
+[  3 chunks] (disorder       ) Attention-Deficit/Hyperactivity Disorder
+[  3 chunks] (disorder       ) Substance/Medication-Induced Psychotic Disorder
+[  3 chunks] (disorder       ) Unspecified Elimination Disorder
+[  3 chunks] (disorder       ) Unspecified Sleep-Wake Disorder
+[  3 chunks] (disorder       ) Unspecified Gender Dysphoria
+[  3 chunks] (disorder       ) Unspecified Disruptive, Impulse-Control,
+[  3 chunks] (disorder       ) Other Alcohol-Induced Disorders
+[  3 chunks] (disorder       ) Stimulant Use Disorder
+[  3 chunks] (disorder       ) Delirium
+[  3 chunks] (disorder       ) Internet Gaming Disorder
+[  2 chunks] (disorder       ) I 2 I
+[  2 chunks] (disorder       ) Delusional Disorder
+[  2 chunks] (disorder       ) Brief Psychotic Disorder
+[  2 chunks] (disorder       ) Schizophreniform Disorder
+[  2 chunks] (disorder       ) Schizophrenia
+[  2 chunks] (disorder       ) Catatonia Associated With Another Mental Disorder (Catatonia Specifier)
+[  2 chunks] (disorder       ) Unspecified Schizophrenia Spectrum and Other Psychotic Disorder
+[  2 chunks] (disorder       ) Other Specified Bipolar and Related Disorder
+[  2 chunks] (disorder       ) Other Specified Obsessive-Compulsive
+[  2 chunks] (disorder       ) Unspecified Obsessive-Compulsive
+[  2 chunks] (disorder       ) Other Specified Dissociative Disorder
+[  2 chunks] (disorder       ) Unspecified Somatic Symptom and Related Disorder
+[  2 chunks] (disorder       ) Anorexia Nervosa
+[  2 chunks] (disorder       ) Other Specified Feeding or Eating Disorder
+[  2 chunks] (disorder       ) Central sleep apnea comorbid with opioid use: The pathogenesis
+[  2 chunks] (disorder       ) Sleep-Related Hypoventilation
+[  2 chunks] (disorder       ) Unspecified Sexual Dysfunction
+[  2 chunks] (disorder       ) Unspecified neuro­
+[  2 chunks] (disorder       ) Major or Mild Neurocognitive Disorder Due to Multiple Etiologies
+[  2 chunks] (disorder       ) Unspecified Mental Disorder
+[  1 chunks] (disorder       ) EoT3
+[  1 chunks] (disorder       ) S I i -ïi S
+[  1 chunks] (disorder       ) Global Developmental Delay
+[  1 chunks] (disorder       ) Unspecified Intellectual Disability
+[  1 chunks] (class_intro    ) Communication Disorders
+[  1 chunks] (disorder       ) Unspecified Communication Disorder
+[  1 chunks] (disorder       ) Combined presentation: If both Criterion A1 (inattention) and Crite­
+[  1 chunks] (disorder       ) Predominantly inattentive presentation: If Criterion A1 (inattention)
+[  1 chunks] (disorder       ) Other Specified Attention-Deficit/ Hyperactivity Disorder
+[  1 chunks] (disorder       ) Unspecified Attention-Deficit/ Hyperactivity Disorder
+[  1 chunks] (disorder       ) Other Specified Tic Disorder
+[  1 chunks] (disorder       ) Unspecified Tic Disorder
+[  1 chunks] (disorder       ) Other Specified Neurodevelopmental Disorder
+[  1 chunks] (disorder       ) Schizotypal (Personality) Disorder
+[  1 chunks] (disorder       ) Schizoaffective Disorder
+[  1 chunks] (disorder       ) Bipolar type: This subtype applies if a manic episode is part of the pre­
+[  1 chunks] (disorder       ) Depressive type: This subtype applies if only major depressive epi­
+[  1 chunks] (disorder       ) Psychotic Disorder Due to Another Medical Condition
+[  1 chunks] (class_intro    ) Catatonia
+[  1 chunks] (disorder       ) Unspecified Catatonia
+[  1 chunks] (disorder       ) Other Specified Schizophrenia Spectrum and Other Psychotic Disorder
+[  1 chunks] (disorder       ) Unspecified Bipolar and Related Disorder
+[  1 chunks] (disorder       ) Other Specified Depressive Disorder
+[  1 chunks] (disorder       ) Unspecified Depressive Disorder
+[  1 chunks] (disorder       ) Other Specified Anxiety Disorder
+[  1 chunks] (disorder       ) Adjustment Disorders
+[  1 chunks] (disorder       ) Other Specified Trauma- and Stressor-Related Disorder
+[  1 chunks] (disorder       ) Other Specified Somatic Symptom and Related Disorder
+[  1 chunks] (disorder       ) Unspecified Feeding or Eating Disorder
+[  1 chunks] (disorder       ) Other Specified Elimination Disorder
+[  1 chunks] (class_intro    ) Breathing-Related Sleep Disorders
+[  1 chunks] (disorder       ) Obstructive Sleep Apnea Hypopnea
+[  1 chunks] (disorder       ) Central Sleep Apnea
+[  1 chunks] (disorder       ) Idiopathic central sleep apnea: Characterized by repeated epi­
+[  1 chunks] (disorder       ) Clieyne-Stokes breathing: A pattern of periodic crescendo-
+[  1 chunks] (disorder       ) Congenital central alveolar hypoventilation: This subtype is a rare
+[  1 chunks] (disorder       ) Comorbid sleep-related hypoventilation: This subtype occurs as a
+[  1 chunks] (disorder       ) Circadian Rhythm Sleep-Wake Disorders
+[  1 chunks] (disorder       ) Delayed sleep phase type: A pattern of delayed sleep onset and
+[  1 chunks] (disorder       ) Advanced sleep phase type: A pattern of advanced sleep onset and
+[  1 chunks] (disorder       ) Irregular sleep-walte type: A temporally disorganized sleep-wake
+[  1 chunks] (disorder       ) Non-24-hour sleep-wake type: A pattern of sleep-wal<e cycles that
+[  1 chunks] (disorder       ) Shift work type: Insomnia during the major sleep period and/or ex­
+[  1 chunks] (class_intro    ) Parasomnias
+[  1 chunks] (disorder       ) Non-Rapid Eye Movement Sleep Arousal Disorders
+[  1 chunks] (disorder       ) Sleepwalking type
+[  1 chunks] (disorder       ) Other Specified Insomnia Disorder
+[  1 chunks] (disorder       ) Unspecified Insomnia Disorder
+[  1 chunks] (disorder       ) Other Specified Hypersomnolence Disorder
+[  1 chunks] (disorder       ) Unspecified Hypersomnolence Disorder
+[  1 chunks] (disorder       ) Other Specified Sleep-Wake Disorder
+[  1 chunks] (disorder       ) Other Specified Sexual Dysfunction
+[  1 chunks] (disorder       ) Other Specified Gender Dysphoria
+[  1 chunks] (disorder       ) Conduct Disorder
+[  1 chunks] (disorder       ) Childhood-onset type: Individuals show at least one symptom char­
+[  1 chunks] (disorder       ) Adolescent-onset type: Individuals show no symptom characteristic
+[  1 chunks] (disorder       ) Other Specified Disruptive, Impulse-Control,
+[  1 chunks] (class_intro    ) Alcohol-Related Disorders
+[  1 chunks] (disorder       ) Unspecified Alcohol-Related Disorder
+[  1 chunks] (class_intro    ) Caffeine-Related Disorders
+[  1 chunks] (class_intro    ) Other Caffeine-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Caffeine-Related Disorder
+[  1 chunks] (class_intro    ) Cannabis-Related Disorders
+[  1 chunks] (class_intro    ) Other Cannabis-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Cannabis-Related Disorder
+[  1 chunks] (class_intro    ) Hallucinogen-Related Disorders
+[  1 chunks] (class_intro    ) Other Phencyclidine-Induced Disorders
+[  1 chunks] (class_intro    ) Other Hallucinogen-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Phencyclidine-Related Disorder
+[  1 chunks] (disorder       ) Unspecified Hallucinogen-Related Disorder
+[  1 chunks] (class_intro    ) Inhalant-Related Disorders
+[  1 chunks] (class_intro    ) Other Inhalant-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Inhalant-Related Disorder
+[  1 chunks] (class_intro    ) Opioid-Related Disorders
+[  1 chunks] (class_intro    ) Other Opioid-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Opioid-Related Disorder
+[  1 chunks] (class_intro    ) Sedative-, Hypnotic-, or Anxiolytic-Related Disorders
+[  1 chunks] (class_intro    ) Other Sedative-, Hypnotic-, or Anxiolytic-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Sedative-, Hypnotic-,
+[  1 chunks] (class_intro    ) Stimulant-Related Disorders
+[  1 chunks] (class_intro    ) Other Stimulant-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Stimulant-Related Disorder
+[  1 chunks] (class_intro    ) Tobacco-Related Disorders
+[  1 chunks] (class_intro    ) Other Tobacco-Induced Disorders
+[  1 chunks] (disorder       ) Unspecified Tobacco-Related Disorder
+[  1 chunks] (class_intro    ) Other (or Unknown) Substance-Related Disorders
+[  1 chunks] (disorder       ) Unspecified Other (or Unknown) Substance-Related Disorder
+[  1 chunks] (disorder       ) Delirium due to another medical condition: There is evidence from the
+[  1 chunks] (disorder       ) Other Specified Delirium
+[  1 chunks] (disorder       ) Unspecified Delirium
+[  1 chunks] (disorder       ) Major and Mild Neurocognitive Disorders Major Neurocognitive Disorder
+[  1 chunks] (disorder       ) Unspecified Neurocognitive Disorder
+[  1 chunks] (disorder       ) Other Specified Personality Disorder
+[  1 chunks] (disorder       ) Other Specified Paraphilic Disorder
+[  1 chunks] (disorder       ) Unspecified Paraphilic Disorder
+[  1 chunks] (disorder       ) Other Specified IVIental Disorder Due to Another l\/ledical Condition
+[  1 chunks] (disorder       ) Unspecified IVIental Disorder Due to Another IVIedical Condition
+[  1 chunks] (disorder       ) Other Specified Mental Disorder
+[  1 chunks] (disorder       ) Other Medication-Induced Parkinsonism
+[  1 chunks] (disorder       ) Medication-Induced Acute Dystonia
+[  1 chunks] (disorder       ) Medication-Induced Acute Akathisia
+[  1 chunks] (disorder       ) Tardive Dyskinesia
+[  1 chunks] (disorder       ) Tardive Dystonia
+[  1 chunks] (disorder       ) Medication-Induced Postural Tremor
+[  1 chunks] (other_conditions) Upbringing Away From Parents
+[  1 chunks] (other_conditions) Relationship Distress With Spouse or Intimate Partner
+[  1 chunks] (other_conditions) Disruption of Family by Separation or Divorce
+[  1 chunks] (other_conditions) High Expressed Emotion Level Within Family
+[  1 chunks] (other_conditions) Academic or Educational Problem
+[  1 chunks] (other_conditions) Problem Related to Current Military Deployment Status
+[  1 chunks] (other_conditions) Other Problem Related to Employment
+[  1 chunks] (other_conditions) Homelessness
+[  1 chunks] (other_conditions) Inadequate Housing
+[  1 chunks] (other_conditions) Discord With Neighbor, Lodger, or Landlord
+[  1 chunks] (other_conditions) Problem Related to Living in a Residential Institution
+[  1 chunks] (other_conditions) Insufficient Social Insurance or Welfare Support
+[  1 chunks] (other_conditions) Unspecified Housing or Economic Problem
+[  1 chunks] (other_conditions) Phase of Life Problem
+[  1 chunks] (other_conditions) Problem Related to Living Alone
+[  1 chunks] (other_conditions) Acculturation Difficulty
+[  1 chunks] (other_conditions) Social Exclusion or Rejection
+[  1 chunks] (other_conditions) Target of (Perceived) Adverse Discrimination or Persecution
+[  1 chunks] (other_conditions) Unspecified Problem Related to Social Environment
+[  1 chunks] (other_conditions) Sex Counseling
+[  1 chunks] (other_conditions) Other Counseling or Consultation
+[  1 chunks] (other_conditions) Religious or Spiritual Problem
+[  1 chunks] (disorder       ) Unspecified Problem Related to Unspecified Psychosocial Circum­
+[  1 chunks] (other_conditions) Problem Related to Lifestyle
+[  1 chunks] (other_conditions) Nonadherence to Medical Treatment
+[  1 chunks] (other_conditions) Overweight or Obesity
+[  1 chunks] (other_conditions) Malingering
+[  1 chunks] (other_conditions) Wandering Associated With a Mental Disorder
+[  1 chunks] (other_conditions) Borderline Intellectual Functioning
+[  1 chunks] (class_intro    ) IIII il i I
+[  1 chunks] (class_intro    ) III-
+[  1 chunks] (class_intro    ) IIII
+[  1 chunks] (disorder       ) I g g
