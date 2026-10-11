@@ -54,14 +54,15 @@ def run_indexing():
             try:
                 response = requests.post(url, json={
                     "model": "bge-large",
-                    "input": batch
+                    "input": batch,
+                    "truncate": False
                 }, timeout=60.0)
                 
                 if response.status_code == 200:
                     all_embeddings.extend(response.json()["embeddings"])
                     print(f"done in {time.time() - batch_start:.2f}s")
                 else:
-                    raise Exception(f"Ollama returned status {response.status_code}: {response.text}")
+                    raise Exception(f"Ollama embedding failed with status {response.status_code}: {response.text}")
             except Exception as e:
                 print(f"failed: {e}. Trying legacy fallback for this batch...")
                 # Fallback to legacy individual embeddings API
