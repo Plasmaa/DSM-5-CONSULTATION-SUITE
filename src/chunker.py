@@ -364,7 +364,12 @@ class DSM5Chunker:
                             heading_lines.append(next_text)
                         
                         full_title = " ".join(heading_lines).strip()
-                        if len(full_title) > 3 and not full_title.startswith("With") and not full_title.startswith("Due to") and not full_title.startswith("Unspecified type"):
+                        # Check if next lines say "Criteria and text for ... can be found in ..." (cross-reference callout, not the real chapter)
+                        is_cross_reference = False
+                        if i + 1 < len(extracted_lines) and "criteria and text for" in extracted_lines[i+1]["text"].lower():
+                            is_cross_reference = True
+
+                        if not is_cross_reference and len(full_title) > 3 and not full_title.startswith("With") and not full_title.startswith("Due to") and not full_title.startswith("Unspecified type"):
                             flush_active_section(page_num)
                             current_disorder = full_title
                             current_code = ""
@@ -375,9 +380,14 @@ class DSM5Chunker:
                             continue
 
                 # 4. Other Specified... / Unspecified... Disorders
-                # Treat "Other Specified..." and "Unspecified..." as their own disorders and end previous section!
+                # Treat "Other Specified <Disorder>" and "Unspecified <Disorder>" as their own disorders and end previous section!
+                # Must actually contain "Disorder" or have prominent heading font size (>= 12.0pt), not a table cell like "Unspecified" (9.5pt)
                 if (lower_line.startswith("other specified") or lower_line.startswith("unspecified")) and line[0].isupper():
-                    if not lower_line.endswith('.') and len(line) < 70 and not lower_line.startswith("unspecified type"):
+                    is_real_disorder = (
+                        "disorder" in lower_line or 
+                        (size >= 12.0 and len(line.split()) >= 2)
+                    )
+                    if is_real_disorder and not lower_line.endswith('.') and len(line) < 70 and not lower_line.startswith("unspecified type"):
                         flush_active_section(page_num)
                         current_disorder = line
                         current_code = ""
@@ -411,13 +421,14 @@ class DSM5Chunker:
                     # Validate clean_rest is a legitimate disorder title:
                     # - Must not start with lowercase
                     # - Must not start with specifiers / subtitles like "With", "Due to", "Unspecified type", or end with punctuation
-                    # - Must be Title Cased or start with uppercase
+                    # - Must not be a subtype / presentation / course specifier row (e.g. "Combined presentation", "In partial remission", "Single episode")
+                    bad_keywords = ["presentation:", "remission", "episode", "with ", "due to", "unspecified type", "mild", "moderate", "severe"]
+                    is_specifier_row = any(bk in clean_rest.lower() for bk in bad_keywords)
+
                     is_valid_disorder_name = (
                         len(clean_rest) > 3 and
                         clean_rest[0].isupper() and
-                        not clean_rest.startswith("With") and
-                        not clean_rest.startswith("Due to") and
-                        not clean_rest.startswith("Unspecified type") and
+                        not is_specifier_row and
                         not clean_rest.endswith('.') and
                         not clean_rest.endswith(';') and
                         not clean_rest.endswith(':') and
