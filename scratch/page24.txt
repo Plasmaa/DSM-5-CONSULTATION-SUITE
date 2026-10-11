@@ -1,0 +1,67 @@
+302.71 (F52.0) 
+302.75 (F52.4)
+302.79 (F52.8) 
+302.70 (F52.9)
+Male Hypoactive Sexual Desire Disorder^' 
+^ (440)
+Premature (Early) Ejaculation^' 
+^ (443)
+Substance/Medication-Induced Sexual Dysfunction^ (446)
+Note: See the criteria set and corresponding recording procedures for 
+substance-specific codes and ICD-9-CM and ICD-IO-CM coding. 
+Specify if: With onset during intoxication. With onset during withdrawal. 
+With onset after medication use
+Other Specified Sexual Dysfunction (450)
+Unspecified Sexual Dysfunction (450)
+Gender Dysplioria (451)
+. 
+{ · )
+Gender Dysphoria (452)
+302.6 
+(F64.2)
+Gender Dysphoria in Children
+Specify if: With a disorder of sex development
+302.85 (F64.1)
+Gender Dysphoria in Adolescents and Adults 
+Specify if: With a disorder of sex development 
+Specify if: Posttransition 
+Note: Code the disorder of sex development if present, in addition to 
+gender dysphoria.
+302.6 
+(F64.8)
+Other Specified Gender Dysphoria (459)
+302.6 
+(F64.9)
+Unspecified Gender Dysphoria (459)
+Disruptive, impuise-Control, and Conduct Disorders (461)
+313.81 (F91.3)
+Oppositional Defiant Disorder (462)
+Specify current severity: Mild, Moderate, Severe
+312.34 (F63.81)
+Intermittent Explosive Disorder (466)
+■ 
+'
+Conduct Disorder (469) 
+Specify whether:
+312.81 (F91.1)
+Childhood-onset type
+312.32 (F91.2)
+Adolescent-onset type
+312.89 (F91.9)
+Unspecified onset 
+Specify if: With limited prosocial emotions 
+Specify current severity: Mild, Moderate, Severe
+301.7 
+(F60.2)
+Antisocial Personality Disorder (476)
+312.33 {F63.1)
+Pyromania (476)
+312.32 (F63.3)
+Kleptomania (478)
+312.89 (F91.8)
+Other Specified Disruptive, Impulse-Control, and Conduct 
+Disorder (479)
+312.9 
+(F91.9)
+Unspecified Disruptive, Impulse-Control, and Conduct Disorder 
+(480)

@@ -1,0 +1,412 @@
+Title Page
+Contents
+DSM-5 Classification
+Preface
+DSM-5 Basics
+Introduction
+Use of the Manual
+Cautionary Statement for Forensic Use of DSM-5
+Diagnostic Criteria and Codes
+Neurodevelopmental Disorders
+Schizophrenia Spectrum and Other Psychotic Disorders
+Bipolar and Related Disorders
+Depressive Disorders
+Anxiety Disorders
+Obsessive-Compulsive and Related Disorders
+Trauma- and Stressor-Related Disorders
+Dissociative Disorders
+Somatic Symptom and Related Disorders
+Feeding and Eating Disorders
+Elimination Disorders
+Sleep-Wake Disorders
+Sexual Dysfunctions
+Gender Dysphoria
+Disruptive, Impulse-Control, and Conduct Disorders
+Substance-Related and Addictive Disorders
+Neurocognitive Disorders
+Personality Disorders
+Paraphilic Disorders
+Other Mental Disorders
+Medication-Induced Movement Disorders and Other Adverse Effects of Medication
+Other Conditions That May Be a Focus of Clinical Attention
+Emerging Measures and Models
+Assessment Measures
+Cultural Formulation
+Alternative DSM-5 Model for Personality Disorders
+Conditions for Further Study
+Appendix
+Highlights of Changes From DSM-IV to DSM-5
+Glossary to Technical Terms
+Glossary of Cultural Concepts of Distress
+Alphabetical Listing of DSM-5 Diagnoses and Codes (ICD-9-CM and ICD-10-CM)
+Numerical Listing of DSM-5 Diagnoses and Codes (ICD-9-CM)
+Numerical Listing of DSM-5 Diagnoses and Codes (ICD-10-CM)
+DSM-5 Advisors and Other Contributors
+Index
+Intellectual Disabilities
+Mild Moderate Severe Profound Global Developmental Delay
+Unspecified Intellectual Disability (Intellectual Developmental Disorder)
+Communication Disorders
+Language Disorder
+Speech Sound Disorder
+Childhood-Onset Fluency Disorder (Stuttering)
+Social (Pragmatic) Communication Disorder
+Unspecified Communication Disorder
+Autism Spectrum Disorder
+Attention-Deficit/Hyperactivity Disorder
+Other Specified Attention-Deficit/Hyperactivity Disorder
+Unspecified Attention-Deficit/Hyperactivity Disorder
+Specific Learning Disorder
+Motor Disorders
+Developmental Coordination Disorder
+Stereotypic Movement Disorder
+Tic Disorders Tourettes Disorder
+Persistent (Chronic) Motor or Vocal Tic Disorder
+Provisional Tic Disorder
+Other Specified Tic Disorder
+Urispecified Tic Disorder
+Other Neurodevelopmental Disorders
+Other Specified Neurodevelopmental Disorder
+Unspecified Neurodevelopmental Disorder
+Schizotypal (Personality) Disorder
+Delusional Disorder
+Brief Psychotic Disorder
+Schizophreniform Disorder
+Schizophrenia
+Schizoaffective Disorder
+Bipolar type Depressive type Substance/Medication-Induced Psychotic Disorder
+Psychotic Disorder Due to Another Medical Condition
+Catatonia Associated With Another Mental Disorder (Catatonia Specifier)
+Catatonic Disorder Due to Another Medical Condition
+Unspecified Catatonia
+Other Specified Schizophrenia Spectrum and Other Psychotic Disorder
+Unspecified Schizophrenia Spectrum and Other Psychotic Disorder
+Bipolar I Disorder
+Current or most recent episode manic Mild Moderate Severe With psychotic features In partial remission In full remission Unspecified Current or most recent episode hypomanie In partial remission In kill remission Unspecified Current or most recent episode depressed Mild Moderate Severe With psychotic features In partial remission In full remission Unspecified Current or most recent episode unspecified Bipolar II Disorder
+Cyclothymic Disorder
+Substance/Medication-Induced Bipolar and Related Disorder
+With manic features With manic- or hypomanic-like episode With mixed features Other Specified Bipolar and Related Disorder
+Unspecified Bipolar and Related Disorder
+Major Depressive Disorder
+Premenstrual Dysphoric Disorder
+Substance/Medication-Induced Depressive Disorder
+Depressive Disorder Due to Another Medical Condition
+With depressive features With major depressive-like episode With mixed features Other Specified Depressive Disorder
+Unspecified Depressive Disorder
+Selective Mutism
+Specific Phobia
+Animal Natural environment Blood-injection-injury Fear of blood Fear of injections and transfusions Fear of other medical care Fear of injury Situational Other Social Anxiety Disorder (Social Phobia)
+Panic Disorder
+Panic Attack Specifier
+Agoraphobia
+Generalized Anxiety Disorder
+Substance/Medication-Induced Anxiety Disorder
+Anxiety Disorder Due to Another Medical Condition
+Other Specified Anxiety Disorder
+Unspecified Anxiety Disorder
+Body Dysmorphic Disorder
+Hoarding Disorder
+Trichotillomania (Hair-Pulling Disorder)
+Excoriation (Skin-Picking) Disorder
+Substance/Medication-Induced Obsessive-Compulsive and Related Disorder
+With onset after medication use Obsessive-Compulsive and Related Disorder Due to Another Medical Condition
+Other Specified Obsessive-Compulsive and Related Disorder Unspecified Obsessive-Compulsive and Related Disorder
+Reactive Attachment Disorder
+Disinhibited Social Engagement Disorder
+Posttraumatic Stress Disorder (includes Posttraumatic Stress Disorder for Children 6 Years and Younger)
+Acute Stress Disorder
+Adjustment Disorders
+With depressed mood With anxiety With mixed anxiety and depressed mood With disturbance of conduct With mixed disturbance of emotions and conduct Unspecified Other Specified Trauma- and Stressor-Related Disorder
+Unspecified Trauma- and Stressor-Related Disorder
+Dissociative Identity Disorder
+Dissociative Amnesia
+With dissociative fugue Depersonalization/Derealization Disorder
+Other Specified Dissociative Disorder
+Unspecified Dissociative Disorder
+Somatic Symptom Disorder
+Illness Anxiety Disorder
+Conversion Disorder (Functional Neurological Symptom Disorder)
+Psychological Factors Affecting Other Medical Conditions
+Factitious Disorder (includes Factitious Disorder Imposed on Self, Factitious Disorder Imposed on Another)
+Other Specified Somatic Symptom and Related Disorder
+Unspecified Somatic Symptom and Related Disorder
+Pica
+In children In adults Rumination Disorder
+Avoidant/Restrictive Food Intake Disorder
+Anorexia Nervosa
+Restricting type Binge-eating/purging type Bulimia Nervosa
+Binge-Eating Disorder
+Other Specified Feeding or Eating Disorder
+Unspecified Feeding or Eating Disorder
+Enuresis
+Encopresis
+Other Specified Elimination Disorder
+Unspecified Elimination Disorder
+Insomnia Disorder
+Hypersoninolence Disorder
+Narcolepsy
+Autosomal dominant narcolepsy, obesity, and type 2 diabetes Narcolepsy secondary to another medical condition Breathing-Related Sleep Disorders
+Obstructive Sleep Apnea Hypopnea
+Central Sleep Apnea
+Sleep-Related Hypoventilation
+Circadian Rhythm Sleep-Wake Disorders
+Delayed sleep phase type
+Advanced sleep phase type
+Irregular sleep-wake type
+Non-24-hour sleep-wake type
+Parasomnias
+Shift work type
+Unspecified type ( _ . _ ) Non-Rapid Eye Movement Sleep Arousal Disorders
+Sleep terror type Nightmare Disorder
+Rapid Eye Movement Sleep Behavior Disorder
+Restless Legs Syndrome
+Substance/Medication-Induced Sleep Disorder
+Other Specified Insomnia Disorder
+Unspecified Insonmia Disorder
+Other Specified Hypersomnolence Disorder
+Unspecified Hypersomnolence Disorder
+Other Specified Sleep-Wake Disorder
+Unspecified Sleep-Wake Disorder
+Delayed Ejaculation
+Erectile Disorder Female Orgasmic Disorder
+Female Sexual Interest/Arousal Disorder Genito-Pelvic Pain/Penetration Disorder
+Male Hypoactive Sexual Desire Disorder
+Premature (Early) Ejaculation
+Substance/Medication-Induced Sexual Dysfunction
+With onset after medication use Other Specified Sexual Dysfunction
+Unspecified Sexual Dysfunction
+Gender Dysplioria
+Other Specified Gender Dysphoria
+Unspecified Gender Dysphoria
+Disruptive, impuise-Control, and Conduct Disorders
+Oppositional Defiant Disorder
+Intermittent Explosive Disorder
+Conduct Disorder
+Antisocial Personality Disorder
+Pyromania
+Kleptomania
+Other Specified Disruptive, Impulse-Control, and Conduct Disorder
+Substance-Related Disorders
+Alcohol-Related Disorders
+Alcohol Use Disorder
+Alcohol Intoxication
+Alcohol Withdrawal
+Other Alcohol-Induced Disorders
+Unspecified Alcohol-Related Disorder
+Caffeine-Related Disorders
+Caffeine Intoxication
+Caffeine Withdrawal
+Unspecified Caffeine-Related Disorder
+Cannabis-Related Disorders
+Cannabis Use Disorder
+Cannabis Intoxication‘s
+Without perceptual disturbances With use disorder, mild With use disorder, moderate or severe Without use disorder With perceptual disturbances With use disorder, mild With use disorder, moderate or severe Without use disorder Cannabis Withdrawal
+Other Cannabis-Induced Disorders
+Unspecified Cannabis-Related Disorder
+Mild Moderate Severe Other Hallucinogen Use Disorder
+Mild Moderate Severe Phencyclidine Intoxication
+With use disorder, mild With use disorder, moderate or severe Without use disorder Other Hallucinogen Intoxication
+With use disorder, mild With use disorder, moderate or severe Without use disorder Hallucinogen Persisting Perception Disorder
+Other Phencyclidine-Induced Disorders
+Other Hallucinogen-Induced Disorders
+Unspecified Phencyclidine-Related Disorder
+Unspecified Hallucinogen-Related Disorder
+Inhalant-Related Disorders
+Inhalant Use Disorder
+With use disorder, mild With use disorder, moderate or severe Without use disorder Other Inhalant-Induced Disorders
+Unspecified Inhalant-Related Disorder
+Opioid-Related Disorders
+Opioid Use Disorder
+Opioid Intoxication‘s
+Without perceptual disturbances With use disorder, mild With use disorder, moderate or severe Without use disorder With perceptual disturbances With use disorder, mild With use disorder, moderate or severe Without use disorder Opioid Withdrawal‘s
+Other Opioid-Induced Disorders
+Unspecified Opioid-Related Disorder
+Sedative-, Hypnotic-, or Anxiolytic-Related Disorders
+Sedative, Hypnotic, or Anxiolytic Use Disorder
+Sedative, Hypnotic, or Anxiolytic Intoxication
+Sedative, Hypnotic, or Anxiolytic Withdrawal
+Other Sedative-, Hypnotic-, or Anxiolytic-Induced Disorders Unspecified Sedative-, Hypnotic-, or Anxiolytic-Related Disorder Stimulant-Related (_ _ ) ( _ _ ) ( _ . _ ) ( _ . _ ) Disorders
+Stimulant Use Disorder
+Mild Amphetamine-t)φe substance Cocaine Other or unspecified stimulant Moderate Amphetamine-type substance Cocaine Other or unspecified stimulant Severe Amphetamine-type substance Cocaine Other or unspecified stimulant Stimulant Intoxication‘s
+With use disorder, mild With use disorder, moderate or severe Without use disorder Cocaine, With perceptual disturbances With use disorder, mild With use disorder, moderate or severe Without use disorder Stimulant Withdrawal
+Amphetamine or other stimulant Cocaine Other Stimulant-Induced Disorders
+Tobacco Use Disorder
+Mild Moderate Severe Tobacco Withdrawal
+Other Tobacco-Induced Disorders
+Unspecified Tobacco-Related Disorder
+Other (or Unknown) Substance-Related Disorders
+Other (or Unknown) Substance Use Disorder
+Mild Moderate Severe Other (or Unknown) Substance Intoxication
+With use disorder, mild With use disorder, moderate or severe Without use disorder Other (or Unknown) Substance Withdrawal
+Other (or Unknown) Substance-Induced Disorders
+Unspecified Other (or Unknovm) Substance-Related Disorder
+Non-Substance-Related Disorders
+Gambling Disorder
+Delirium
+Other Specified Delirium
+Unspecified Delirium
+Major and Mild Neurocognitive Disorders
+Major or Mild Neurocognitive Disorder Due to Alzheimer’s Disease
+With behavioral disturbance Without behavioral disturbance Possible Major Neurocognitive Disorder Due to Alzheimers Disease Mild Neurocognitive Disorder Due to Alzheimers Disease Major or Mild Frontotemporal Neurocognitive Disorder
+With behavioral disturbance Without behavioral disturbance Possible Major Neurocognitive Disorder Due to Frontotemporal Lobar Degeneration Mild Neurocognitive Disorder Due to Frontotemporal Lobar Degeneration Major or Mild Neurocognitive Disorder With Lewy Bodies
+Possible Major Neurocognitive Disorder With Lewy Bodies Mild Neurocognitive Disorder With Lewy Bodies Major or Mild Vascular Neurocognitive Disorder
+With behavioral disturbance Without behavioral disturbance Possible Major Vascular Neurocognitive Disorder Mild Vascular Neurocognitive Disorder Major or Mild Neurocognitive Disorder Due to Traumatic Brain Injury
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to Traumatic Brain Injury Substance/Medication-Induced Major or Mild Neurocognitive Disorder
+Major or Mild Neurocognitive Disorder Due to HIV Infection
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to HIV Infection Major or Mild Neurocognitive Disorder Due to Prion Disease
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to Prion Disease Major or Mild Neurocognitive Disorder Due to Parkinson’s Disease
+Major Neurocognitive Disorder Possibly Due to Parkir\sons Disease Mild Neurocognitive Disorder Due to Parkinsons Disease Major or Mild Neurocognitive Disorder Due to Huntington’s Disease
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to Huntingtons Disease Major or Mild Neurocognitive Disorder Due to Another Medical Condition
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to Another Medical Condition Major or Mild Neurocognitive Disorder Due to Multiple Etiologies
+With behavioral disturbance Without behavioral disturbance Mild Neurocognitive Disorder Due to Multiple Etiologies Unspecified Neurocognitive Disorder
+Unspecified Neurocognitive Disorder Personality Disorders
+Cluster A Personality Disorders Paranoid Personality Disorder
+Schizoid Personality Disorder
+Schizotypal Personality Disorder
+Cluster B Personality Disorders Antisocial Personality Disorder
+Borderline Personality Disorder
+Histrionic Personality Disorder
+Narcissistic Personality Disorder
+Cluster C Personality Disorders Avoidant Personality Disorder
+Dependent Personality Disorder
+Obsessive-Compulsive Personality Disorder
+Other Personality Disorders Personality Change Due to Another Medical Condition
+Other Specified Personality Disorder
+Unspecified Personality Disorder
+Voyeuristic Disorder
+Exhibitionistic Disorder
+Frotteuristic Disorder
+Sexual Masochism Disorder
+Sexual Sadism Disorder
+Pedophilic Disorder
+Fetishistic Disorder
+Transvestic Disorder
+Other Specified Paraphilic Disorder
+Unspecified Paraphilic Disorder
+Other Specified Mental Disorder Due to Another Medical Condition
+Unspecified Mental Disorder Due to Another Medical Condition Other Specified Mental Disorder
+Unspecified Mental Disorder
+Medication-Induced iVlovement Disorders and Other Adverse Effects of iVledication
+Neuroleptic-Induced Parkinsonism
+Other Medication-Induced Parkinsonism
+Neuroleptic Malignant Syndrome
+Medication-Induced Acute Dystonia
+Medication-Induced Acute Akathisia
+Tardive Dyskinesia
+Tardive Dystonia
+Tardive Akathisia
+Medication-Induced Postural Tremor
+Other Medication-Induced Movement Disorder
+Antidepressant Discontinuation Syndrome
+Other Adverse Effect of Medication
+Initial encounter Subsequent encounter Sequelae Other Conditions That iVlay Be a Focus of Ciinicai Attention
+Relational Problems
+Problems Related to Family Upbringing
+Upbringing Away From Parents
+Other Problems Related to Primary Support Group
+Relationship Distress With Spouse or Intimate Partner
+Disruption of Family by Separation or Divorce
+High Expressed Emotion Level Within Family
+Uncomplicated Bereavement
+Abuse and Neglect
+Child ΜβΙίΓ63ίφ6ηΙ and Neglect Problems
+Child Physical Abuse
+Child Physical Abuse, Confirmed
+Subsequent encounter Child Physical Abuse, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Child Physical Abuse
+Child Sexual Abuse
+Child Sexual Abuse, Confirmed
+Initial encounter Subsequent encounter Child Sexual Abuse, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Child Sexual Abuse
+Child Neglect
+Child Neglect, Confirmed
+Child Neglect, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Child Neglect
+Child Psychological Abuse
+Child Psychological Abuse, Confirmed
+Initial encounter Subsequent encounter Child Psychological Abuse, Suspected
+Initial encounter Subsequent encounter Other Circumstances Related to Child Psychological Abuse
+Adult Maltreatment and Neglect Problems
+Spouse or Partner Violence, Physical
+Spouse or Partner Violence, Physical, Confirmed
+Initial encounter Subsequent encounter Spouse or Partner Violence, Physical, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Spouse or Partner Violence, Physical
+Spouse or Partner Violence, Sexual
+Spouse or Partner Violence, Sexual, Confirmed
+Irûtial encounter Subsequent encounter Spouse or Partner Violence, Sexual, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Spouse or Partner Violence, Sexual
+Spouse or Partner, Neglect
+Spouse or Partner Neglect, Confirmed
+Initialencounter Subsequent encounter Spouse or Partner Neglect, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Spouse or Partner Neglect
+Spouse or Partner Abuse, Psychological
+Spouse or Partner Abuse, Psychological, Confirmed
+Initialencounter Subsequent encounter Spouse or Partner Abuse, Psychological, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Spouse or Partner Abuse, Psychological
+Adult Abuse by Nonspouse or Nonpartner
+Adult Physical Abuse by Nonspouse or Nonpartner, Confirmed
+Initialencounter Subsequent encounter Adult Physical Abuse by Nonspouse or Nonpartner, Suspected
+Initialencounter Subsequent encounter Adult Sexual Abuse by Nonspouse or Nonpartner, Confirmed
+Initialencounter Subsequent encounter Adult Sexual Abuse by Nonspouse or Nonpartner, Suspected
+Irütial encounter Subsequent encounter Adult Psychological Abuse by Nonspouse or Nonpartner, Confirmed
+Initialencounter Subsequent encounter Adult Psychological Abuse by Nonspouse or Nonpartner, Suspected
+Initialencounter Subsequent encounter Other Circumstances Related to Adult Abuse by Nonspouse or Nonpartner
+Educational and Occupational Problems
+Educational Problems
+Academic or Educational Problem
+Occupational Problems
+Problem Related to Current Military Deployment Status
+Other Problem Related to Employment
+Housing and Economic Problems
+Housing Problems
+Homelessness
+Inadequate Housing
+Discord With Neighbor, Lodger, or Landlord
+Problem Related to Living in a Residential Institution
+Economic Problems
+Lack of Adequate Food or Safe Drinking Water
+Extreme Poverty
+Low Income
+Insufficient Social Insurance or Welfare Support
+Unspecified Housing or Economic Problem
+Other Problems Related to the Social Environment
+Phase of Life Problem
+Problem Related to Living Alone
+Acculturation Difficulty
+Social Exclusion or Rejection
+Target of (Perceived) Adverse Discrimination or Persecution
+Unspecified Problem Related to Social Environment
+Problems Related to Crime or Interaction With the Legal System
+Victim of Crime
+Conviction in Civil or Criminal Proceedings Without Imprisonment
+Imprisonment or Other Incarceration
+Problems Related to Release From Prison
+Problems Related to Other Legal Circumstances
+Other Health Service Encounters for Counseling and Medical Advice
+Sex Counseling
+Other Counseling or Consultation
+Problems Related to Other Psychosocial, Personal, and Environmental Circumstances
+Religious or Spiritual Problem
+Problems Related to Unwanted Pregnancy
+Problems Related to Multiparity
+Discord With Social Service Provider, Including Probation Officer, Case Manager, or Social Services Worker
+Victim of Terrorism or Torture
+Exposure to Disaster, War, or Other Hostilities
+Other Problem Related to Psychosocial Circumstances
+Unspecified Problem Related to Unspecified Psychosocial Circumstances
+Other Circumstances of Personal History
+Other Personal History of Psychological Trauma
+Personal History of Self-Harm
+Personal History of Military Deployment
+Other Personal Risk Factors
+Problem Related to Lifestyle
+Adult Antisocial Behavior
+Child or Adolescent Antisocial Behavior
+Problems Related to Access to Medical and Other Health Care
+Unavailability or Inaccessibility of Health Care Facilities
+Unavailability or Inaccessibility of Other Helping Agencies
+Nonadherence to Medical Treatment
+Overweight or Obesity
+Malingering
+Wandering Associated With a Mental Disorder
+Borderline Intellectual Functioning

@@ -1,5 +1,8 @@
 import re
+import hashlib
+from collections import defaultdict
 import fitz
+from rapidfuzz import fuzz, process
 from transformers import AutoTokenizer
 
 # Standard clinical subsection headings
@@ -54,6 +57,8 @@ class DSM5Chunker:
             self.tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-large-en-v1.5")
         except Exception:
             self.tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+            
+        self.canonical_toc = []
 
     def clean_text(self, text):
         """Clean PDF text artifacts, soft hyphens, and whitespace anomalies."""
@@ -66,6 +71,95 @@ class DSM5Chunker:
     def count_tokens(self, text):
         """Count tokens including special tokens like [CLS] and [SEP]."""
         return len(self.tokenizer.encode(text, add_special_tokens=True))
+
+    def build_canonical_toc(self, doc):
+        """Extract canonical TOC disorder titles from doc.get_toc() and printed classification pp. 13-40."""
+        toc_entries = []
+        # 1. From doc.get_toc()
+        for level, title, page in doc.get_toc():
+            clean_title = re.sub(r'[\u00ae\u00a9\u2010\u2011\xad\ufffd\^*\'\"]+', '', title).strip()
+            clean_title = re.sub(r'^Section\s+[I|V|X]+\.\s*', '', clean_title).strip()
+            if 67 <= page < 833 and clean_title and len(clean_title) > 3:
+                toc_entries.append(clean_title)
+
+        # 2. From classification pages 13-40 (indices 12 to 39)
+        for p in range(12, 40):
+            page = doc[p]
+            text = page.get_text()
+            text = re.sub(r'(\w+)[\u00ad\ufffd\xad\-\u2010\u2011]\s*\n\s*(\w+)', r'\1\2', text)
+            lines = text.split('\n')
+            pending_lines = []
+            for raw_line in lines:
+                line = raw_line.strip()
+                if not line:
+                    continue
+                if (line.startswith("Specify") or line.startswith("Note:") or 
+                    line.startswith("ICD-") or line.startswith("Before each") or 
+                    line.startswith("Following chapter") or line.startswith("Blank lines")):
+                    pending_lines = []
+                    continue
+                if re.match(r'^[■•·\*\^\'\.\|\-_]+$', line):
+                    continue
+                if re.match(r'^[\d\s\._\(\)A-Z\-,/]+$', line) and any(c.isdigit() for c in line):
+                    continue
+                if re.match(r'^_+[._\s\(\)]*$', line):
+                    continue
+                    
+                m = re.search(r'\(\s*(\d+)\s*\)\s*[\^\*\'\"\s]*$', line)
+                if m:
+                    line_head = line[:m.start()].strip()
+                    if line_head:
+                        pending_lines.append(line_head)
+                    full_cand = " ".join(pending_lines).strip()
+                    pending_lines = []
+                    
+                    full_cand = re.sub(r'^[0-9V]\d{2}(?:\.\d{1,3})?\s*(?:\([A-Z]\d{2,3}(?:\.\d{1,2})?\))?\s*', '', full_cand)
+                    full_cand = re.sub(r'^[\d\s\._\(\)A-Z\-,/]+?\s{2,}', '', full_cand)
+                    full_cand = re.sub(r'[\u00ae\u00a9\u2010\u2011\xad\ufffd\^*\'\"■•·]+', '', full_cand).strip()
+                    
+                    if full_cand and len(full_cand) > 3 and full_cand[0].isupper():
+                        alpha_ratio = sum(c.isalpha() for c in full_cand) / len(full_cand)
+                        if alpha_ratio >= 0.6:
+                            toc_entries.append(full_cand)
+                            base_match = re.match(r'^(.*?)\s*\((?:includes|also)\s+.*?\)$', full_cand, re.IGNORECASE)
+                            if base_match:
+                                toc_entries.append(base_match.group(1).strip())
+                else:
+                    if line[0].isupper() or line[0] in ['(', '"']:
+                        cleaned_l = re.sub(r'[\u00ae\u00a9\u2010\u2011\xad\ufffd\^*\'\"■•·]+', '', line).strip()
+                        if cleaned_l:
+                            pending_lines.append(cleaned_l)
+                    else:
+                        pending_lines = []
+                        
+        seen = set()
+        canonical = []
+        for t in toc_entries:
+            norm = " ".join(t.split())
+            if norm.lower() not in seen:
+                seen.add(norm.lower())
+                canonical.append(norm)
+        return canonical
+
+    def match_canonical(self, candidate, threshold=90):
+        """Match candidate string to canonical TOC list using rapidfuzz >= 90."""
+        if not candidate:
+            return None
+        cand_norm = " ".join(candidate.split()).strip()
+        # Exact match (case-insensitive)
+        for c in self.canonical_toc:
+            if cand_norm.lower() == c.lower():
+                return c
+                
+        match, score, _ = process.extractOne(cand_norm, self.canonical_toc, scorer=fuzz.ratio)
+        if score >= threshold:
+            return match
+            
+        match_ts, score_ts, _ = process.extractOne(cand_norm, self.canonical_toc, scorer=fuzz.token_set_ratio)
+        if score_ts >= 95 and abs(len(cand_norm) - len(match_ts)) < 15:
+            return match_ts
+            
+        return None
 
     def _split_into_units(self, text):
         """Split text by criterion (A., B., C.), double newlines, single newlines, or sentences."""
@@ -86,12 +180,10 @@ class DSM5Chunker:
             if units:
                 return units
 
-        # Split by double newline or single newline if paragraphs are structured with newlines
         paras = [p.strip() for p in re.split(r'\n{1,2}', text) if p.strip()]
         if len(paras) > 1:
             return paras
 
-        # Fallback: split by sentences
         sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', text) if s.strip()]
         if sentences:
             return sentences
@@ -129,15 +221,12 @@ class DSM5Chunker:
 
         for unit in units:
             unit_tokens = len(self.tokenizer.encode(unit, add_special_tokens=False))
-            
-            # If a single unit itself exceeds budget, split it by sentence or hard boundary
             if unit_tokens > available_budget:
                 sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', unit) if s.strip()]
                 if not sentences:
                     sentences = [unit]
                 for sent in sentences:
                     sent_tokens = len(self.tokenizer.encode(sent, add_special_tokens=False))
-                    # If even an individual sentence exceeds available budget, slice by words
                     if sent_tokens > available_budget:
                         words = sent.split()
                         curr_slice = []
@@ -158,41 +247,39 @@ class DSM5Chunker:
                                 chunk_idx += 1
                                 current_body = []
                                 current_body_tokens = 0
-                                curr_slice = []
-                                curr_slice_toks = 0
-                            curr_slice.append(w)
-                            curr_slice_toks += w_toks
+                                curr_slice = [w]
+                                curr_slice_toks = w_toks
+                            else:
+                                curr_slice.append(w)
+                                curr_slice_toks += w_toks
                         if curr_slice:
                             current_body.append(" ".join(curr_slice))
                             current_body_tokens += curr_slice_toks
-                        continue
-
-                    if current_body_tokens + sent_tokens > available_budget and current_body:
-                        body_txt = "\n\n".join(current_body)
+                    elif current_body_tokens + sent_tokens > available_budget and current_body:
                         sub_chunks.append({
                             "disorder_name": disorder_name,
                             "code": code,
                             "section_type": section_type,
                             "chunk_type": chunk_type,
-                            "content": (header_prefix + body_txt).strip(),
+                            "content": (header_prefix + "\n\n".join(current_body)).strip(),
                             "page_number": page_num,
                             "chunk_index": chunk_idx
                         })
                         chunk_idx += 1
-                        current_body = []
-                        current_body_tokens = 0
-                    current_body.append(sent)
-                    current_body_tokens += sent_tokens
+                        current_body = [sent]
+                        current_body_tokens = sent_tokens
+                    else:
+                        current_body.append(sent)
+                        current_body_tokens += sent_tokens
                 continue
 
             if current_body_tokens + unit_tokens > available_budget and current_body:
-                body_txt = "\n\n".join(current_body)
                 sub_chunks.append({
                     "disorder_name": disorder_name,
                     "code": code,
                     "section_type": section_type,
                     "chunk_type": chunk_type,
-                    "content": (header_prefix + body_txt).strip(),
+                    "content": (header_prefix + "\n\n".join(current_body)).strip(),
                     "page_number": page_num,
                     "chunk_index": chunk_idx
                 })
@@ -215,15 +302,12 @@ class DSM5Chunker:
                 "chunk_index": chunk_idx
             })
 
-        # Step 4: Merge trailing sub-chunks under 60 tokens into the previous one if it fits in max_tokens
         merged = []
         for sc in sub_chunks:
             sc_tokens = self.count_tokens(sc["content"])
             if sc_tokens < 60 and merged:
                 prev = merged[-1]
-                # Try combining bodies
                 prev_body = prev["content"]
-                # Strip duplicate header prefix from sc
                 sc_body = sc["content"]
                 if header_prefix.strip() in sc_body:
                     sc_body = sc_body.replace(header_prefix.strip(), "").strip()
@@ -233,28 +317,29 @@ class DSM5Chunker:
                     continue
             merged.append(sc)
 
-        # Re-index chunks
         for idx, sc in enumerate(merged):
             sc["chunk_index"] = idx
 
         return merged
 
     def extract_chunks(self, pdf_path):
-        """Extract all DSM-5 chunks with visual font title detection, strict boundaries, and token-budget splitting."""
+        """Extract all DSM-5 chunks anchored strictly to canonical TOC titles."""
         doc = fitz.open(pdf_path)
-        print(f"Loaded PDF: {pdf_path} ({len(doc)} pages)")
+        self.canonical_toc = self.build_canonical_toc(doc)
+        print(f"Loaded PDF: {pdf_path} ({len(doc)} pages), {len(self.canonical_toc)} canonical TOC entries.")
 
         raw_sections = []
-        current_disorder = "Introduction"
+        current_disorder = None
         current_code = ""
         current_section = "Overview"
-        current_chunk_type = "class_intro"
+        current_chunk_type = "disorder"
         section_lines = []
         active_page = 1
 
         def flush_active_section(p_num):
             nonlocal section_lines, current_disorder, current_code, current_section, current_chunk_type, active_page
-            if section_lines:
+            # Text with no TOC entry is not indexed
+            if section_lines and current_disorder:
                 raw_text = "\n".join(section_lines).strip()
                 cleaned = self.clean_text(raw_text)
                 if len(cleaned) >= 30:
@@ -266,19 +351,19 @@ class DSM5Chunker:
                         "page_number": active_page,
                         "content": cleaned
                     })
-                section_lines = []
+            section_lines = []
 
         for page_idx in range(len(doc)):
             page_num = page_idx + 1
 
             # Deliberately exclude front matter (< page 67) and appendices/index (>= page 833)
+            # Nothing in Section II is labeled "General DSM-5"
             if page_num < 67 or page_num >= 833:
                 continue
 
             page = doc[page_idx]
             page_dict = page.get_text("dict")
 
-            # Extract lines with font metadata
             extracted_lines = []
             for b in page_dict.get("blocks", []):
                 if "lines" in b:
@@ -289,7 +374,6 @@ class DSM5Chunker:
                         line_text = "".join(s.get("text", "") for s in spans).strip()
                         if not line_text:
                             continue
-                        # Get dominant span size and font
                         max_span = max(spans, key=lambda s: len(s.get("text", "")))
                         extracted_lines.append({
                             "text": line_text,
@@ -311,24 +395,30 @@ class DSM5Chunker:
                     i += 1
                     continue
 
-                # 1. Major divider check (Section III, etc.)
+                # 1. Major divider check: ONLY on prominent headings (font size >= 14.5 or short isolated line),
+                # NEVER trigger from inline text inside paragraphs!
                 is_major_divider = False
-                for div in MAJOR_DIVIDERS:
-                    if div.lower() in lower_line:
-                        is_major_divider = True
-                        break
+                if size >= 14.5 or len(line.split()) <= 4:
+                    for div in MAJOR_DIVIDERS:
+                        if lower_line == div.lower() or lower_line.startswith(div.lower() + " "):
+                            is_major_divider = True
+                            break
+                            
                 if is_major_divider:
                     flush_active_section(page_num)
-                    current_disorder = "Section III / Emerging Measures" if page_num >= 759 else "General DSM-5"
+                    if page_num >= 759:
+                        current_disorder = "Section III / Emerging Measures"
+                        current_chunk_type = "section_iii"
+                    else:
+                        current_disorder = None
+                        current_chunk_type = "class_intro"
                     current_code = ""
                     current_section = line
-                    current_chunk_type = "section_iii" if page_num >= 759 else "class_intro"
                     active_page = page_num
                     i += 1
                     continue
 
-                # 2. Diagnostic Class Heading (size >= 19.5pt) e.g. "Schizophrenia Spectrum...", "Disruptive, Impulse-Control..."
-                # Must start with an uppercase ASCII letter and contain valid English alphabetic words (not OCR artifacts like 'alilll')
+                # 2. Diagnostic Class Heading (size >= 19.5pt)
                 if size >= 19.5 and ("bold" in font.lower() or "arial" in font.lower()) and len(line) > 3:
                     if line[0].isupper() and re.match(r'^[A-Z][A-Za-z\s,\-\/\(\)]+$', line):
                         heading_lines = [line]
@@ -339,9 +429,10 @@ class DSM5Chunker:
                             i += 1
                             heading_lines.append(next_text)
                         full_class_name = " ".join(heading_lines).strip()
-                        if full_class_name[0].isupper():
+                        matched_toc = self.match_canonical(full_class_name)
+                        if matched_toc:
                             flush_active_section(page_num)
-                            current_disorder = full_class_name
+                            current_disorder = matched_toc
                             current_code = ""
                             current_section = "Diagnostic Class Overview"
                             current_chunk_type = "class_intro"
@@ -350,7 +441,6 @@ class DSM5Chunker:
                             continue
 
                 # 3. Disorder Title by Font Size (size >= 15.0pt and < 19.5pt, Bold)
-                # Matches "Major Depressive Disorder", "Kleptomania", "Posttraumatic Stress Disorder", etc.
                 if 15.0 <= size < 19.5 and ("bold" in font.lower() or "arial" in font.lower()):
                     if line and line[0].isupper() and not any(lower_line == h.lower() for h in SUBSECTION_HEADERS):
                         heading_lines = [line]
@@ -364,38 +454,39 @@ class DSM5Chunker:
                             heading_lines.append(next_text)
                         
                         full_title = " ".join(heading_lines).strip()
-                        # Check if next lines say "Criteria and text for ... can be found in ..." (cross-reference callout, not the real chapter)
                         is_cross_reference = False
                         if i + 1 < len(extracted_lines) and "criteria and text for" in extracted_lines[i+1]["text"].lower():
                             is_cross_reference = True
 
-                        if not is_cross_reference and len(full_title) > 3 and not full_title.startswith("With") and not full_title.startswith("Due to") and not full_title.startswith("Unspecified type"):
-                            flush_active_section(page_num)
-                            current_disorder = full_title
-                            current_code = ""
-                            current_section = "Diagnostic Criteria"
-                            current_chunk_type = "disorder"
-                            active_page = page_num
-                            i += 1
-                            continue
+                        if not is_cross_reference:
+                            matched_toc = self.match_canonical(full_title)
+                            if matched_toc:
+                                flush_active_section(page_num)
+                                current_disorder = matched_toc
+                                current_code = ""
+                                current_section = "Diagnostic Criteria"
+                                current_chunk_type = "disorder"
+                                active_page = page_num
+                                i += 1
+                                continue
 
                 # 4. Other Specified... / Unspecified... Disorders
-                # Treat "Other Specified <Disorder>" and "Unspecified <Disorder>" as their own disorders and end previous section!
-                # Must actually contain "Disorder" or have prominent heading font size (>= 12.0pt), not a table cell like "Unspecified" (9.5pt)
                 if (lower_line.startswith("other specified") or lower_line.startswith("unspecified")) and line[0].isupper():
                     is_real_disorder = (
                         "disorder" in lower_line or 
                         (size >= 12.0 and len(line.split()) >= 2)
                     )
                     if is_real_disorder and not lower_line.endswith('.') and len(line) < 70 and not lower_line.startswith("unspecified type"):
-                        flush_active_section(page_num)
-                        current_disorder = line
-                        current_code = ""
-                        current_section = "Diagnostic Criteria"
-                        current_chunk_type = "disorder"
-                        active_page = page_num
-                        i += 1
-                        continue
+                        matched_toc = self.match_canonical(line)
+                        if matched_toc:
+                            flush_active_section(page_num)
+                            current_disorder = matched_toc
+                            current_code = ""
+                            current_section = "Diagnostic Criteria"
+                            current_chunk_type = "disorder"
+                            active_page = page_num
+                            i += 1
+                            continue
 
                 # 5. Diagnostic Criteria / Proposed Criteria header
                 is_criteria = (
@@ -418,39 +509,21 @@ class DSM5Chunker:
                     matched_code = f"{c1} ({c2})" if c2 else c1
                     clean_rest = rest.strip() if rest else ""
 
-                    # Validate clean_rest is a legitimate disorder title:
-                    # - Must not start with lowercase
-                    # - Must not start with specifiers / subtitles like "With", "Due to", "Unspecified type", or end with punctuation
-                    # - Must not be a subtype / presentation / course specifier row (e.g. "Combined presentation", "In partial remission", "Single episode")
-                    bad_keywords = ["presentation:", "remission", "episode", "with ", "due to", "unspecified type", "mild", "moderate", "severe"]
-                    is_specifier_row = any(bk in clean_rest.lower() for bk in bad_keywords)
-
-                    is_valid_disorder_name = (
-                        len(clean_rest) > 3 and
-                        clean_rest[0].isupper() and
-                        not is_specifier_row and
-                        not clean_rest.endswith('.') and
-                        not clean_rest.endswith(';') and
-                        not clean_rest.endswith(':') and
-                        len(clean_rest) < 80
-                    )
-
-                    if is_valid_disorder_name:
-                        flush_active_section(page_num)
-                        current_disorder = clean_rest
-                        current_code = matched_code
-                        current_section = "Diagnostic Criteria"
-                        if page_num >= 746 and page_num <= 758:
-                            current_chunk_type = "other_conditions"
-                        else:
-                            current_chunk_type = "disorder"
-                        active_page = page_num
-                        i += 1
-                        continue
-                    elif not current_code and current_section in ["Diagnostic Criteria", "Proposed Criteria"]:
-                        current_code = matched_code
-                        i += 1
-                        continue
+                    if len(clean_rest) > 3 and clean_rest[0].isupper() and not clean_rest.endswith(('.', ';', ':')):
+                        matched_toc = self.match_canonical(clean_rest)
+                        if matched_toc:
+                            flush_active_section(page_num)
+                            current_disorder = matched_toc
+                            current_code = matched_code
+                            current_section = "Diagnostic Criteria"
+                            current_chunk_type = "other_conditions" if (746 <= page_num <= 758) else "disorder"
+                            active_page = page_num
+                            i += 1
+                            continue
+                        elif not current_code and current_section in ["Diagnostic Criteria", "Proposed Criteria"]:
+                            current_code = matched_code
+                            i += 1
+                            continue
 
                 # 7. Standard subsection headers
                 matched_sec = None
@@ -470,18 +543,20 @@ class DSM5Chunker:
                 section_lines.append(line)
                 i += 1
 
-        # Flush final active section
         flush_active_section(832)
 
         print(f"Extracted {len(raw_sections)} raw bounded sections. Running sub-chunking & merge pass...")
 
-        # Second Pass: Sub-chunk into max_tokens chunks with disambiguated IDs
         final_chunks = []
-        import hashlib
-        from collections import defaultdict
         id_counters = defaultdict(int)
 
         for sec in raw_sections:
+            # Alphabetic character ratio check: No names with <60% alphabetic characters
+            name = sec["disorder_name"]
+            alpha_ratio = sum(c.isalpha() for c in name) / len(name)
+            if alpha_ratio < 0.6:
+                continue
+
             sub_chunks = self._sub_chunk_section(
                 sec["disorder_name"],
                 sec["code"],

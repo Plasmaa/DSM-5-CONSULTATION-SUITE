@@ -33,7 +33,10 @@ def test_chunker_golden():
 
     print(f"\nWrote {len(sorted_disorders)} disorder names to disorder_names.txt.")
 
-    # 2. Golden Tests for 5 target disorders
+    # 2. Golden Tests for Target Disorders
+    print("\n--- Running Golden Tests for Target Disorders ---")
+    
+    # Existing 5 target disorders
     golden_targets = {
         "GAD": "Generalized Anxiety Disorder",
         "MDD": "Major Depressive Disorder",
@@ -42,42 +45,78 @@ def test_chunker_golden():
         "Transvestic": "Transvestic Disorder"
     }
 
-    print("\n--- Running Golden Tests for Target Disorders ---")
     for nick, expected_name in golden_targets.items():
         matched = [c for c in chunks if c["disorder_name"] == expected_name]
         assert len(matched) > 0, f"FAILED: Expected disorder '{expected_name}' not found!"
         
-        # Check criteria chunk
         crit_chunks = [c for c in matched if c["section_type"] == "Diagnostic Criteria"]
         assert len(crit_chunks) > 0, f"FAILED: No Diagnostic Criteria chunk found for '{expected_name}'!"
         
         first_crit = crit_chunks[0]["content"]
-        # The content has header: "{Disorder} ({code}) — Diagnostic Criteria\n\n{body}"
-        # We check body starts with A.
         body = first_crit.split("— Diagnostic Criteria\n\n", 1)[-1].strip()
-        # Look for Criterion A in the preamble / first criteria lines
         body_lines = [l.strip() for l in body.split("\n") if l.strip()]
         has_A = any(l.startswith("A.") or "A. " in l for l in body_lines[:6])
         print(f"[{nick}] Found {len(matched)} chunks. Criteria Chunk 0 preamble: {repr(body_lines[0][:60])}")
         assert has_A, f"FAILED: '{expected_name}' Criteria Chunk 0 does not start with Criterion A! Got: {body_lines[:4]}"
 
+    # New Golden Tests:
+    # - Schizophrenia >= 10 chunks
+    schiz_chunks = [c for c in chunks if c["disorder_name"] == "Schizophrenia"]
+    print(f"[Schizophrenia] Found {len(schiz_chunks)} chunks.")
+    assert len(schiz_chunks) >= 10, f"FAILED: Schizophrenia has {len(schiz_chunks)} chunks (expected >= 10)"
+
+    # - Schizoaffective >= 5 chunks
+    schizaff_chunks = [c for c in chunks if "Schizoaffective" in c["disorder_name"]]
+    print(f"[Schizoaffective] Found {len(schizaff_chunks)} chunks.")
+    assert len(schizaff_chunks) >= 5, f"FAILED: Schizoaffective has {len(schizaff_chunks)} chunks (expected >= 5)"
+
+    # - Conduct Disorder >= 8 chunks
+    conduct_chunks = [c for c in chunks if c["disorder_name"] == "Conduct Disorder"]
+    print(f"[Conduct Disorder] Found {len(conduct_chunks)} chunks.")
+    assert len(conduct_chunks) >= 8, f"FAILED: Conduct Disorder has {len(conduct_chunks)} chunks (expected >= 8)"
+
+    # - Autism >= 12 chunks
+    autism_chunks = [c for c in chunks if "Autism" in c["disorder_name"]]
+    print(f"[Autism] Found {len(autism_chunks)} chunks.")
+    assert len(autism_chunks) >= 12, f"FAILED: Autism has {len(autism_chunks)} chunks (expected >= 12)"
+
+    # - Panic Disorder differential labeled Panic Disorder
+    panic_diff = [c for c in chunks if c["section_type"] == "Differential Diagnosis" and c["page_number"] == 250]
+    print(f"[Panic Disorder Differential] Found {len(panic_diff)} chunks on page 250.")
+    assert len(panic_diff) > 0, "FAILED: No differential diagnosis chunk found for Panic Disorder on page 250!"
+    for pd in panic_diff:
+        assert pd["disorder_name"] == "Panic Disorder", f"FAILED: Panic Disorder differential mislabeled as '{pd['disorder_name']}'!"
+
     # 3. Validation Assertions on Disorder Names
     print("\n--- Validating Disorder Name Sanitization ---")
     invalid_prefixes = ["Due to", "With", "Unspecified type"]
     failed_names = []
+    bad_alpha_names = []
+    general_dsm5_chunks = []
+
+    for c in chunks:
+        name = c["disorder_name"]
+        p_num = c["page_number"]
+        
+        # Alphabetic ratio check: No names with <60% alphabetic characters
+        alpha_ratio = sum(ch.isalpha() for ch in name) / len(name)
+        if alpha_ratio < 0.60:
+            bad_alpha_names.append((name, alpha_ratio))
+
+        # Nothing is labeled "General DSM-5" except pages before Section II
+        if name == "General DSM-5" and p_num >= 67:
+            general_dsm5_chunks.append((name, p_num))
+
     for name in disorder_counts.keys():
-        # Fail on names starting with lowercase
         if name and name[0].islower():
             failed_names.append((name, "starts with lowercase"))
         for bad_p in invalid_prefixes:
             if name.startswith(bad_p):
                 failed_names.append((name, f"starts with '{bad_p}'"))
 
-    if failed_names:
-        print(f"FAILED: Found {len(failed_names)} invalid disorder names:")
-        for fn, reason in failed_names[:10]:
-            print(f"  - '{fn}': {reason}")
-        assert False, f"Disorder name validation failed: {failed_names[:5]}"
+    assert len(bad_alpha_names) == 0, f"FAILED: Found disorder names with <60% alphabetic chars: {bad_alpha_names}"
+    assert len(general_dsm5_chunks) == 0, f"FAILED: Found 'General DSM-5' chunks in Section II: {general_dsm5_chunks}"
+    assert len(failed_names) == 0, f"FAILED: Found invalid disorder names: {failed_names}"
 
     # 4. Token limit assertions
     max_tok = max(chunker.count_tokens(c["content"]) for c in chunks)

@@ -132,7 +132,7 @@ class RetrieveRequest(BaseModel):
     filter_disorder: Optional[str] = None
 
 # Reference Assistant System Prompt
-SYSTEM_PROMPT = """You are a reference assistant for clinicians. Answer ONLY from the provided DSM-5 sources. Quote criteria faithfully. Cite as [Disorder, Section, p.X]. If the sources don't contain the answer, say 'Not found in the retrieved DSM-5 sections.' Do not diagnose individual patients."""
+SYSTEM_PROMPT = """You are a reference assistant for clinicians. Answer ONLY from the provided DSM-5 sources.Do not answer anything except medical / psychiatric questions or questions related to the DSM-5. Quote criteria faithfully. Cite as [Disorder, Section, p.X]. If the sources don't contain the answer, say 'Not found in the retrieved DSM-5 sections.' Do not diagnose individual patients."""
 
 @app.get("/api/status")
 async def get_status():
