@@ -68,26 +68,71 @@ class ChatMessage(BaseModel):
     role: str
     content: str
 
+class ThinkTagFilter:
+    """Filter out <think>...</think> reasoning tags from streaming token deltas."""
+    def __init__(self):
+        self.in_think = False
+        self.buffer = ""
+
+    def process(self, chunk: str) -> str:
+        self.buffer += chunk
+        out = ""
+        while self.buffer:
+            if not self.in_think:
+                start_idx = self.buffer.find("<think>")
+                if start_idx != -1:
+                    out += self.buffer[:start_idx]
+                    self.buffer = self.buffer[start_idx + len("<think>"):]
+                    self.in_think = True
+                else:
+                    matched_prefix = False
+                    for i in range(1, min(len("<think>"), len(self.buffer) + 1)):
+                        if "<think>".startswith(self.buffer[-i:]):
+                            out += self.buffer[:-i]
+                            self.buffer = self.buffer[-i:]
+                            matched_prefix = True
+                            break
+                    if not matched_prefix:
+                        out += self.buffer
+                        self.buffer = ""
+                    else:
+                        break
+            else:
+                end_idx = self.buffer.find("</think>")
+                if end_idx != -1:
+                    self.buffer = self.buffer[end_idx + len("</think>"):].lstrip()
+                    self.in_think = False
+                else:
+                    matched_prefix = False
+                    for i in range(1, min(len("</think>"), len(self.buffer) + 1)):
+                        if "</think>".startswith(self.buffer[-i:]):
+                            self.buffer = self.buffer[-i:]
+                            matched_prefix = True
+                            break
+                    if not matched_prefix:
+                        self.buffer = ""
+                    break
+        return out
+
+    def flush(self) -> str:
+        if not self.in_think:
+            res = self.buffer
+            self.buffer = ""
+            return res
+        self.buffer = ""
+        return ""
+
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
-    model: Optional[str] = "qwen2.5:7b"
+    model: Optional[str] = "qwen3:8b"
 
 class RetrieveRequest(BaseModel):
     query: str
     k: Optional[int] = 5
     filter_disorder: Optional[str] = None
 
-# "Boss Psychiatrist" System Prompt
-SYSTEM_PROMPT = """You are the Chief of Clinical Psychiatry, a world-renowned, elite medical director. You speak with absolute authority, clinical precision, and directness. You cut through vagueness, diagnose strictly by the DSM-5 criteria, and speak like a seasoned, confident medical director who runs the ward.
-
-Your task is to analyze the patient's presentation or answer the user's clinical inquiry based ONLY on the provided DSM-5 sections.
-
-Rules of Engagement:
-1. Persona: Speak like a decisive, analytical, and highly knowledgeable Chief of Psychiatry. Be confident and authoritative. 
-2. Grounding: Rely strictly on the provided DSM-5 source chunks. If the answer cannot be found in the provided sources, explicitly state: "That information is not present in my DSM-5 reference material." Never hallucinate or use external psychiatric criteria.
-3. Citations: Cite your sources inline. Cite the disorder name, ICD code, and PDF page numbers whenever you refer to diagnostic criteria or symptoms. Format citations exactly like this: [Major Depressive Disorder, 296.22 (F32.1), Page 160].
-4. Diagnostics: If the user provides a case description, outline the diagnostic criteria met, check for required symptoms, and highlight differentials (e.g. Bipolar I vs Bipolar II) or comorbidity options based on the texts. If details are missing to confirm a diagnosis, ask the user (in a commanding, clinical manner) for those specific symptoms.
-"""
+# Reference Assistant System Prompt
+SYSTEM_PROMPT = """You are a reference assistant for clinicians. Answer ONLY from the provided DSM-5 sources. Quote criteria faithfully. Cite as [Disorder, Section, p.X]. If the sources don't contain the answer, say 'Not found in the retrieved DSM-5 sections.' Do not diagnose individual patients."""
 
 @app.get("/api/status")
 async def get_status():
@@ -146,7 +191,7 @@ async def chat_endpoint(req: ChatRequest):
     
     last_query = user_messages[-1].content
 
-    # 2. Retrieve relevant DSM-5 chunks
+    # 2. Retrieve relevant DSM-5 chunks (no score cutoff)
     try:
         query_vector = get_ollama_embedding(last_query)
         sources = db.search(query_vector, k=5)
@@ -156,46 +201,50 @@ async def chat_endpoint(req: ChatRequest):
     # 3. Build context for the LLM
     context_str = ""
     for idx, src in enumerate(sources):
-        context_str += f"\n--- SOURCE {idx+1}: {src['disorder_name']} ({src['code'] or 'No Code'}), Page {src['page_number']}, Section: {src['section_type']} (Relevance Score: {src['score']:.4f}) ---\n"
+        pdf_page = src.get("pdf_page") or src.get("page_number")
+        context_str += f"\n--- SOURCE {idx+1}: {src['disorder_name']} ({src.get('code') or 'No Code'}), p.{pdf_page}, Section: {src['section_type']} (Relevance Score: {src['score']:.4f}) ---\n"
         context_str += f"{src['content']}\n"
         context_str += "--------------------------------------------------------\n"
 
     # 4. Prepare messages for Ollama
-    # System message includes the grounding instructions + retrieved DSM-5 context
     full_system_prompt = f"{SYSTEM_PROMPT}\n\nRELEVANT DSM-5 REFERENCES:\n{context_str}"
     
     ollama_messages = [{"role": "system", "content": full_system_prompt}]
     
-    # Add conversation history (excluding any previous system prompt injections)
+    # Add conversation history
     for msg in req.messages:
         ollama_messages.append({"role": msg.role, "content": msg.content})
 
     # 5. Define SSE Generator
     async def sse_generator():
-        # First send the retrieved sources list to the client
-        # Clean sources from full content text for lightweight header transmission
+        # Send retrieved sources metadata to client
         light_sources = []
         for src in sources:
+            pdf_page = src.get("pdf_page") or src.get("page_number")
             light_sources.append({
                 "disorder_name": src["disorder_name"],
                 "code": src["code"],
                 "section_type": src["section_type"],
-                "page_number": src["page_number"],
+                "page_number": pdf_page,
+                "pdf_page": pdf_page,
                 "score": src["score"],
-                "content": src["content"] # include text so they can read details in drawer
+                "content": src["content"]
             })
         yield f"data: {json.dumps({'type': 'sources', 'sources': light_sources})}\n\n"
 
-        # Call Ollama API in streaming mode
+        # Call Ollama API in streaming mode with think: false, num_ctx: 8192, temperature: 0.1
         ollama_payload = {
             "model": req.model,
             "messages": ollama_messages,
             "stream": True,
+            "think": False,
             "options": {
-                "num_ctx": 8192
+                "num_ctx": 8192,
+                "temperature": 0.1
             }
         }
         
+        think_filter = ThinkTagFilter()
         async with httpx.AsyncClient(timeout=60.0) as client:
             try:
                 async with client.stream(
@@ -212,11 +261,17 @@ async def chat_endpoint(req: ChatRequest):
                             continue
                         try:
                             data = json.loads(line)
-                            delta = data.get("message", {}).get("content", "")
-                            if delta:
-                                yield f"data: {json.dumps({'type': 'content', 'delta': delta})}\n\n"
+                            raw_delta = data.get("message", {}).get("content", "")
+                            if raw_delta:
+                                filtered_delta = think_filter.process(raw_delta)
+                                if filtered_delta:
+                                    yield f"data: {json.dumps({'type': 'content', 'delta': filtered_delta})}\n\n"
                         except json.JSONDecodeError:
                             continue
+
+                    final_delta = think_filter.flush()
+                    if final_delta:
+                        yield f"data: {json.dumps({'type': 'content', 'delta': final_delta})}\n\n"
             except Exception as e:
                 yield f"data: {json.dumps({'type': 'error', 'error': f'Connection to Ollama failed: {str(e)}'})}\n\n"
 
