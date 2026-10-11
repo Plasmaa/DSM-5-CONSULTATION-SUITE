@@ -36,6 +36,15 @@ def run_indexing():
         print("Error: No chunks extracted from PDF. Check parser logic.")
         sys.exit(1)
 
+    # Validate chunk ID uniqueness
+    chunk_ids = [c["id"] for c in chunks]
+    unique_ids = set(chunk_ids)
+    assert len(chunk_ids) == len(unique_ids), (
+        f"Duplicate chunk IDs detected! {len(chunk_ids)} total chunks, "
+        f"but only {len(unique_ids)} unique IDs ({len(chunk_ids) - len(unique_ids)} duplicates). Aborting."
+    )
+    print(f"Verified {len(chunks)} chunks with 100% unique IDs.")
+
     # 3. Generate Embeddings via Ollama
     print("\nGenerating embeddings for chunks via local Ollama (bge-large)...")
     texts = [c["content"] for c in chunks]

@@ -478,6 +478,8 @@ class DSM5Chunker:
         # Second Pass: Sub-chunk into max_tokens chunks with disambiguated IDs
         final_chunks = []
         import hashlib
+        from collections import defaultdict
+        id_counters = defaultdict(int)
 
         for sec in raw_sections:
             sub_chunks = self._sub_chunk_section(
@@ -489,7 +491,11 @@ class DSM5Chunker:
                 sec["page_number"]
             )
             for sc in sub_chunks:
-                id_str = f"{sc['disorder_name']}_{sc['section_type']}_{sc['page_number']}_chunk{sc['chunk_index']}"
+                key = (sc["disorder_name"], sc["section_type"], sc["page_number"])
+                seq_num = id_counters[key]
+                id_counters[key] += 1
+                sc["chunk_index"] = seq_num
+                id_str = f"{sc['disorder_name']}_{sc['section_type']}_{sc['page_number']}_chunk{seq_num}"
                 det_id = hashlib.md5(id_str.encode('utf-8')).hexdigest()
                 sc["id"] = det_id
                 final_chunks.append(sc)
