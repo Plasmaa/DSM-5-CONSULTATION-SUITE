@@ -178,7 +178,10 @@ async def chat_endpoint(req: ChatRequest):
         ollama_payload = {
             "model": req.model,
             "messages": ollama_messages,
-            "stream": True
+            "stream": True,
+            "options": {
+                "num_ctx": 8192
+            }
         }
         
         async with httpx.AsyncClient(timeout=60.0) as client:

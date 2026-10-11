@@ -58,10 +58,10 @@ async function checkSystemStatus() {
     try {
         const response = await fetch(`${API_BASE}/api/status`);
         const data = await response.json();
-        
+
         // Update Stats
         statChunks.textContent = data.sqlite_count || 0;
-        
+
         // Update Pinecone Status Indicator
         if (data.pinecone_ready) {
             updateStatusDot(pineconeStatus, 'green', `Pinecone: Ready (${data.pinecone_vector_count} vectors)`);
@@ -71,16 +71,23 @@ async function checkSystemStatus() {
 
         // Update Ollama Status Indicator
         if (data.ollama_running) {
-            const models = data.ollama_models || [];
-            if (models.includes('qwen2.5:7b') || models.includes('qwen2.5:7b-instruct') || models.some(m => m.startsWith('qwen2.5'))) {
-                updateStatusDot(ollamaStatus, 'green', 'Ollama: Qwen2.5 Connected');
-                statModel.textContent = models.find(m => m.startsWith('qwen2.5')) || 'qwen2.5:7b';
-            } else if (models.length > 0) {
-                updateStatusDot(ollamaStatus, 'green', `Ollama: Ready (${models[0]})`);
-                statModel.textContent = models[0];
+            const allModels = data.ollama_models || [];
+            // Filter out embedding-only models
+            const chatModels = allModels.filter(m => !m.includes('bge') && !m.includes('embed') && !m.includes('nomic'));
+
+            // Look for qwen first, or fallback to any generative chat model
+            const qwenModel = chatModels.find(m => m.toLowerCase().includes('qwen'));
+            const chosenModel = qwenModel || (chatModels.length > 0 ? chatModels[0] : null);
+
+            if (chosenModel) {
+                updateStatusDot(ollamaStatus, 'green', `Ollama: Ready (${chosenModel})`);
+                statModel.textContent = chosenModel;
+            } else if (allModels.length > 0) {
+                updateStatusDot(ollamaStatus, 'red', 'Ollama: No Chat Model (Only Embedding Models Found)');
+                statModel.textContent = "qwen3:8b";
             } else {
                 updateStatusDot(ollamaStatus, 'red', 'Ollama: Connected (No Models)');
-                statModel.textContent = "Pulling Model...";
+                statModel.textContent = "No Models";
             }
         } else {
             updateStatusDot(ollamaStatus, 'red', 'Ollama: Offline');
@@ -96,7 +103,7 @@ async function checkSystemStatus() {
 function updateStatusDot(element, color, text) {
     const dot = element.querySelector('.status-dot');
     const label = element.querySelector('.status-label');
-    
+
     dot.className = 'status-dot ' + color;
     label.textContent = text;
 }
@@ -104,9 +111,9 @@ function updateStatusDot(element, color, text) {
 // Format markdown-like elements and bracketed citations
 function formatContent(text) {
     if (!text) return "";
-    
+
     let html = text;
-    
+
     // Escape HTML tags to prevent injections
     html = html
         .replace(/&/g, "&amp;")
@@ -130,7 +137,7 @@ function formatContent(text) {
         // Find if citation matches any of our active sources
         let idAttr = "";
         const parts = p1.toLowerCase();
-        
+
         // Try to locate source index in currentSources to link it
         const matchedIndex = currentSources.findIndex(src => {
             const disorderClean = src.disorder_name.toLowerCase();
@@ -148,18 +155,18 @@ function formatContent(text) {
 }
 
 // Click callback to scroll to right side card
-window.scrollToSourceCard = function(element) {
+window.scrollToSourceCard = function (element) {
     const idx = element.getAttribute('data-source-index');
     if (idx === null) return;
-    
+
     const card = document.getElementById(`source-card-${idx}`);
     if (card) {
         // Expand card if collapsed
         card.classList.add('expanded');
-        
+
         // Remove highlight from others
         document.querySelectorAll('.source-card').forEach(c => c.classList.remove('highlighted'));
-        
+
         // Highlight and scroll into view
         card.classList.add('highlighted');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -193,7 +200,7 @@ async function submitMessage() {
             },
             body: JSON.stringify({
                 messages: chatHistory,
-                model: statModel.textContent || "qwen2.5:7b"
+                model: statModel.textContent || "qwen3:8b"
             })
         });
 
@@ -205,12 +212,12 @@ async function submitMessage() {
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         let buffer = "";
-        
+
         // Create bot message container placeholder
         removeWaitingIndicator(waitingId);
         const botMessageId = appendMessagePlaceholder("system", "Chief of Psychiatry");
         const botContentDiv = document.querySelector(`#${botMessageId} .message-content-text`);
-        
+
         let botTextAccumulator = "";
         currentSources = [];
 
@@ -266,13 +273,13 @@ async function submitMessage() {
 function appendMessage(role, sender, text, isError = false) {
     const msgId = 'msg-' + Date.now();
     const isUser = role === "user";
-    
+
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isUser ? 'user-message' : 'system-message'}`;
     messageDiv.id = msgId;
 
     const avatarIcon = isUser ? 'fa-user' : (isError ? 'fa-triangle-exclamation' : 'fa-user-doctor');
-    
+
     messageDiv.innerHTML = `
         <div class="message-avatar">
             <i class="fa-solid ${avatarIcon}"></i>
@@ -282,7 +289,7 @@ function appendMessage(role, sender, text, isError = false) {
             <div class="message-content-text">${formatContent(text)}</div>
         </div>
     `;
-    
+
     chatMessages.appendChild(messageDiv);
     return msgId;
 }
@@ -303,7 +310,7 @@ function appendMessagePlaceholder(role, sender) {
             <div class="message-content-text"></div>
         </div>
     `;
-    
+
     chatMessages.appendChild(messageDiv);
     return msgId;
 }
@@ -353,7 +360,7 @@ function renderSources(sources) {
         const card = document.createElement('div');
         card.className = 'source-card';
         card.id = `source-card-${index}`;
-        
+
         // Calculate similarity percentage
         const similarityPct = Math.round(src.score * 100);
 
